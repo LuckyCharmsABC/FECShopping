@@ -1,0 +1,19 @@
+{
+  "name": "front-end-capstone",
+  "version": "1.0.0",
+  "description": "creates a front end display for an online retailing app",
+  "main": "client/src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuckyCharmsABC/FECShopping.git"
+  },
+  "author": "avarice boonzaayer, boyi qu, connor fung",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LuckyCharmsABC/FECShopping/issues"
+  },
+  "homepage": "https://github.com/LuckyCharmsABC/FECShopping#readme"
+}
