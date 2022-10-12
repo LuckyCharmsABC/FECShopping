@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/LuckyCharmsABC/FECShopping/issues"
   },
-  "homepage": "https://github.com/LuckyCharmsABC/FECShopping#readme"
+  "homepage": "https://github.com/LuckyCharmsABC/FECShopping#readme",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
 }
