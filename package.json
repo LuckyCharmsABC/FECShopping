@@ -4,6 +4,8 @@
   "description": "creates a front end display for an online retailing app",
   "main": "client/src/index.js",
   "scripts": {
+    "build": "webpack",
+    "dev": "webpack serve",
     "test": "jest"
   },
   "repository": {
