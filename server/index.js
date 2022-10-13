@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 
 // routes/controllers will utilize client requests and communicate with the API here.
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.listen(port);
 console.log(`server listening at http://localhost:${port}`)
