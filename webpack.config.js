@@ -7,6 +7,17 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "client/dist")
   },
+  module: {
+    rules: [
+      {
+        test: /\.?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader"
+        }
+      }
+    ]
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "client/dist",)
