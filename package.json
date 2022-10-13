@@ -2,7 +2,7 @@
   "name": "front-end-capstone",
   "version": "1.0.0",
   "description": "creates a front end display for an online retailing app",
-  "main": "client/src/index.js",
+  "main": "server/index.js",
   "scripts": {
     "build": "webpack",
     "dev": "webpack serve",
