@@ -2,12 +2,12 @@
   "name": "front-end-capstone",
   "version": "1.0.0",
   "description": "creates a front end display for an online retailing app",
-  "main": "client/src/index.js",
+  "main": "server/index.js",
   "scripts": {
     "build": "webpack",
     "dev": "webpack serve",
-    "client-dev": "npx webpack --watch",
-    "server-dev": "npx nodemon --watch server/index.js",
+    "client-dev": "webpack --mode=development --watch",
+    "server-dev": "npx nodemon --watch server server/index.js",
     "test": "jest"
   },
   "repository": {
@@ -22,6 +22,8 @@
   "homepage": "https://github.com/LuckyCharmsABC/FECShopping#readme",
   "dependencies": {
     "axios": "^1.1.2",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "eslint": "^8.25.0",
