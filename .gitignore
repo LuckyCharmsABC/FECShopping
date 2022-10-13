@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 node_modules
 client/dist/main.js
+=======
+node_modules
+client/dist/main.js
+>>>>>>> main
