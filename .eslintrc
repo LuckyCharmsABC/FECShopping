@@ -3,8 +3,7 @@
   "env": {
     "node": true,
     "es6": true,
-    "browser": true,
-    "react": true
+    "browser": true
   },
   "rules": {
     "no-console": "off"
