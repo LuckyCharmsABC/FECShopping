@@ -14,7 +14,6 @@ const Review = (props) => {
       <button>Report</button>
     </div>
   )
-
 }
 
 export default Review;
