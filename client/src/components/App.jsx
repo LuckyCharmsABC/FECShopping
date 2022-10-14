@@ -11,6 +11,7 @@ const App = (props) => {
 
   return (
     <div>
+      <h1>Hello</h1>
       <Product />
       <RelatedItems />
       <Reviews />
