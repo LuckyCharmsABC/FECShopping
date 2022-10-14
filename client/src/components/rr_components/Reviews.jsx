@@ -1,4 +1,6 @@
 import React from 'react';
+import OverallRatings from './OverallRatings.jsx';
+import ReviewList from './ReviewList.jsx';
 
 /*
  * Needs to be able to write new review, show reviews, and sort reviews
@@ -29,6 +31,8 @@ import React from 'react';
 const Reviews = (props) => (
   <div>
     <p>Ratings and Reviews</p>
+    <OverallRatings />
+    <ReviewList />
   </div>
 )
 
