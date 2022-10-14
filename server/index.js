@@ -1,10 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const axios = require('axios');
 const cors = require('cors');
 const morgan = require('morgan');
-const controllers = require('./controllers.js')
+const controllers = require('./controllers');
 
 const app = express();
 
@@ -19,10 +18,9 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 // routes/controllers will utilize client requests and communicate with the API here.
-app.get('/products', controllers.getProduct)
+app.get('/product', controllers.getProduct);
 
-
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 
 app.listen(port);
 console.log(`server listening at http://localhost:${port}`);
