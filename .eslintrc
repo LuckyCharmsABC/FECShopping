@@ -1,11 +1,16 @@
 {
-  "extends": ["airbnb-base"],
+  "extends": ["airbnb"],
   "env": {
     "node": true,
     "es6": true,
     "browser": true
   },
   "rules": {
-    "no-console": "off"
+    "no-console": "off",
+    "react/function-component-definition": "off",
+    "react/prop-types": "off"
+  },
+  "resolve": {
+    "extensions": [".js", ".jsx"]
   }
 }
