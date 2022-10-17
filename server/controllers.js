@@ -11,7 +11,8 @@ const options = {
 
 module.exports = {
   getProduct(req, res) {
-    const requestURL = `${URL}/products/${req.body.id}`;
+    const requestURL = `${URL}/products/${req.query.id}`;
+    console.log(req);
     axios.get(requestURL, options)
       .then((response) => {
         res.status(200).json(response.data);
