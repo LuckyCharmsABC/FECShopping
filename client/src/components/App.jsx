@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Product from './po_components/Product.jsx';
-import RelatedItems from './ri_components/RelatedItems.jsx';
+import Related from './ri_components/RelatedItemsAndOutfits.jsx';
 import Reviews from './rr_components/Reviews.jsx';
 
 
@@ -13,7 +13,7 @@ const App = (props) => {
     <div>
       <h1>Hello</h1>
       <Product />
-      <RelatedItems />
+      <Related />
       <Reviews />
     </div>
   )
