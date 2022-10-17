@@ -20,6 +20,9 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 // routes/controllers will utilize client requests and communicate with the API here.
 app.put('/product', controllers.getProduct);
 
+app.route('/reviews')
+  .patch(controllers.getReviews);
+
 const port = process.env.PORT || 3000;
 
 app.listen(port);

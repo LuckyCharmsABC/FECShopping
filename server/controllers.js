@@ -21,4 +21,16 @@ module.exports = {
       });
   },
 
+  getReviews(req, res) {
+    const requestURL = `${URL}/reviews`;
+    axios.get(requestURL, options, {
+      params: req.body,
+    })
+      .then((response) => {
+        res.status(200).json(response.data);
+      }).catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+      });
+  },
 };
