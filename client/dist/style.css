@@ -1,1 +1,12 @@
+#PO {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 70%;
+  margin:auto;
+}
 
+#sideInfo {
+  display: flex;
+  flex-direction: column;
+}
