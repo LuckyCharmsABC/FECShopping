@@ -8,9 +8,7 @@
   "rules": {
     "no-console": "off",
     "react/function-component-definition": "off",
-    "react/prop-types": "off"
-  },
-  "resolve": {
-    "extensions": [".js", ".jsx"]
+    "react/prop-types": "off",
+    "import/extensions": "off"
   }
 }
