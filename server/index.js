@@ -21,7 +21,10 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 app.get('/product', controllers.getProduct);
 app.get('/products', controllers.getAll);
 app.get('/products/:product_id/related', controllers.getRelated);
-app.get('/interactions', controllers.addInteraction);
+app.post('/interactions', controllers.addInteraction);
+app.get('/productstyles', controllers.getStyles);
+app.get('/cart', controllers.getCart);
+app.post('/cart', controllers.addToCart);
 
 const port = process.env.PORT || 3000;
 
