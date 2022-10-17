@@ -20,7 +20,8 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 // routes/controllers will utilize client requests and communicate with the API here.
 app.get('/product', controllers.getProduct);
 app.get('/products', controllers.getAll);
-app.get('/products/:product_id/related', )
+app.get('/products/:product_id/related', controllers.getRelated);
+app.get('/interactions', controllers.addInteraction);
 
 const port = process.env.PORT || 3000;
 
