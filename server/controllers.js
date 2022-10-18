@@ -25,7 +25,18 @@ module.exports = {
   getReviews(req, res) {
     const requestURL = `${URL}/reviews`;
     const params = _.extend(options, { params: req.query });
-    console.log(params);
+    axios.get(requestURL, params)
+      .then((response) => {
+        res.status(200).json(response.data);
+      }).catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+      });
+  },
+
+  getReviewData(req, res) {
+    const requestURL = `${URL}/reviews/meta`;
+    const params = _.extend(options, { params: req.query});
     axios.get(requestURL, params)
       .then((response) => {
         res.status(200).json(response.data);

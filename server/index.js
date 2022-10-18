@@ -19,6 +19,7 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 
 // routes/controllers will utilize client requests and communicate with the API here.
 app.get('/product', controllers.getProduct);
+app.get('/reviewsdata', controllers.getReviewData);
 
 app.route('/reviews')
   .get(controllers.getReviews)
