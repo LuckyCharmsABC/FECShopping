@@ -6,34 +6,14 @@ import AdditionalInfo from './AdditionalInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import Cart from './Cart.jsx';
 
-const Product = () => {
+const Product = ({ currentItem }) => {
 //  Example data to use for now
   const [isLoading, setIsLoading] = useState(true);
   const [productStyles, setProductStyles] = useState([]);
-  const product = {
-    "id": 40344,
-    "campus": "hr-rfp",
-    "name": "Camo Onesie",
-    "slogan": "Blend in to your crowd",
-    "description": "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
-    "category": "Jackets",
-    "default_price": "140.00",
-    "created_at": "2021-08-13T14:38:44.509Z",
-    "updated_at": "2021-08-13T14:38:44.509Z",
-    "features": [
-        {
-            "feature": "Fabric",
-            "value": "Canvas"
-        },
-        {
-            "feature": "Buttons",
-            "value": "Brass"
-        }
-    ]
-  };
+  const product = currentItem;
 
   useEffect(() => {
-    axios.get('/productstyles', { params: { id: '40344' } })
+    axios.get('/productstyles', { params: { id: product.id } })
       .then((response) => {
         console.log(response.data.results);
         setProductStyles(response.data.results);
