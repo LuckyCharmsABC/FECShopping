@@ -1,12 +1,14 @@
 {
-  "extends": ["airbnb-base"],
-  "parser": "babel-eslint",
+  "extends": ["airbnb"],
   "env": {
     "node": true,
     "es6": true,
     "browser": true
   },
   "rules": {
-    "no-console": "off"
+    "no-console": "off",
+    "react/function-component-definition": "off",
+    "react/prop-types": "off",
+    "import/extensions": "off"
   }
 }

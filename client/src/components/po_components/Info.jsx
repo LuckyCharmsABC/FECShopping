@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-const Info = ({product}) => {
-
+const Info = ({ product }) => {
   return (
     <div id="productInfo">
       <p>Reviews</p>
