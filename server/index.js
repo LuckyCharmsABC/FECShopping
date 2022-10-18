@@ -22,7 +22,7 @@ app.get('/product', controllers.getProduct);
 app.get('/products', controllers.getAll);
 app.get('/products/:id/related', controllers.getRelated);
 app.post('/interactions', controllers.addInteraction);
-app.get('/productstyles', controllers.getStyles)
+app.get('/productstyles', controllers.getStyles);
 app.get('/cart', controllers.getCart);
 app.post('/cart', controllers.addToCart);
 
