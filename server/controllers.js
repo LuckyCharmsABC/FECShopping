@@ -36,10 +36,43 @@ module.exports = {
 
   getReviewData(req, res) {
     const requestURL = `${URL}/reviews/meta`;
-    const params = _.extend(options, { params: req.query});
+    const params = _.extend(options, { params: req.query });
     axios.get(requestURL, params)
       .then((response) => {
         res.status(200).json(response.data);
+      }).catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+      });
+  },
+
+  addReview(req, res) {
+    const requestURL = `${URL}/reviews`;
+    axios.post(requestURL, req.body, options)
+      .then((response) => {
+        res.status(201).json(response.data);
+      }).catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+      });
+  },
+
+  markHelpful(req, res) {
+    const requestURL = `${URL}/reviews/${req.body.review_id}/helpful`;
+    axios.put(requestURL, req.body, options)
+      .then((response) => {
+        res.status(201).json(response.data);
+      }).catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+      });
+  },
+
+  report(req, res) {
+    const requestURL = `${URL}/reviews/${req.body.review_id}/report`;
+    axios.put(requestURL, req.body, options)
+      .then((response) => {
+        res.status(201).json(response.data);
       }).catch((err) => {
         console.log(err);
         res.sendStatus(500);
