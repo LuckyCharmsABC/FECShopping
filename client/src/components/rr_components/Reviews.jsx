@@ -34,7 +34,7 @@ import ReviewList from './ReviewList.jsx';
  *  - EC: highlight the text that matches the search result
  */
 
-const Reviews = ({ id }) => {
+const Reviews = ({ currentItem }) => {
   const [reviews, setReviews] = useState({});
   const [metaData, setMetaData] = useState({});
 
@@ -43,13 +43,13 @@ const Reviews = ({ id }) => {
       params: {
         count: 2,
         sort: 'relevance',
-        product_id: id,
+        product_id: currentItem.id,
       },
     }).then((data) => {
       setReviews(data.data);
     });
 
-    axios.get('/reviewdata', { params: { product_id: id } })
+    axios.get('/reviewdata', { params: { product_id: currentItem.id } })
       .then((data) => {
         setMetaData(data.data);
       });
@@ -58,8 +58,8 @@ const Reviews = ({ id }) => {
   return (
     <div>
       <p>Ratings and Reviews</p>
-      <OverallRatings data={metaData || {}} />
-      <ReviewList reviews={reviews || {}} data={metaData || {}} />
+      <OverallRatings data={metaData} />
+      <ReviewList reviews={reviews} data={metaData} />
     </div>
   );
 };
