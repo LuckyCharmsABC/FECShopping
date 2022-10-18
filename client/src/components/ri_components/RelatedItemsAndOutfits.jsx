@@ -1,26 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RelatedList from './RelatedList.jsx';
 import Outfits from './OutfitList.jsx';
 
-const RelatedItemsAndOutfits = ({ currentItem, setCurrentItem }) => {
-  const [relatedItems, setRelatedItems] = useState([]);
-  axios.get(`/products/${currentItem.id}/related`)
-    .then((results) => {
-      console.log(results.data);
-      // setRelatedItems(results.data);
-    })
-    .catch((err) => console.log(err));
-  return (
+const RelatedItemsAndOutfits = ({ currentItem, setCurrentItem }) => (
+  <div>
     <div>
-      <div>
-        <RelatedList />
-      </div>
-      <div>
-        <Outfits />
-      </div>
+      <RelatedList currentItem={currentItem} setCurrentItem={setCurrentItem} />
     </div>
-  );
-};
+    <div>
+      <Outfits />
+    </div>
+  </div>
+);
 
 export default RelatedItemsAndOutfits;

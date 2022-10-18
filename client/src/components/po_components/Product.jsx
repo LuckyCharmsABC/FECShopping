@@ -15,7 +15,7 @@ const Product = ({ currentItem }) => {
   useEffect(() => {
     axios.get('/productstyles', { params: { id: product.id } })
       .then((response) => {
-        console.log(response.data.results);
+        // console.log(response.data.results);
         setProductStyles(response.data.results);
         setIsLoading(false);
       })
