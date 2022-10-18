@@ -21,9 +21,9 @@ const App = () => {
   return (
     <div>
       <h1>Hello</h1>
-      <Product />
+      <Product currentItem={currentItem} />
       <Related currentItem={currentItem} setCurrentItem={setCurrentItem} />
-      <Reviews />
+      <Reviews currentItem={currentItem} />
     </div>
   );
 };
