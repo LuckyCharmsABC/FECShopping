@@ -49,7 +49,7 @@ const Reviews = ({ id }) => {
       setReviews(data.data);
     });
 
-    axios.get('/reviewdata', { params: {product_id: id } })
+    axios.get('/reviewdata', { params: { product_id: id } })
       .then((data) => {
         setMetaData(data.data);
       });
