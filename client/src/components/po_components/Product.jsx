@@ -6,7 +6,7 @@ import AdditionalInfo from './AdditionalInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import Cart from './Cart.jsx';
 
-const Product = (props) => {
+const Product = () => {
 //  Example data to use for now
   // const [isLoading, setIsLoading] = useState(true);
   const [productStyles, setProductStyles] = useState([]);
@@ -37,6 +37,9 @@ const Product = (props) => {
       .then((response) => {
         console.log(response.data.results);
         setProductStyles(response.data.results);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, []);
 

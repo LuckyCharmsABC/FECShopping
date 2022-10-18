@@ -8,7 +8,6 @@ import Reviews from './rr_components/Reviews.jsx';
 
 
 const App = (props) => {
-
   return (
     <div>
       <h1>Hello</h1>
