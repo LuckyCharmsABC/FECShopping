@@ -20,7 +20,7 @@ const ReviewList = ({ reviews, data, showMore }) => {
         <option value="newest">Newest</option>
       </select>
 
-      {reviews.results.map((review) => <Review review={review} />)}
+      {reviews.results.map((review) => <Review review={review} key={review.review_id} />)}
 
       <button type="button">Add Review</button>
       <button type="button" onClick={handleShowMore}>Show More</button>
