@@ -23,7 +23,7 @@ module.exports = {
   },
   getAll(req, res) {
     console.log(req);
-    const requestURL = `${URL}/products`
+    const requestURL = `${URL}/products`;
     axios.get(requestURL, options)
       .then((response) => {
         console.log(response.data);
