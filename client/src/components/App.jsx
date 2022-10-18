@@ -8,15 +8,21 @@ import Reviews from './rr_components/Reviews.jsx';
 
 const App = () => {
   const [currentItem, setCurrentItem] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios.get('product/?id=40344')
       .then((results) => {
-        console.log(results);
+        console.log('result from getProduct is ', results);
         setCurrentItem(results.data);
+        setIsLoading(false);
       })
       .catch((err) => { console.log(err); });
   }, []);
+
+  if (isLoading) {
+    return (<div>Loading</div>);
+  }
 
   return (
     <div>
