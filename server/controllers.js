@@ -11,7 +11,6 @@ const options = {
 
 module.exports = {
   getProduct(req, res) {
-    console.log('QUERY', req.query);
     const requestURL = `${URL}/products/${req.query.id}`;
     axios.get(requestURL, options)
       .then((response) => {
@@ -55,7 +54,7 @@ module.exports = {
       });
   },
   getStyles(req, res) {
-    const requestURL = `${URL}/products/${req.body.id}/styles`;
+    const requestURL = `${URL}/products/${req.query.id}/styles`;
     axios.get(requestURL, options)
       .then((response) => {
         res.status(200).json(response.data);
