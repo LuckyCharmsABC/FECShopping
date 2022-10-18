@@ -1,23 +1,27 @@
 import React from 'react';
 import Review from './Review.jsx';
 
-const ReviewList = (props) => {
+const ReviewList = ({ reviews, data }) => {
+  let count = data.recommended.false + data.recommended.true;
+  count += ' ';
   return (
     <div>
-      <h5>### reviews, sorted by: </h5>
+      <h5>
+        { count }
+        reviews, sorted by:
+      </h5>
       <select>
         <option value="relevance">Relevance</option>
         <option value="helpful">Helpful</option>
         <option value="newest">Newest</option>
       </select>
 
-      <Review />
-      <Review />
+      {reviews.results.map((review) => <Review review={review} />)}
 
-      <button>Add Review</button>
-      <button>Show More</button>
+      <button type="button">Add Review</button>
+      <button type="button">Show More</button>
     </div>
-  )
-}
+  );
+};
 
 export default ReviewList;

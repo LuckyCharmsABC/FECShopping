@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import _ from 'underscore';
 import OverallRatings from './OverallRatings.jsx';
 import ReviewList from './ReviewList.jsx';
 
@@ -55,13 +56,13 @@ const Reviews = ({ currentItem }) => {
       });
   }, []);
 
-  return (
+  return _.size(metaData) && _.size(reviews) ? (
     <div>
       <p>Ratings and Reviews</p>
       <OverallRatings data={metaData} />
       <ReviewList reviews={reviews} data={metaData} />
     </div>
-  );
+  ) : <div />;
 };
 
 export default Reviews;
