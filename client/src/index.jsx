@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import App from './components/App.jsx';
 
-ReactDOM.render(
-    <div>
-        <h1>Hello world</h1>
-        <App />
-    </div>,
-    document.getElementById('root')
+const root = createRoot(document.getElementById('root'));
+root.render(
+  <div>
+    <h1>Hello world</h1>
+    <App />
+  </div>
 );
