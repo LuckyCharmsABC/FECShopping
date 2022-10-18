@@ -36,6 +36,8 @@ import ReviewList from './ReviewList.jsx';
 
 const Reviews = ({ id }) => {
   const [reviews, setReviews] = useState({});
+  const [metaData, setMetaData] = useState({});
+
   useEffect(() => {
     axios.get('/reviews', {
       params: {
@@ -45,14 +47,19 @@ const Reviews = ({ id }) => {
       },
     }).then((data) => {
       setReviews(data.data);
-      console.log(reviews);
     });
-  });
+
+    axios.get('/reviewdata', { params: {product_id: id } })
+      .then((data) => {
+        setMetaData(data.data);
+      });
+  }, []);
+
   return (
     <div>
       <p>Ratings and Reviews</p>
-      <OverallRatings />
-      <ReviewList />
+      <OverallRatings data={metaData || {}} />
+      <ReviewList reviews={reviews || {}} data={metaData || {}} />
     </div>
   );
 };
