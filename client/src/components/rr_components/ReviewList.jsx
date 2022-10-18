@@ -1,7 +1,11 @@
 import React from 'react';
 import Review from './Review.jsx';
 
-const ReviewList = ({ reviews, data }) => {
+const ReviewList = ({ reviews, data, showMore }) => {
+  const handleShowMore = () => {
+    showMore(reviews.count);
+  };
+
   let count = data.recommended.false + data.recommended.true;
   count += ' ';
   return (
@@ -19,7 +23,7 @@ const ReviewList = ({ reviews, data }) => {
       {reviews.results.map((review) => <Review review={review} />)}
 
       <button type="button">Add Review</button>
-      <button type="button">Show More</button>
+      <button type="button" onClick={handleShowMore}>Show More</button>
     </div>
   );
 };

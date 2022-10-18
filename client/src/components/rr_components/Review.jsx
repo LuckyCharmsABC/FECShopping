@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Review = ({ review }) => {
-  console.log(review.review_id);
   const recommended = review.recommend ? <h5>I recommend this product</h5> : <div />;
   return (
     <div>
