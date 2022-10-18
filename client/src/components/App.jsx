@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 import Product from './po_components/Product.jsx';
 import Related from './ri_components/RelatedItemsAndOutfits.jsx';
 import Reviews from './rr_components/Reviews.jsx';
@@ -8,6 +9,16 @@ import Reviews from './rr_components/Reviews.jsx';
 
 
 const App = (props) => {
+  const [currentItem, setCurrentItem] = useState('')
+
+  useEffect(() => {
+    axios.get('product/?id=40344')
+      .then((results) => {
+        console.log(results);
+        setCurrentItem(results.data);
+      })
+      .catch((err) => { err });
+  }, []);
 
   return (
     <div>
