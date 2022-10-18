@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import OverallRatings from './OverallRatings.jsx';
 import ReviewList from './ReviewList.jsx';
 
@@ -9,12 +10,16 @@ import ReviewList from './ReviewList.jsx';
  *  - Max height of list is capped, list should be scrollable
  *  - EC: clicking "show more" expands the list to show all reviews
  *
- * Individual tiles should show the star rating (0-5), the date, the summary (one sentence, 60 char, bold),
- * the body (50-1000 char, allows 5 images), recommend checkbox, responses from seller, helpfulness
- *  - If the body is more than 250 chars long, it should only show the first 250 characters and a "show more" button
+ * Individual tiles should show the star rating (0-5), the date, the summary
+ * (one sentence, 60 char, bold), the body (50-1000 char, allows 5 images),
+ * recommend checkbox, responses from seller, helpfulness
+ *  - If the body is more than 250 chars long, it should only show the first
+ * 250 characters and a "show more" button
  *
- * Breakdown Breakdown: average star rating, 5 bars for each star rating, filled in with the percentage of the ratings that are that level
- *  - Clicking on one of the bars will change the ratings list to only show reviews with that rating (if another one is clicked, it will show results for both)
+ * Breakdown Breakdown: average star rating, 5 bars for each star rating,
+ * filled in with the percentage of the ratings that are that level
+ *  - Clicking on one of the bars will change the ratings list to only
+ * show reviews with that rating (if another one is clicked, it will show results for both)
  *
  * Feedback: reviews can give feedback on size, width, comfort, quality, length, and fit (5pt scale)
  *
@@ -23,17 +28,33 @@ import ReviewList from './ReviewList.jsx';
  * text input for summary (60 char), text input for body (50-1000 char, counter for characters),
  * button to upload photos, text input for nickname, text input for email (60 char), submit btn
  *
- * Keyword search: automatically starts filtering the reviews after the user types more than 2 characters in the search bar
+ * Keyword search: automatically starts filtering the reviews after the user types more than
+ * 2 characters in the search bar
  *  - The search should work with other filters
  *  - EC: highlight the text that matches the search result
  */
 
-const Reviews = (props) => (
-  <div>
-    <p>Ratings and Reviews</p>
-    <OverallRatings />
-    <ReviewList />
-  </div>
-)
+const Reviews = ({ id }) => {
+  const [reviews, setReviews] = useState({});
+  useEffect(() => {
+    axios.get('/reviews', {
+      params: {
+        count: 2,
+        sort: 'relevance',
+        product_id: id,
+      },
+    }).then((data) => {
+      setReviews(data.data);
+      console.log(reviews);
+    });
+  });
+  return (
+    <div>
+      <p>Ratings and Reviews</p>
+      <OverallRatings />
+      <ReviewList />
+    </div>
+  );
+};
 
 export default Reviews;
