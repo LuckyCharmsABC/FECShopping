@@ -1,1 +1,25 @@
+#AllPO {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin:auto;
+}
 
+#PO {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#sideInfo {
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+}
+
+.styleList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}

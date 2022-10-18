@@ -24,6 +24,12 @@ app.post('/reviews', controllers.addReview);
 app.get('/reviewdata', controllers.getReviewData);
 app.put('/reviews/helpful', controllers.markHelpful);
 app.put('/reviews/report', controllers.report);
+app.get('/products', controllers.getAll);
+app.get('/products/:id/related', controllers.getRelated);
+app.post('/interactions', controllers.addInteraction);
+app.get('/productstyles', controllers.getStyles);
+app.get('/cart', controllers.getCart);
+app.post('/cart', controllers.addToCart);
 
 const port = process.env.PORT || 3000;
 
