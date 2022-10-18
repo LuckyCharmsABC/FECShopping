@@ -8,7 +8,7 @@ import Cart from './Cart.jsx';
 
 const Product = () => {
 //  Example data to use for now
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [productStyles, setProductStyles] = useState([]);
   const product = {
     "id": 40344,
@@ -37,11 +37,16 @@ const Product = () => {
       .then((response) => {
         console.log(response.data.results);
         setProductStyles(response.data.results);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
+  if (isLoading) {
+    return (<div>Loading</div>);
+  }
 
   return (
     <div id="AllPO">
@@ -52,7 +57,7 @@ const Product = () => {
         <div id="sideInfo">
           <Info product={product} />
           <StyleSelector productStyles={productStyles} />
-          <Cart product={product} />
+          <Cart productStyles={productStyles} />
         </div>
       </div>
       <AdditionalInfo product={product} />
