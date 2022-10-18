@@ -1,5 +1,6 @@
 require('dotenv').config();
 const axios = require('axios');
+const _ = require('underscore');
 
 const URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
 
@@ -12,7 +13,6 @@ const options = {
 module.exports = {
   getProduct(req, res) {
     const requestURL = `${URL}/products/${req.query.id}`;
-    console.log(req);
     axios.get(requestURL, options)
       .then((response) => {
         res.status(200).json(response.data);
@@ -24,9 +24,9 @@ module.exports = {
 
   getReviews(req, res) {
     const requestURL = `${URL}/reviews`;
-    axios.get(requestURL, options, {
-      params: req.body,
-    })
+    const params = _.extend(options, { params: req.query });
+    console.log(params);
+    axios.get(requestURL, params)
       .then((response) => {
         res.status(200).json(response.data);
       }).catch((err) => {

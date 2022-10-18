@@ -21,7 +21,17 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 app.get('/product', controllers.getProduct);
 
 app.route('/reviews')
-  .patch(controllers.getReviews);
+  .get(controllers.getReviews)
+  .post((req, res) => {
+    // TODO: Create handler in controllers
+    console.log('added a new review');
+    res.sendStatus(201);
+  })
+  .put((req, res) => {
+    // TODO: Create handler in controllers
+    console.log('marked a review as helpful / reported a review');
+    res.sendStatus(204);
+  });
 
 const port = process.env.PORT || 3000;
 
