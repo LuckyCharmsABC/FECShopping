@@ -2,17 +2,17 @@ import React from 'react';
 import Review from './Review.jsx';
 
 const ReviewList = ({
-  reviews, data, showMore, helpful, sort,
+  allReviews, reviews, showMore, helpful, sort,
 }) => {
   const handleShowMore = () => {
-    showMore(reviews.count);
+    showMore(reviews.length);
   };
 
   const handleSort = () => {
     sort(document.getElementsByName('sort')[0].value);
   };
 
-  let count = parseInt(data.recommended.false, 10) + parseInt(data.recommended.true, 10);
+  let count = allReviews.results.length;
   count += ' ';
   return (
     <div>
@@ -32,7 +32,7 @@ const ReviewList = ({
       </form>
 
       <ul>
-        {reviews.results.map((review) => (
+        {reviews.map((review) => (
           <Review review={review} key={review.review_id} helpful={helpful} />))}
       </ul>
 

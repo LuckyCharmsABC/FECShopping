@@ -36,36 +36,30 @@ import ReviewList from './ReviewList.jsx';
  */
 
 const Reviews = ({ currentItem }) => {
-  const [reviews, setReviews] = useState({});
+  const [allReviews, setAllReviews] = useState({});
+  const [reviews, setReviews] = useState([]);
   const [metaData, setMetaData] = useState({});
 
   useEffect(() => {
-    axios.get('/reviews', {
-      params: {
-        count: 2,
-        sort: 'relevance',
-        product_id: currentItem.id,
-      },
-    }).then((data) => {
-      setReviews(data.data);
-    });
-
     axios.get('/reviewdata', { params: { product_id: currentItem.id } })
       .then((data) => {
         setMetaData(data.data);
       });
+
+    axios.get('/reviews', {
+      params: {
+        product_id: currentItem.id,
+        sort: 'relevance',
+        count: 999999,
+      },
+    }).then((data) => {
+      setAllReviews(data.data);
+      setReviews(data.data.results.slice(0, 2));
+    });
   }, []);
 
   const showMore = (count) => {
-    axios.get('/reviews', {
-      params: {
-        count: count + 2,
-        sort: 'relevance',
-        product_id: currentItem.id,
-      },
-    }).then((data) => {
-      setReviews(data.data);
-    });
+    setReviews(allReviews.results.slice(0, count + 2));
   };
 
   const helpful = (id) => {
@@ -75,22 +69,23 @@ const Reviews = ({ currentItem }) => {
   const sort = (method) => {
     axios.get('/reviews', {
       params: {
-        count: 2,
-        sort: method,
         product_id: currentItem.id,
+        sort: method,
+        count: 999999,
       },
     }).then((data) => {
-      setReviews(data.data);
+      setAllReviews(data.data);
+      setReviews(data.data.results.slice(0, 2));
     });
   };
 
-  return _.size(metaData) && _.size(reviews) ? (
+  return _.size(metaData) && _.size(allReviews) && _.size(reviews) ? (
     <div>
       <p>Ratings and Reviews</p>
       <OverallRatings data={metaData} />
       <ReviewList
         reviews={reviews}
-        data={metaData}
+        allReviews={allReviews}
         showMore={showMore}
         helpful={helpful}
         sort={sort}
