@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-const SizeSelector = ({ productSkus }) => {
+const SizeSelector = ({ productSkus, setItemSku, setItemQuant }) => {
   console.log(productSkus);
   const [maxQuant, setMaxQuant] = useState(0);
   const renderQuantOpts = (value) => {
     const options = [];
     for (let i = 1; i <= value; i += 1) {
-      options.push(<option>{i}</option>);
+      options.push(<option value={i}>{i}</option>);
     }
     return options;
   };
@@ -16,15 +16,22 @@ const SizeSelector = ({ productSkus }) => {
       <select
         id="sizeSelector"
         onChange={(event) => {
-          setMaxQuant(event.target.value < 15 ? event.target.value : 15);
+          const quant = productSkus[event.target.value].quantity;
+          setMaxQuant(quant < 15 ? quant : 15);
+          setItemSku(productSkus[event.target.value].skus);
         }}
       >
         <option value="0">Select Size</option>
-        {productSkus.map((sku, index) => (
-          <option value={productSkus[index].quantity}>{sku.size}</option>
+        {productSkus.map((sku, i) => (
+          <option value={i}>{sku.size}</option>
         ))}
       </select>
-      <select id="numSelector">
+      <select
+        id="numSelector"
+        onChange={(event) => {
+          setItemQuant(event.target.value);
+        }}
+      >
         {renderQuantOpts(maxQuant)}
       </select>
     </div>
