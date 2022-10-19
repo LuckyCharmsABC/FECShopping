@@ -7,5 +7,5 @@ root.render(
   <div>
     <h1>Hello world</h1>
     <App />
-  </div>
+  </div>,
 );

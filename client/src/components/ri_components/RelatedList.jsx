@@ -14,19 +14,35 @@ const RelatedList = ({ currentItem, setCurrentItem }) => {
       .catch((err) => console.log(err));
     axios.get('./products')
       .then((results) => {
-        console.log('Get All', results.data);
+        // console.log('Get All', results.data);
         setAllItems(results.data);
       })
       .catch((err) => console.log(err));
   }, []);
+
+  const leftScroll = () => {
+    const left = document.querySelector('scroll-items');
+    left.scrollBy(-500, 0);
+  };
+  const rightScroll = () => {
+    const right = document.querySelector('scroll-items');
+    right.scrollBy(500, 0);
+  };
+
   return (
     <div>
       <h3>Related Items</h3>
-      <ul>
-        {relatedItemsIDs.map((currentID) => (
-          <RelatedItem currentID={currentID} key={currentID} setCurrentItem={setCurrentItem} />
-        ))}
-      </ul>
+      <div>
+        <div className="related-scroll">
+          <button className="left carousel-button" type="button" onClick={() => { leftScroll; }}>&#8678;</button>
+          <button className="right carousel-button" type="button" onClick={() => { rightScroll; }}>&#8680;</button>
+          <div className="scroll-items  snaps-inline">
+            {relatedItemsIDs.map((currentID) => (
+              <RelatedItem currentID={currentID} key={currentID} setCurrentItem={setCurrentItem} />
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

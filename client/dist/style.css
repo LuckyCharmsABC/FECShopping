@@ -23,3 +23,67 @@
   flex-wrap: wrap;
   justify-content: flex-start;
 }
+
+/* .related-scroll {
+  display: grid;
+  gap: 1em;
+  grid-auto-flow: column;
+  grid-auto-columns: 33.33333%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+} */
+
+.snaps-inline {
+  scroll-snap-type: inline mandatory;
+}
+
+.snaps-inline > * {
+  scroll-snap-align: start;
+  scroll-padding-inline: 1rem;
+}
+
+.related-item {
+  display: grid;
+  padding: 1em;
+  background: rgb(240, 249, 255);
+}
+
+.related-item > img {
+  inline-size: 100%;
+  aspect-ratio: 140 / 200;
+  object-fit: cover;
+}
+.carousel-button{
+  position: absolute;
+  background: none;
+  border: none;
+  font-size: 4rem;
+  color: rgba(255, 255, 255, .5);
+  cursor: pointer;
+  border-radius: .25;
+  padding: 0 .5rem;
+  background-color: rgba(0, 0, 0, .1);
+}
+
+.carousel-button:hover,
+.carousel-button:focus {
+  color: white;
+  background-color: rgba(0, 0, 0, .2);
+}
+
+.left {
+  left: 1rem;
+}
+
+.right{
+  right: 1rem;
+}
+
+.scroll-items {
+  display: grid;
+  gap: 1em;
+  grid-auto-flow: column;
+  grid-auto-columns: 33.33333%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
