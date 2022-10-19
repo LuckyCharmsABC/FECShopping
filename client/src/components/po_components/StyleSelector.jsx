@@ -1,11 +1,7 @@
 import React from 'react';
 
-const StyleSelector = ({ productStyles, selectStyle }) => {
-  // const [isSelected, setIsSelected] = useState(false);
-  const highlight = (id) => {
-    document.getElementById(id).style.border = 'solid yellow';
-  };
-
+const StyleSelector = ({ productStyles, selectedStyle, selectStyle }) => {
+  const selectedCss = { border: 'solid yellow' };
   return (
     <div>
       <p>
@@ -17,9 +13,10 @@ const StyleSelector = ({ productStyles, selectStyle }) => {
             key={style.style_id}
             id={style.style_id}
             role="button"
-            onClick={() => { selectStyle(style); highlight(style.style_id); }}
+            onClick={() => { selectStyle(style); }}
             onKeyPress={() => {}}
             tabIndex={0}
+            style={style.style_id === selectedStyle.style_id ? selectedCss : { border: 'none' }}
           >
             <img width="50" height="70" alt="x" src={style.photos[0].thumbnail_url} />
           </div>

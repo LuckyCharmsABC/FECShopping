@@ -10,7 +10,7 @@ const Product = ({ currentItem }) => {
 //  Example data to use for now
   const [isLoading, setIsLoading] = useState(true);
   const [productStyles, setProductStyles] = useState({});
-  const [style, setStyle] = useState({});
+  const [selectedStyle, setSelectedStyle] = useState({});
   const product = currentItem;
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const Product = ({ currentItem }) => {
       .then((response) => {
         console.log(response.data.results);
         setProductStyles(response.data.results);
-        setStyle(response.data.results[0]);
+        setSelectedStyle(response.data.results[0]);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -27,7 +27,7 @@ const Product = ({ currentItem }) => {
   }, []);
 
   const selectStyle = (styleId) => {
-    setStyle(styleId);
+    setSelectedStyle(styleId);
   };
 
   if (isLoading) {
@@ -41,8 +41,12 @@ const Product = ({ currentItem }) => {
         </div>
         <div id="sideInfo">
           <Info product={product} />
-          <StyleSelector productStyles={productStyles} selectStyle={selectStyle} />
-          <Cart style={style} />
+          <StyleSelector
+            productStyles={productStyles}
+            selectStyle={selectStyle}
+            selectedStyle={selectedStyle}
+          />
+          <Cart selectedStyle={selectedStyle} />
         </div>
       </div>
       <AdditionalInfo product={product} />

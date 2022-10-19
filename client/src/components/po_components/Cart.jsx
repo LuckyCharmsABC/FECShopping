@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import SizeSelector from './SizeSelector.jsx';
 
-const Cart = ({ style }) => {
+const Cart = ({ selectedStyle }) => {
   const [selectedCombo, setSelectedCombo] = useState({ sku_id: '', count: 0 });
   const productSkus = [];
-  console.log('style passed into cart is ', style);
-  const skusKeys = Object.keys(style.skus);
+  // console.log('selectedStyle passed into cart is ', selectedStyle);
+  const skusKeys = Object.keys(selectedStyle.skus);
   // eslint-disable-next-line no-restricted-syntax
   for (const key of skusKeys) {
-    const currentSku = style.skus[key];
+    const currentSku = selectedStyle.skus[key];
     const skusObj = { skus: key, quantity: currentSku.quantity, size: currentSku.size };
     productSkus.push(skusObj);
   }
