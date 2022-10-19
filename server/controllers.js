@@ -105,8 +105,8 @@ module.exports = {
   markHelpful(req, res) {
     const requestURL = `${URL}/reviews/${req.body.review_id}/helpful`;
     axios.put(requestURL, req.body, options)
-      .then((response) => {
-        res.status(201).json(response.data);
+      .then(() => {
+        res.status(201).json(`marked review ${req.body.review_id} as helpful`);
       }).catch((err) => {
         console.log(err);
         res.sendStatus(500);

@@ -1,19 +1,33 @@
 import React from 'react';
+import { format, parseISO } from 'date-fns';
 
-const Review = (props) => {
+const Review = ({ review, helpful }) => {
+  const recommended = review.recommend ? <h5>I recommend this product</h5> : <div />;
+  const date = parseISO(review.date);
+
+  const markHelpful = () => {
+    helpful();
+  };
+
   return (
     <div>
-      <h4>Nickname</h4>
-      <h5>Timestamp</h5>
-      <h5>Rating</h5>
-      <h3>Summary</h3>
-      <h5>Recommended</h5>
-      <h5>Details</h5>
-      <p>Body</p>
-      <button>Helpful - ###</button>
-      <button>Report</button>
+      <h4>{review.reviewer_name}</h4>
+      <h5>{format(date, 'PPP')}</h5>
+      <h5>
+        {review.rating}
+        stars
+      </h5>
+      <h3>{review.summary}</h3>
+      {recommended}
+      <p>{review.body}</p>
+      <button type="button" onClick={markHelpful}>
+        Helpful? (
+        { review.helpfulness }
+        )
+      </button>
+      <button type="button">Report</button>
     </div>
-  )
-}
+  );
+};
 
 export default Review;
