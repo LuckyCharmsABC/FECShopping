@@ -12,13 +12,12 @@ const ReviewList = ({
     sort(document.getElementsByName('sort')[0].value);
   };
 
-  let count = allReviews.results.length;
-  count += ' ';
+  const count = allReviews.results.length;
   return (
     <div>
       <form>
         <label htmlFor="sort">
-          { count }
+          { `${count} ` }
           reviews, sorted by:
         </label>
         <select
