@@ -30,7 +30,7 @@ const ReviewList = ({
         </select>
       </form>
 
-      <ul>
+      <ul id="review-list">
         {reviews.map((review) => (
           <Review review={review} key={review.review_id} helpful={helpful} />))}
       </ul>

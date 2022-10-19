@@ -23,3 +23,10 @@
   flex-wrap: wrap;
   justify-content: flex-start;
 }
+
+/********************************************/
+
+#review-list {
+  height: 600px;
+  overflow: auto
+}
