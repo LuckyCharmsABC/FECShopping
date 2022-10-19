@@ -68,11 +68,33 @@ const Reviews = ({ currentItem }) => {
     });
   };
 
+  const helpful = (id) => {
+    axios.put(`reviews/${id}/helpful`);
+  };
+
+  const sort = (method) => {
+    axios.get('/reviews', {
+      params: {
+        count: 2,
+        sort: method,
+        product_id: currentItem.id,
+      },
+    }).then((data) => {
+      setReviews(data.data);
+    });
+  };
+
   return _.size(metaData) && _.size(reviews) ? (
     <div>
       <p>Ratings and Reviews</p>
       <OverallRatings data={metaData} />
-      <ReviewList reviews={reviews} data={metaData} showMore={showMore} />
+      <ReviewList
+        reviews={reviews}
+        data={metaData}
+        showMore={showMore}
+        helpful={helpful}
+        sort={sort}
+      />
     </div>
   ) : <div />;
 };

@@ -1,27 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Review from './Review.jsx';
 
-const ReviewList = ({ reviews, data, showMore }) => {
+const ReviewList = ({
+  reviews, data, showMore, helpful, sort,
+}) => {
   const handleShowMore = () => {
     showMore(reviews.count);
+  };
+
+  const handleSort = () => {
+    sort(document.getElementsByName('sort')[0].value);
   };
 
   let count = data.recommended.false + data.recommended.true;
   count += ' ';
   return (
     <div>
-      <h5>
-        { count }
-        reviews, sorted by:
-      </h5>
-      <select>
-        <option value="relevance">Relevance</option>
-        <option value="helpful">Helpful</option>
-        <option value="newest">Newest</option>
-      </select>
+      <form>
+        <label htmlFor="sort">
+          { count }
+          reviews, sorted by:
+        </label>
+        <select
+          name="sort"
+          onChange={handleSort}
+        >
+          <option value="relevance" defaultValue>Relevance</option>
+          <option value="helpful">Helpful</option>
+          <option value="newest">Newest</option>
+        </select>
+      </form>
 
       <ul>
-        {reviews.results.map((review) => <Review review={review} key={review.review_id} />)}
+        {reviews.results.map((review) => (
+          <Review review={review} key={review.review_id} helpful={helpful} />))}
       </ul>
 
       <button type="button">Add Review</button>

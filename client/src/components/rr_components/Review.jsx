@@ -1,9 +1,13 @@
 import React from 'react';
 import { format, parseISO } from 'date-fns';
 
-const Review = ({ review }) => {
+const Review = ({ review, helpful }) => {
   const recommended = review.recommend ? <h5>I recommend this product</h5> : <div />;
   const date = parseISO(review.date);
+
+  const markHelpful = () => {
+    helpful();
+  };
 
   return (
     <div>
@@ -16,7 +20,7 @@ const Review = ({ review }) => {
       <h3>{review.summary}</h3>
       {recommended}
       <p>{review.body}</p>
-      <button type="button">
+      <button type="button" onClick={markHelpful}>
         Helpful? (
         { review.helpfulness }
         )
