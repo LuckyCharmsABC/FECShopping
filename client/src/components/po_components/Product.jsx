@@ -27,7 +27,6 @@ const Product = ({ currentItem }) => {
   }, []);
 
   const selectStyle = (styleId) => {
-    console.log('the selected style is ', styleId);
     setStyle(styleId);
   };
 

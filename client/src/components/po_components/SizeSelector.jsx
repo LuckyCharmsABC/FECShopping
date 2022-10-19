@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 const SizeSelector = ({ productSkus, setItemSku, setItemQuant }) => {
-  console.log(productSkus);
   const [maxQuant, setMaxQuant] = useState(0);
   const renderQuantOpts = (value) => {
     const options = [];
