@@ -13,6 +13,7 @@ const ReviewList = ({
   };
 
   const count = allReviews.results.length;
+  const showMoreBtn = count - reviews.length ? <button type="button" onClick={handleShowMore}>Show More</button> : <div />;
   return (
     <div>
       <form>
@@ -36,7 +37,7 @@ const ReviewList = ({
       </ul>
 
       <button type="button">Add Review</button>
-      <button type="button" onClick={handleShowMore}>Show More</button>
+      {showMoreBtn}
     </div>
   );
 };
