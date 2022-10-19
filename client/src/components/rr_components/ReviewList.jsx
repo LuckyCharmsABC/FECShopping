@@ -12,7 +12,7 @@ const ReviewList = ({
     sort(document.getElementsByName('sort')[0].value);
   };
 
-  let count = data.recommended.false + data.recommended.true;
+  let count = parseInt(data.recommended.false, 10) + parseInt(data.recommended.true, 10);
   count += ' ';
   return (
     <div>
