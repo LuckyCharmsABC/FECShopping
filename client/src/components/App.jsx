@@ -15,7 +15,7 @@ const App = () => {
   useEffect(() => {
     axios.get('product/?id=40344')
       .then((results) => {
-        console.log('result from getProduct is ', results);
+        // console.log('result from getProduct is ', results);
         setCurrentItem(results.data);
         setIsLoading(false);
       })
