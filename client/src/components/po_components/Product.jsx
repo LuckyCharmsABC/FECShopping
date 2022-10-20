@@ -40,7 +40,7 @@ const Product = ({ currentItem }) => {
           <Gallery selectedStyle={selectedStyle} />
         </div>
         <div id="sideInfo">
-          <Info product={product} />
+          <Info product={product} selectedStyle={selectedStyle} />
           <StyleSelector
             productStyles={productStyles}
             selectStyle={selectStyle}
