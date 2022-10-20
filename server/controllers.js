@@ -18,7 +18,6 @@ module.exports = {
         res.status(200).json(response.data);
       }).catch((err) => {
         console.log(err);
-        console.log('ERROR HERE', err.message, process.env.TOKEN);
         res.sendStatus(500);
       });
   },
