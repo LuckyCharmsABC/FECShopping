@@ -5,7 +5,9 @@ const Info = ({ product, selectedStyle }) => {
   const saleOriginal = { 'text-decoration': 'line-through' };
   return (
     <div id="productInfo">
-      <p>Read all reviews</p>
+      <div>
+        Read all reviews
+      </div>
       <p>CATAGORY</p>
       <b>{product.name}</b>
       <div style={selectedStyle.sale_price ? saleStyle : { color: 'black' }}>
