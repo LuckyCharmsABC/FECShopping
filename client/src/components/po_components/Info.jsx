@@ -1,11 +1,16 @@
 import React from 'react';
 
-const Info = ({ product, selectedStyle }) => {
+const Info = ({ product, selectedStyle, scrollToReviews }) => {
   const saleStyle = { color: 'red' };
   const saleOriginal = { 'text-decoration': 'line-through' };
   return (
     <div id="productInfo">
-      <div>
+      <div
+        role="button"
+        onClick={scrollToReviews}
+        onKeyPress={() => {}}
+        tabIndex={0}
+      >
         Read all reviews
       </div>
       <p>CATAGORY</p>

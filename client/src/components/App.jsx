@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Product from './po_components/Product.jsx';
 import Related from './ri_components/RelatedItemsAndOutfits.jsx';
@@ -11,6 +11,7 @@ import Reviews from './rr_components/Reviews.jsx';
 const App = () => {
   const [currentItem, setCurrentItem] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const ref = useRef(null);
 
   useEffect(() => {
     axios.get('product/?id=40344')
@@ -22,6 +23,10 @@ const App = () => {
       .catch((err) => { console.log(err); });
   }, []);
 
+  const scrollToReviews = () => {
+    ref.current?.scrollIntoView({behavior: 'smooth'});
+  }
+
   if (isLoading) {
     return (<div>Loading</div>);
   }
@@ -29,9 +34,11 @@ const App = () => {
   return (
     <div>
       <h1>Hello</h1>
-      <Product currentItem={currentItem} />
+      <Product currentItem={currentItem} scrollToReviews={scrollToReviews} />
       <Related currentItem={currentItem} setCurrentItem={setCurrentItem} />
-      <Reviews currentItem={currentItem} />
+      <div ref={ref}>
+        <Reviews currentItem={currentItem} />
+      </div>
     </div>
   );
 };
