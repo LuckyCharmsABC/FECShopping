@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Info = ({ product, selectedStyle }) => {
-  console.log('selectedStye passed in to info is ', selectedStyle);
   const saleStyle = { color: 'red' };
   const saleOriginal = { 'text-decoration': 'line-through' };
   return (
