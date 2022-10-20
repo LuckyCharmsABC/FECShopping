@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState } from 'react';
 
 const SizeSelector = ({ productSkus, setItemSku, setItemQuant, styleIndex }) => {
   // console.log('product skus passed in is ', productSkus);

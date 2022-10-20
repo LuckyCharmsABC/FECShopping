@@ -23,9 +23,9 @@ const Info = ({ product, selectedStyle, scrollToReviews }) => {
         {selectedStyle.sale_price ? selectedStyle.original_price : ''}
       </div>
       <div>
-        <i class="fa-brands fa-facebook"></i>
-        <i class="fa-brands fa-twitter"></i>
-        <i class="fa-brands fa-pinterest"></i>
+        <i className="fa-brands fa-facebook" />
+        <i className="fa-brands fa-twitter" />
+        <i className="fa-brands fa-pinterest" />
       </div>
     </div>
   );
