@@ -23,3 +23,8 @@
   flex-wrap: wrap;
   justify-content: flex-start;
 }
+
+#gallery {
+  display: flex;
+  flex-direction: row;
+}
