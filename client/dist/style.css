@@ -87,3 +87,18 @@
   overflow-x: auto;
   overscroll-behavior-inline: contain;
 }
+
+.item-image {
+  position: relative;
+}
+
+/* .item-image > img {
+  inline-size: 100%;
+  aspect-ratio: 140 / 200;
+  object-fit: cover;
+}
+
+.item-image > button {
+  position: absolute;
+
+} */

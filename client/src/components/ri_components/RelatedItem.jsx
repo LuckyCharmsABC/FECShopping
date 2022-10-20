@@ -7,15 +7,15 @@ const RelatedItem = ({ currentID, setCurrentItem }) => {
 
   useEffect(() => {
     axios.get(`./product?id=${currentID}`)
-      .then((results) => {
-        // console.log('INDIVIDUAL GET', results.data);
-        setListItem(results.data);
+      .then((res) => {
+        // console.log('INDIVIDUAL GET', res.data);
+        setListItem(res.data);
       })
       .catch((err) => console.log(err));
     axios.get('/productstyles', { params: { id: currentID } })
-      .then((results) => {
-        console.log('GET STYLES', results.data);
-        setItemStyle(results.data);
+      .then((res) => {
+        console.log('GET STYLES', res.data);
+        setItemStyle(res.data.results);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -27,9 +27,11 @@ const RelatedItem = ({ currentID, setCurrentItem }) => {
 
   return (
     <div className="related-item">
-      <img src="https://www.fillmurray.com/140/200" alt="Bill Murray Placeholder" />
+      <img src={itemStyle[0]?.photos[0].thumbnail_url === null ? "https://www.fillmurray.com/140/200" : itemStyle[0]?.photos[0].thumbnail_url} alt="Placeholder" />
+      <button className="action-star" type="button">&#9734;</button>
       {listItem.category}
-      {`${listItem.name}: ${listItem.slogan}`}
+      {`${listItem.name} ${itemStyle[0]?.name}`}
+      {itemStyle[0]?.original_price}
     </div>
   );
 };
