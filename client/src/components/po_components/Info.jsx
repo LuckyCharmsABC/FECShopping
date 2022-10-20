@@ -15,6 +15,11 @@ const Info = ({ product, selectedStyle }) => {
       <div style={selectedStyle.sale_price ? saleOriginal : { color: 'black' }}>
         {selectedStyle.sale_price ? selectedStyle.original_price : ''}
       </div>
+      <div>
+        <i class="fa-brands fa-facebook"></i>
+        <i class="fa-brands fa-twitter"></i>
+        <i class="fa-brands fa-pinterest"></i>
+      </div>
     </div>
   );
 };
