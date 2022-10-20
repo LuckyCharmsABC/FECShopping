@@ -5,12 +5,14 @@ import Gallery from './Gallery.jsx';
 import AdditionalInfo from './AdditionalInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import Cart from './Cart.jsx';
+// import exampleData from './exampleStyles.js';
 
 const Product = ({ currentItem }) => {
 //  Example data to use for now
   const [isLoading, setIsLoading] = useState(true);
   const [productStyles, setProductStyles] = useState({});
   const [selectedStyle, setSelectedStyle] = useState({});
+  const [selectedStyleInd, setSelectedStyleInd] = useState('');
   const product = currentItem;
 
   useEffect(() => {
@@ -19,6 +21,7 @@ const Product = ({ currentItem }) => {
         console.log(response.data.results);
         setProductStyles(response.data.results);
         setSelectedStyle(response.data.results[0]);
+        setSelectedStyleInd(0);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -46,7 +49,7 @@ const Product = ({ currentItem }) => {
             selectStyle={selectStyle}
             selectedStyle={selectedStyle}
           />
-          <Cart selectedStyle={selectedStyle} />
+          <Cart selectedStyle={selectedStyle} styleIndex={selectedStyleInd} />
         </div>
       </div>
       <AdditionalInfo product={product} />
