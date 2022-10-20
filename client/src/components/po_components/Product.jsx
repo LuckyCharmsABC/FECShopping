@@ -37,7 +37,7 @@ const Product = ({ currentItem }) => {
     <div id="AllPO">
       <div id="PO">
         <div id="imageGallery">
-          <Gallery product={product} />
+          <Gallery selectedStyle={selectedStyle} />
         </div>
         <div id="sideInfo">
           <Info product={product} />
