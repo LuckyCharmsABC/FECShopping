@@ -1,9 +1,8 @@
 import React, { useState, useEffect} from 'react';
 
-const SizeSelector = ({ productSkus, setItemSku, setItemQuant }) => {
+const SizeSelector = ({ productSkus, setItemSku, setItemQuant, styleIndex }) => {
   // console.log('product skus passed in is ', productSkus);
-  const [maxQuant, setMaxQuant] = useState(0);
-  const [isInitial, setIsInitial] = useState(true);
+  const [maxQuant, setMaxQuant] = useState(-1);
   const renderQuantOpts = (value) => {
     if (value === -1) {
       return <option value={-1}>-</option>;
@@ -15,37 +14,42 @@ const SizeSelector = ({ productSkus, setItemSku, setItemQuant }) => {
     return options;
   };
 
-  //useEffect(() => {
-  //  if (!isInitial) {
-  //    setIsInitial(false);
-  //    return;
-  //  }
-//
-//
-  //}, [productSkus]);
+  const renderSizeOpts = () => {
+    let totalStock = 0;
+    let options = [<option value="-1">Select Size</option>];
+    for (let i = 0; i < productSkus.length; i += 1) {
+      totalStock += productSkus[i].quantity;
+    }
+    if (totalStock === 0) {
+      return <option value="-1">OUT OF STOCK</option>;
+    }
+    const sizes = productSkus.map((sku, i) => {
+      if (sku.quantity) {
+        return (
+          <option value={i}>{sku.size}</option>
+        );
+      }
+    });
+    options = options.concat(sizes);
+    return options;
+  };
 
   return (
     <div className="selectors">
       <select
         id="sizeSelector"
         onChange={(event) => {
-          const sizeValue = event.target.value;
-          console.log('size value is ', sizeValue);
-          if (sizeValue === '-1') {
-            console.log('got here');
+          if (event.target.value === '-1') {
             setMaxQuant(-1);
             return;
           }
-          const quant = productSkus[sizeValue].quantity;
+          const quant = productSkus[event.target.value].quantity;
           console.log('quant is ', quant);
           setMaxQuant(quant < 15 ? quant : 15);
-          setItemSku(productSkus[sizeValue].skus);
+          setItemSku(productSkus[event.target.value].skus);
         }}
       >
-        <option value="-1">Select Size</option>
-        {productSkus.map((sku, i) => (
-          <option value={i}>{sku.size}</option>
-        ))}
+        {renderSizeOpts()}
       </select>
       <select
         id="numSelector"
