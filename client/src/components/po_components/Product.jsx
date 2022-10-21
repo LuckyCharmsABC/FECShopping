@@ -27,7 +27,7 @@ const Product = ({ currentItem, scrollToReviews }) => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [currentItem]);
 
   const selectStyle = (styleId) => {
     setSelectedStyle(styleId);
