@@ -1,16 +1,17 @@
-import React from 'react';
-import RelatedList from './RelatedList.jsx'
-import Outfits from './OutfitList.jsx'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import RelatedList from './RelatedList.jsx';
+import Outfits from './OutfitList.jsx';
 
-const RelatedItemsAndOutfits = (props) => (
+const RelatedItemsAndOutfits = ({ currentItem, setCurrentItem }) => (
   <div>
     <div>
-      <RelatedList />
+      <RelatedList currentItem={currentItem} setCurrentItem={setCurrentItem} />
     </div>
     <div>
-      <Outfits />
+      <Outfits currentItem={currentItem} setCurrentItem={setCurrentItem}/>
     </div>
   </div>
-)
+);
 
 export default RelatedItemsAndOutfits;
