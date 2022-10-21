@@ -46,7 +46,7 @@
   scroll-padding-inline: 1rem;
 }
 
-.related-item {
+.related-item .outfit-item {
   display: grid;
   padding: 1em;
   background: rgb(240, 249, 255);
@@ -57,7 +57,14 @@
   aspect-ratio: 140 / 200;
   object-fit: cover;
 }
-.carousel-button{
+
+.related-item > img {
+  inline-size: 100%;
+  aspect-ratio: 140 / 200;
+  object-fit: cover;
+}
+
+.carousel-button {
   position: absolute;
   background: none;
   border: none;
@@ -83,11 +90,44 @@
   right: 1rem;
 }
 
-.scroll-items {
+.scroll-related-items {
   display: grid;
   gap: 1em;
   grid-auto-flow: column;
-  grid-auto-columns: 33.33333%;
+  grid-auto-columns: 25%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+
+.item-image {
+  position: relative;
+}
+
+/* .item-image > img {
+  inline-size: 100%;
+  aspect-ratio: 140 / 200;
+  object-fit: cover;
+}
+
+.item-image > button {
+  position: absolute;
+
+} */
+
+.outfit-scroll {
+  display: grid;
+  gap: 1em;
+  grid-auto-flow: column;
+  grid-auto-columns: 25%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+
+.scroll-outfit-items {
+  display: grid;
+  gap: 1em;
+  grid-auto-flow: column;
+  grid-auto-columns: 25%;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
 }
