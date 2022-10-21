@@ -3,7 +3,24 @@ body {
   BlinkMacSystemFont, 'Segoe UI', Roboto,
   Oxygen, Ubuntu, Cantarell, 'Open Sans',
   'Helvetica Neue', sans-serif;
+  margin: 0;
 }
+
+.page-top {
+  height: 50px;
+  line-height: 50px;
+  background-color: #0F3460;
+  color:white;
+  font-size: 24px;
+  font-family: Georgia, serif;
+  padding-left: 20px;
+}
+
+#merchandise-directory {
+  height: 50px;
+  background-color: #EFEFEF;
+}
+
 #AllPO {
   display: flex;
   flex-direction: column;
