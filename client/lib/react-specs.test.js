@@ -8,7 +8,7 @@ import App from '../src/components/App.jsx';
 
 describe('Example test', ()=>{
   test('Displays Hello in App', ()=>{
-    render (<App />)
+    render (<App />);
     waitFor(()=> screen.getByRole('heading'))
     .then(()=>{
       expect(screen.getByRole('heading')).toHaveTextContent('Hello')

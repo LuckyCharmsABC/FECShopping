@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SizeSelector from './SizeSelector.jsx';
 
-const Cart = ({ selectedStyle }) => {
+const Cart = ({ selectedStyle, styleIndex }) => {
   const [selectedCombo, setSelectedCombo] = useState({ sku_id: '', count: 0 });
   const productSkus = [];
   // console.log('selectedStyle passed into cart is ', selectedStyle);
@@ -36,6 +36,7 @@ const Cart = ({ selectedStyle }) => {
         productSkus={productSkus}
         setItemSku={setItemSku}
         setItemQuant={setItemQuant}
+        styleIndex={styleIndex}
       />
       <div>
         <button type="button" onClick={() => { addtoCart(selectedCombo); }}>ADD TO BAG</button>

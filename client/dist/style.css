@@ -24,6 +24,10 @@
   justify-content: flex-start;
 }
 
+#gallery {
+  display: flex;
+  flex-direction: row;
+}
 /********************************************/
 
 #review-list {
