@@ -12,12 +12,6 @@ const RelatedList = ({ currentItem, setCurrentItem }) => {
         setRelatedItemsIDs(results.data);
       })
       .catch((err) => console.log(err));
-    axios.get('./products')
-      .then((results) => {
-        // console.log('Get All', results.data);
-        setAllItems(results.data);
-      })
-      .catch((err) => console.log(err));
   }, [currentItem]);
 
   const leftScroll = () => {
@@ -37,8 +31,13 @@ const RelatedList = ({ currentItem, setCurrentItem }) => {
           <button className="left carousel-button" type="button" onClick={() => { leftScroll(); }}>&#8678;</button>
           <button className="right carousel-button" type="button" onClick={() => { rightScroll(); }}>&#8680;</button>
           <div className="scroll-related-items  snaps-inline">
-            {relatedItemsIDs.map((currentID) => (
-              <RelatedItem currentID={currentID} key={currentID} setCurrentItem={setCurrentItem} detailItem={currentItem}/>
+            {relatedItemsIDs.map((currentID, i) => (
+              <RelatedItem
+                currentID={currentID}
+                key={i}
+                setCurrentItem={setCurrentItem}
+                detailItem={currentItem}
+              />
             ))}
           </div>
         </div>
