@@ -56,7 +56,7 @@ const Reviews = ({ currentItem }) => {
       setAllReviews(data.data);
       setReviews(data.data.results.slice(0, 2));
     });
-  }, []);
+  }, [currentItem]);
 
   const showMore = (count) => {
     setReviews(allReviews.results.slice(0, count + 2));
@@ -85,6 +85,7 @@ const Reviews = ({ currentItem }) => {
       <OverallRatings data={metaData} />
       <ReviewList
         reviews={reviews}
+        data={metaData}
         allReviews={allReviews}
         showMore={showMore}
         helpful={helpful}
