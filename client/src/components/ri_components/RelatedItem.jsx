@@ -1,35 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const RelatedItem = ({ currentID, setCurrentItem }) => {
+const RelatedItem = ({ currentID, setCurrentItem, detailItem }) => {
   const [listItem, setListItem] = useState({});
   const [itemStyle, setItemStyle] = useState([]);
 
   useEffect(() => {
     axios.get(`./product?id=${currentID}`)
-      .then((results) => {
-        // console.log('INDIVIDUAL GET', results.data);
-        setListItem(results.data);
+      .then((res) => {
+        // console.log('INDIVIDUAL GET', res.data);
+        setListItem(res.data);
       })
       .catch((err) => console.log(err));
     axios.get('/productstyles', { params: { id: currentID } })
-      .then((results) => {
-        console.log('GET STYLES', results.data);
-        setItemStyle(results.data);
+      .then((res) => {
+        // console.log('GET STYLES', res.data);
+        setItemStyle(res.data.results);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  const onClick = () => {
+  const updateDetail = () => {
     event.preventDefault();
     console.log(listItem);
+    setCurrentItem(listItem);
   };
 
   return (
-    <div className="related-item">
-      <img src="https://www.fillmurray.com/140/200" alt="Bill Murray Placeholder" />
+    <div className="related-item" onClick={updateDetail}>
+      <img src={itemStyle[0]?.photos[0].thumbnail_url === null ? "https://www.fillmurray.com/140/200" : itemStyle[0]?.photos[0].thumbnail_url} alt="Placeholder" />
+      <button className="action-star" type="button">&#9734;</button>
       {listItem.category}
-      {`${listItem.name}: ${listItem.slogan}`}
+      {`${listItem.name} ${itemStyle[0]?.name}`}
+      {itemStyle[0]?.original_price}
     </div>
   );
 };

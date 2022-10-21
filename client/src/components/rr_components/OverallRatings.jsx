@@ -1,7 +1,6 @@
 import React from 'react';
 import _ from 'underscore';
 
-<<<<<<< HEAD
 const OverallRatings = ({ data }) => {
   const count = parseInt(data.recommended.false, 10) + parseInt(data.recommended.true, 10);
   let allRatings = 0;
@@ -49,10 +48,5 @@ const OverallRatings = ({ data }) => {
     </div>
   );
 };
-=======
-const OverallRatings = (props) => (
-  <div>OverallRatings</div>
-);
->>>>>>> main
 
 export default OverallRatings;
