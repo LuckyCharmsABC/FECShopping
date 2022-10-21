@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const Gallery = ({ selectedStyle }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const selectedCss = { border: 'solid yellow' };
+  const selectedCss = { border: 'solid black' };
   return (
     <div id="imageGallery">
       <div id="gallery">
@@ -14,9 +14,9 @@ const Gallery = ({ selectedStyle }) => {
             onClick={() => { setSelectedImageIndex(index); }}
             onKeyPress={() => {}}
             tabIndex={0}
-            style={index === selectedImageIndex ? selectedCss : { border: 'none' }}
+            style={index === selectedImageIndex ? selectedCss : { border: 'solid white' }}
           >
-            <img width="50" height="auto" alt="x" src={photo.thumbnail_url} />
+            <img width="80" height="auto" alt="x" src={photo.thumbnail_url} />
           </div>
         ))}
       </div>

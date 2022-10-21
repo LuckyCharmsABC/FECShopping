@@ -3,6 +3,7 @@ import React from 'react';
 const Info = ({ product, selectedStyle, scrollToReviews }) => {
   const saleStyle = { color: 'red' };
   const saleOriginal = { textDecoration: 'line-through' };
+  const originalPrice = `$${selectedStyle.original_price}`;
   return (
     <div id="productInfo">
       <div
@@ -15,12 +16,14 @@ const Info = ({ product, selectedStyle, scrollToReviews }) => {
       </div>
       <p>CATAGORY</p>
       <b>{product.name}</b>
-      <div style={selectedStyle.sale_price ? saleStyle : { color: 'black' }}>
-        $
-        { selectedStyle.sale_price ? selectedStyle.sale_price : selectedStyle.original_price }
-      </div>
-      <div style={selectedStyle.sale_price ? saleOriginal : { color: 'black' }}>
-        {selectedStyle.sale_price ? selectedStyle.original_price : ''}
+      <div id="price-area">
+        <div style={selectedStyle.sale_price ? saleOriginal : { color: 'black' }}>
+          {selectedStyle.sale_price ? originalPrice : ''}
+        </div>
+        <div style={selectedStyle.sale_price ? saleStyle : { color: 'black' }}>
+          $
+          { selectedStyle.sale_price ? selectedStyle.sale_price : selectedStyle.original_price }
+        </div>
       </div>
       <div>
         <i className="fa-brands fa-facebook" />

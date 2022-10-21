@@ -1,7 +1,7 @@
 import React from 'react';
 
 const StyleSelector = ({ productStyles, selectedStyle, selectStyle }) => {
-  const selectedCss = { border: 'solid yellow' };
+  const selectedCss = { border: 'solid black' };
   return (
     <div>
       <p>
@@ -16,9 +16,9 @@ const StyleSelector = ({ productStyles, selectedStyle, selectStyle }) => {
             onClick={() => { selectStyle(style); }}
             onKeyPress={() => {}}
             tabIndex={0}
-            style={style.style_id === selectedStyle.style_id ? selectedCss : { border: 'none' }}
+            style={style.style_id === selectedStyle.style_id ? selectedCss : { border: 'solid white' }}
           >
-            <img width="50" height="auto" alt="x" src={style.photos[0].thumbnail_url} />
+            <img className="styleThumbnail" alt="x" src={style.photos[0].thumbnail_url} />
           </div>
         ))}
       </div>

@@ -20,7 +20,13 @@ body {
 #sideInfo {
   display: flex;
   flex-direction: column;
-  width: 220px;
+  width: 250px;
+  margin: 10px;
+}
+
+#price-area {
+  display: flex;
+  flex-direction: row;
 }
 
 .styleList {
@@ -30,31 +36,41 @@ body {
   justify-content: flex-start;
 }
 
+.styleThumbnail {
+  width:50px;
+  height:50px;
+  padding: 3px;
+  object-fit: cover;
+}
+
 #imageGallery {
   display: flex;
   flex-direction: row;
-  height: 450px;
+  height: 650px;
 }
 
 #gallery {
+  margin: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
   overflow-y: auto;
+  scrollbar-gutter: stable;
 }
-/* #gallery {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-} */
 
+.thumbnail {
+  padding: 3px;
+}
 
 .displayedImage {
-  width: 400px;
-  height: 400px;
+  width: 600px;
+  height: 600px;
   object-fit: contain
 }
 
+#displayBkg {
+  margin:10px;
+}
 /********************************************/
 
 #review-list {
