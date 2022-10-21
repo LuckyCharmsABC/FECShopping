@@ -42,9 +42,9 @@
   position: fixed;
   z-index: 1;
   left: 25%;
-  top: 25%;
+  top: 12.5%;
   width: 50%;
-  height: 50%;
+  height: 75%;
   overflow: auto;
   background-color: white;
 }
