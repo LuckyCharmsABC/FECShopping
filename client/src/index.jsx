@@ -5,7 +5,6 @@ import App from './components/App.jsx';
 const root = createRoot(document.getElementById('root'));
 root.render(
   <div>
-    <h1>Hello world</h1>
     <App />
   </div>,
 );
