@@ -15,6 +15,8 @@ const NewReview = ({ data }) => {
   const [body, setBody] = useState('');
   const [remainingChars, setRemainingChars] = useState('Minimum required characters left: 50');
   const [images, setImages] = useState([]);
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
 
   const ratings = {
     1: '- Poor',
@@ -105,12 +107,21 @@ const NewReview = ({ data }) => {
     setImages(imageList);
   };
 
+  const handleNicknameChange = (event) => {
+    setNickname(event.target.value);
+  }
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  }
+
   return (
     <div id="new-review">
       <form>
         <div>
           Overall rating (mandatory)
         </div>
+
         <div>
           <button type="button" onClick={oneStar}>
             {firstStar}
@@ -184,6 +195,7 @@ const NewReview = ({ data }) => {
         <div>
           Review Summary
         </div>
+
         <div>
           <input type="text" value={summary} onChange={handleSummary} maxLength="60" placeholder="Example: Best purchase ever!" size="60" />
         </div>
@@ -191,9 +203,11 @@ const NewReview = ({ data }) => {
         <div>
           Review body (mandatory)
         </div>
+
         <div>
           <textarea value={body} onChange={handleBody} minLength="50" maxLength="1000" placeholder="Why did you like the product or not?" rows="10" cols="60" />
         </div>
+
         <div>
           {remainingChars}
         </div>
@@ -201,6 +215,7 @@ const NewReview = ({ data }) => {
         <div>
           Upload your photos
         </div>
+
         <ImageUploading
           multiple
           value={images}
@@ -240,6 +255,24 @@ const NewReview = ({ data }) => {
             </div>
           )}
         </ImageUploading>
+
+        <div>
+          What is your nickname (mandatory)
+        </div>
+
+        <div>
+          <input type="text" value={nickname} onChange={handleNicknameChange} maxLength="60" placeholder="Example: jackson11!" size="60" />
+        </div>
+
+        <small>For privacy reasons, do not use your full name or email address</small>
+
+        <div>
+          Your email (mandatory)
+        </div>
+
+        <div>
+          <input type="text" value={email} onChange={handleEmailChange} maxLength="60" placeholder="Example: jackson11@email.com" size="60" />
+        </div>
       </form>
     </div>
   );
