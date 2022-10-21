@@ -39,8 +39,8 @@ const Cart = ({ selectedStyle, styleIndex }) => {
         styleIndex={styleIndex}
       />
       <div>
-        <button type="button" onClick={() => { addtoCart(selectedCombo); }}>ADD TO BAG</button>
-        <button type="submit">⭐️</button>
+        <button className="submit-button" id="add-to-cart" type="button" onClick={() => { addtoCart(selectedCombo); }}>ADD TO BAG</button>
+        <button className="submit-button" type="submit">⭐️</button>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Info = ({ product, selectedStyle, scrollToReviews }) => {
-  const saleStyle = { color: 'red' };
+  const saleStyle = { color: '#CC3636' };
   const saleOriginal = { textDecoration: 'line-through' };
   const originalPrice = `$${selectedStyle.original_price}`;
   return (
@@ -14,8 +14,8 @@ const Info = ({ product, selectedStyle, scrollToReviews }) => {
       >
         Read all reviews
       </div>
-      <p>CATAGORY</p>
-      <b>{product.name}</b>
+      <div>CATAGORY</div>
+      <div>{product.name}</div>
       <div id="price-area">
         <div style={selectedStyle.sale_price ? saleOriginal : { color: 'black' }}>
           {selectedStyle.sale_price ? originalPrice : ''}

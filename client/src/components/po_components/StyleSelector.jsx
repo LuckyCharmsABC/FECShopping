@@ -1,7 +1,7 @@
 import React from 'react';
 
 const StyleSelector = ({ productStyles, selectedStyle, selectStyle }) => {
-  const selectedCss = { border: 'solid black' };
+  const selectedCss = { border: 'solid #0F3460' };
   return (
     <div>
       <p>

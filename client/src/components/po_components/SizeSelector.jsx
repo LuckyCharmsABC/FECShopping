@@ -37,7 +37,8 @@ const SizeSelector = ({ productSkus, setItemSku, setItemQuant, styleIndex }) => 
   return (
     <div className="selectors">
       <select
-        id="sizeSelector"
+        className="dropdown-list"
+        id="size-selector"
         onChange={(event) => {
           if (event.target.value === '-1') {
             setMaxQuant(-1);
@@ -52,7 +53,8 @@ const SizeSelector = ({ productSkus, setItemSku, setItemQuant, styleIndex }) => 
         {renderSizeOpts()}
       </select>
       <select
-        id="numSelector"
+        className="dropdown-list"
+        id="num-selector"
         onChange={(event) => {
           setItemQuant(event.target.value);
         }}
