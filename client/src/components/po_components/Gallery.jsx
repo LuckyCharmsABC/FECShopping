@@ -1,9 +1,29 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 
-const Gallery = ({ product }) => (
-  <div>
-    <p>image placeholder</p>
-  </div>
-);
+const Gallery = ({ selectedStyle }) => {
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const selectedCss = { border: 'solid yellow' };
+  return (
+    <div id="imageGallery">
+      <div id="gallery">
+        {selectedStyle.photos.map((photo, index) => (
+          <div
+            key={photo.url}
+            role="button"
+            onClick={() => { setSelectedImageIndex(index); }}
+            onKeyPress={() => {}}
+            tabIndex={0}
+            style={index === selectedImageIndex ? selectedCss : { border: 'none' }}
+          >
+            <img width="50" height="auto" alt="x" src={photo.thumbnail_url} />
+          </div>
+        ))}
+      </div>
+      <div id="image">
+        <img width="300" height="auto" alt="x" src={selectedStyle.photos[selectedImageIndex].url} />
+      </div>
+    </div>
+  );
+};
 
 export default Gallery;

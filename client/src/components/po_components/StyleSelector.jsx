@@ -18,7 +18,7 @@ const StyleSelector = ({ productStyles, selectedStyle, selectStyle }) => {
             tabIndex={0}
             style={style.style_id === selectedStyle.style_id ? selectedCss : { border: 'none' }}
           >
-            <img width="50" height="70" alt="x" src={style.photos[0].thumbnail_url} />
+            <img width="50" height="auto" alt="x" src={style.photos[0].thumbnail_url} />
           </div>
         ))}
       </div>
