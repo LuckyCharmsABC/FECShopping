@@ -39,9 +39,7 @@ const Product = ({ currentItem, scrollToReviews }) => {
   return (
     <div id="AllPO">
       <div id="PO">
-        <div id="imageGallery">
-          <Gallery selectedStyle={selectedStyle} />
-        </div>
+        <Gallery selectedStyle={selectedStyle} />
         <div id="sideInfo">
           <Info product={product} selectedStyle={selectedStyle} scrollToReviews={scrollToReviews} />
           <StyleSelector

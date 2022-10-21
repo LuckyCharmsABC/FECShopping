@@ -52,7 +52,10 @@ const App = () => {
 
   return (
     <div>
-      <h1>Hello</h1>
+      <div className="page-top">
+        <span className="title-text">Lucky & Charm</span>
+      </div>
+      <div id="merchandise-directory">New Arrivals</div>
       <Product currentItem={currentItem} scrollToReviews={scrollToReviews} />
       <Related currentItem={currentItem} setCurrentItem={setCurrentItem} />
       <div ref={ref}>
