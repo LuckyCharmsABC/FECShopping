@@ -8,6 +8,7 @@ const Gallery = ({ selectedStyle }) => {
       <div id="gallery">
         {selectedStyle.photos.map((photo, index) => (
           <div
+            className="thumbnail"
             key={photo.url}
             role="button"
             onClick={() => { setSelectedImageIndex(index); }}
@@ -19,8 +20,8 @@ const Gallery = ({ selectedStyle }) => {
           </div>
         ))}
       </div>
-      <div id="image">
-        <img width="300" height="auto" alt="x" src={selectedStyle.photos[selectedImageIndex].url} />
+      <div id="displayBkg">
+        <img className="displayedImage" alt="x" src={selectedStyle.photos[selectedImageIndex].url} />
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ const SizeSelector = ({ productSkus, setItemSku, setItemQuant, styleIndex }) => 
 
   const renderSizeOpts = () => {
     let totalStock = 0;
-    let options = [<option value="-1">Select Size</option>];
+    let options = [<option key="-1" value="-1">Select Size</option>];
     for (let i = 0; i < productSkus.length; i += 1) {
       totalStock += productSkus[i].quantity;
     }
@@ -26,7 +26,7 @@ const SizeSelector = ({ productSkus, setItemSku, setItemQuant, styleIndex }) => 
     const sizes = productSkus.map((sku, i) => {
       if (sku.quantity) {
         return (
-          <option value={i}>{sku.size}</option>
+          <option key={sku.skus} value={i}>{sku.size}</option>
         );
       }
     });

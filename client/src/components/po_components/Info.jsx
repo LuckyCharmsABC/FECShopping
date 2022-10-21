@@ -2,7 +2,7 @@ import React from 'react';
 
 const Info = ({ product, selectedStyle, scrollToReviews }) => {
   const saleStyle = { color: 'red' };
-  const saleOriginal = { 'text-decoration': 'line-through' };
+  const saleOriginal = { textDecoration: 'line-through' };
   return (
     <div id="productInfo">
       <div
