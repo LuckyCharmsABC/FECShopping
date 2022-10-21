@@ -207,7 +207,7 @@ const NewReview = ({ data }) => {
             console.log(image);
             return (
               <img src={image} alt={image} />
-            )
+            );
           })}
         </div>
       </form>
