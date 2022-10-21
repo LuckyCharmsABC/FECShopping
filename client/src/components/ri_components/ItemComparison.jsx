@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
-const itemComparison = () => {
+const itemComparison = ({ showModal, setShowModal }) => {
   return (
-    <div></div>
+    showModal &&
+    <div className="comparison-modal">
+      TRUE
+    </div>
   )
 }
 
