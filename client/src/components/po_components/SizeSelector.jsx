@@ -44,7 +44,7 @@ const SizeSelector = ({ productSkus, setItemSku, setItemQuant, styleIndex }) => 
             return;
           }
           const quant = productSkus[event.target.value].quantity;
-          console.log('quant is ', quant);
+          // console.log('quant is ', quant);
           setMaxQuant(quant < 15 ? quant : 15);
           setItemSku(productSkus[event.target.value].skus);
         }}
