@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import _ from 'underscore';
 import Product from './po_components/Product.jsx';
 import Related from './ri_components/RelatedItemsAndOutfits.jsx';
 import Reviews from './rr_components/Reviews.jsx';
@@ -11,6 +12,9 @@ import Reviews from './rr_components/Reviews.jsx';
 const App = () => {
   const [currentItem, setCurrentItem] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [metaData, setMetaData] = useState({});
+  const [reviewCount, setReviewCount] = useState(0);
+  const [averageRating, setAverageRating] = useState(0);
   const ref = useRef(null);
 
   useEffect(() => {
@@ -22,6 +26,21 @@ const App = () => {
       })
       .catch((err) => { console.log(err); });
   }, []);
+
+  useEffect(() => {
+    axios.get('/reviewdata', { params: { product_id: currentItem.id } })
+      .then((data) => {
+        const count = parseInt(data.data.recommended.false, 10) + parseInt(data.data.recommended.true, 10);
+        let allRatings = 0;
+        _.each(data.data.ratings, (rating, i) => {
+          allRatings += rating * i;
+        });
+        setMetaData(data.data);
+        setReviewCount(count);
+        setAverageRating(Math.round((allRatings / count) * 10) / 10);
+      })
+
+  }, [currentItem]);
 
   const scrollToReviews = () => {
     ref.current?.scrollIntoView({behavior: 'smooth'});
@@ -37,7 +56,7 @@ const App = () => {
       <Product currentItem={currentItem} scrollToReviews={scrollToReviews} />
       <Related currentItem={currentItem} setCurrentItem={setCurrentItem} />
       <div ref={ref}>
-        <Reviews currentItem={currentItem} />
+        <Reviews currentItem={currentItem} data={metaData} count={reviewCount} averageRating={averageRating} />
       </div>
     </div>
   );

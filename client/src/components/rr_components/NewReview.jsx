@@ -36,10 +36,6 @@ const NewReview = ({ data }) => {
     Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly loose', 'Runs loose'],
   };
 
-  const handleSubmit = () => {
-
-  };
-
   const oneStar = () => {
     setFirstStar('🌟');
     setSecondStar('⭐');
@@ -109,11 +105,11 @@ const NewReview = ({ data }) => {
 
   const handleNicknameChange = (event) => {
     setNickname(event.target.value);
-  }
+  };
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
-  }
+  };
 
   return (
     <div id="new-review">
@@ -229,17 +225,13 @@ const NewReview = ({ data }) => {
             onImageRemoveAll,
             onImageUpdate,
             onImageRemove,
-            isDragging,
-            dragProps,
           }) => (
             <div>
               <button
                 type="button"
-                style={isDragging ? { color: 'red' } : null}
                 onClick={onImageUpload}
-                {...dragProps}
               >
-                Click or Drop here
+                Upload images
               </button>
               &nbsp;
               <button type="button" onClick={onImageRemoveAll}>Remove all images</button>

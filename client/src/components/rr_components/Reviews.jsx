@@ -4,31 +4,30 @@ import _ from 'underscore';
 import OverallRatings from './OverallRatings.jsx';
 import ReviewList from './ReviewList.jsx';
 
-const Reviews = ({ currentItem }) => {
+const Reviews = ({
+  currentItem,
+  data,
+  count,
+  averageRating,
+}) => {
   const [allReviews, setAllReviews] = useState({});
   const [reviews, setReviews] = useState([]);
-  const [metaData, setMetaData] = useState({});
 
   useEffect(() => {
-    axios.get('/reviewdata', { params: { product_id: currentItem.id } })
-      .then((data) => {
-        setMetaData(data.data);
-      });
-
     axios.get('/reviews', {
       params: {
         product_id: currentItem.id,
         sort: 'relevance',
         count: 999999,
       },
-    }).then((data) => {
-      setAllReviews(data.data);
-      setReviews(data.data.results.slice(0, 2));
+    }).then((results) => {
+      setAllReviews(results.data);
+      setReviews(results.data.results.slice(0, 2));
     });
   }, [currentItem]);
 
-  const showMore = (count) => {
-    setReviews(allReviews.results.slice(0, count + 2));
+  const showMore = (limit) => {
+    setReviews(allReviews.results.slice(0, limit + 2));
   };
 
   const helpful = (id) => {
@@ -42,19 +41,19 @@ const Reviews = ({ currentItem }) => {
         sort: method,
         count: 999999,
       },
-    }).then((data) => {
-      setAllReviews(data.data);
-      setReviews(data.data.results.slice(0, 2));
+    }).then((results) => {
+      setAllReviews(results.data);
+      setReviews(results.data.results.slice(0, 2));
     });
   };
 
-  return _.size(metaData) && _.size(allReviews) && _.size(reviews) ? (
+  return _.size(data) && _.size(allReviews) && _.size(reviews) ? (
     <div>
       <p>Ratings and Reviews</p>
-      <OverallRatings data={metaData} />
+      <OverallRatings data={data} count={count} averageRating={averageRating} />
       <ReviewList
         reviews={reviews}
-        data={metaData}
+        data={data}
         allReviews={allReviews}
         showMore={showMore}
         helpful={helpful}
