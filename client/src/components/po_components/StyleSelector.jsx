@@ -13,7 +13,7 @@ const StyleSelector = ({ productStyles, selectedStyle, selectStyle }) => {
             key={style.style_id}
             id={style.style_id}
             role="button"
-            onClick={() => { selectStyle(style); }}
+            onClick={(event) => { event.preventDefault(); selectStyle(style); }}
             onKeyPress={() => {}}
             tabIndex={0}
             style={style.style_id === selectedStyle.style_id ? selectedCss : { border: 'solid white' }}

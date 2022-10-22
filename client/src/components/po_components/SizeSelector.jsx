@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-const SizeSelector = ({ productSkus, setItemSku, setItemQuant, styleIndex }) => {
-  // console.log('product skus passed in is ', productSkus);
-  const [maxQuant, setMaxQuant] = useState(-1);
+const SizeSelector = ({ productSkus, setItemSku, setItemQuant, maxQuant, changeMaxQuant }) => {
+  console.log('product skus passed in is ', productSkus);
+
   const renderQuantOpts = (value) => {
     if (value === -1) {
       return <option value={-1}>-</option>;
@@ -34,19 +34,20 @@ const SizeSelector = ({ productSkus, setItemSku, setItemQuant, styleIndex }) => 
     return options;
   };
 
+
   return (
     <div className="selectors">
       <select
         className="dropdown-list"
         id="size-selector"
         onChange={(event) => {
+          event.preventDefault();
           if (event.target.value === '-1') {
-            setMaxQuant(-1);
+            changeMaxQuant(-1);
             return;
           }
           const quant = productSkus[event.target.value].quantity;
-          // console.log('quant is ', quant);
-          setMaxQuant(quant < 15 ? quant : 15);
+          changeMaxQuant(quant < 15 ? quant : 15);
           setItemSku(productSkus[event.target.value].skus);
         }}
       >

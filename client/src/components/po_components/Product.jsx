@@ -12,7 +12,7 @@ const Product = ({ currentItem, scrollToReviews }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [productStyles, setProductStyles] = useState({});
   const [selectedStyle, setSelectedStyle] = useState({});
-  const [selectedStyleInd, setSelectedStyleInd] = useState('');
+  const [maxQuant, setMaxQuant] = useState(-1);
   const product = currentItem;
 
   useEffect(() => {
@@ -21,7 +21,6 @@ const Product = ({ currentItem, scrollToReviews }) => {
         console.log(response.data.results);
         setProductStyles(response.data.results);
         setSelectedStyle(response.data.results[0]);
-        setSelectedStyleInd(0);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -29,8 +28,13 @@ const Product = ({ currentItem, scrollToReviews }) => {
       });
   }, [currentItem]);
 
+  const changeMaxQuant = (value) => {
+    setMaxQuant(value);
+  };
+
   const selectStyle = (styleId) => {
     setSelectedStyle(styleId);
+    changeMaxQuant(-1);
   };
 
   if (isLoading) {
@@ -47,7 +51,7 @@ const Product = ({ currentItem, scrollToReviews }) => {
             selectStyle={selectStyle}
             selectedStyle={selectedStyle}
           />
-          <Cart selectedStyle={selectedStyle} styleIndex={selectedStyleInd} />
+          <Cart selectedStyle={selectedStyle} maxQuant={maxQuant} changeMaxQuant={changeMaxQuant} />
         </div>
       </div>
       <AdditionalInfo product={product} />
