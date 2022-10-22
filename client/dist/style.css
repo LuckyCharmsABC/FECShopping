@@ -144,6 +144,11 @@ select {
   overflow: auto
 }
 
+.error {
+  color: red;
+  display: none;
+}
+
 /********************************************/
 
 #new-review {
