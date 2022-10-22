@@ -30,7 +30,7 @@ const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) =>
             return (
               <li
                 id={slideId}
-                tabIndex="0"
+                //tabIndex="0"
                 className="carousel__slide"
               >
                 <img className="displayedImage" alt="x" src={photo.url} />
