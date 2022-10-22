@@ -18,6 +18,12 @@ const Product = ({ currentItem, scrollToReviews }) => {
   const changeSelectedImgInx = (value) => {
     setSelectedImageIndex(value);
   };
+  const determineImgInd = (style) => {
+    if (style.photos[selectedImageIndex]) {
+      return;
+    }
+    changeSelectedImgInx(0);
+  };
   useEffect(() => {
     axios.get('/productstyles', { params: { id: product.id } })
       .then((response) => {
@@ -37,10 +43,10 @@ const Product = ({ currentItem, scrollToReviews }) => {
     setMaxQuant(value);
   };
 
-  const selectStyle = (styleId) => {
-    setSelectedStyle(styleId);
+  const selectStyle = (style) => {
+    setSelectedStyle(style);
     changeMaxQuant(-1);
-    changeSelectedImgInx(0);
+    determineImgInd(style);
   };
 
   if (isLoading) {

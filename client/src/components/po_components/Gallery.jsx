@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) => {
   // const [selectedImageIndex, setSelectedImageIndex] = useState(0);
