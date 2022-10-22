@@ -28,12 +28,28 @@ const RelatedItem = ({ currentID, setCurrentItem, detailItem }) => {
     setCurrentItem(listItem);
   };
 
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  }
+
+  const logComparison = (e) => {
+    e.stopPropagation();
+    toggleModal();
+    console.log('PRODUCT DETAIL ITEM', detailItem);
+    console.log('ITEM TO COMPARE', listItem);
+  }
+
   return (
     <div>
-      <ItemComparison showModal={showModal} setShowModal={setShowModal}/>
+      <ItemComparison
+        showModal={showModal}
+        detailItem={detailItem}
+        relatedItem={listItem}
+        toggleModal={toggleModal}
+      />
       <div className="related-item" onClick={updateDetail}>
         <img src={itemStyle[0]?.photos[0].thumbnail_url === null ? "https://www.fillmurray.com/140/200" : itemStyle[0]?.photos[0].thumbnail_url} alt="Placeholder" />
-        <button className="action-star" type="button">&#9734;</button>
+        <button className="action-star" type="button" onClick={(e) => logComparison(e)}>&#9734;</button>
         {listItem.category}
         {`${listItem.name} ${itemStyle[0]?.name}`}
         {itemStyle[0]?.original_price}
