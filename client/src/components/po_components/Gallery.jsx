@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Gallery = ({ selectedStyle }) => {
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) => {
+  // const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const selectedCss = { border: 'solid black' };
   return (
     <div id="imageGallery">
@@ -11,7 +11,7 @@ const Gallery = ({ selectedStyle }) => {
             className="thumbnail"
             key={photo.url}
             role="button"
-            onClick={() => { setSelectedImageIndex(index); }}
+            onClick={() => { changeSelectedImgInx(index); }}
             onKeyPress={() => {}}
             tabIndex={0}
             style={index === selectedImageIndex ? selectedCss : { border: 'solid white' }}

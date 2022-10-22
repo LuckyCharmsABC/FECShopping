@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Info = ({ product, selectedStyle, scrollToReviews }) => {
+const Info = ({ product, selectedStyle, scrollToReviews, averageRating, reviewCount }) => {
   const saleStyle = { color: '#CC3636' };
   const saleOriginal = { textDecoration: 'line-through' };
   const originalPrice = `$${selectedStyle.original_price}`;
@@ -12,7 +12,9 @@ const Info = ({ product, selectedStyle, scrollToReviews }) => {
         onKeyPress={() => {}}
         tabIndex={0}
       >
-        Read all reviews
+        Read all
+        {reviewCount}
+        reviews
       </div>
       <div>CATAGORY</div>
       <div>{product.name}</div>
