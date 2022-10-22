@@ -3,7 +3,7 @@ import React from 'react';
 const SizeSelector = ({
   productSkus, setItemSku, setItemQuant, maxQuant, changeMaxQuant,
 }) => {
-  console.log('product skus passed in is ', productSkus);
+  // console.log('product skus passed in is ', productSkus);
 
   const renderQuantOpts = (value) => {
     if (value === -1) {

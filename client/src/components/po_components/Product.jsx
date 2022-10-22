@@ -7,7 +7,7 @@ import StyleSelector from './StyleSelector.jsx';
 import Cart from './Cart.jsx';
 // import exampleData from './exampleStyles.js';
 
-const Product = ({ currentItem, scrollToReviews }) => {
+const Product = ({ currentItem, scrollToReviews, averageRating, reviewCount }) => {
 //  Example data to use for now
   const [isLoading, setIsLoading] = useState(true);
   const [productStyles, setProductStyles] = useState({});
@@ -61,7 +61,13 @@ const Product = ({ currentItem, scrollToReviews }) => {
           changeSelectedImgInx={setSelectedImageIndex}
         />
         <div id="sideInfo">
-          <Info product={product} selectedStyle={selectedStyle} scrollToReviews={scrollToReviews} />
+          <Info
+            product={product}
+            selectedStyle={selectedStyle}
+            scrollToReviews={scrollToReviews}
+            averageRating={averageRating}
+            reviewCount={reviewCount}
+          />
           <StyleSelector
             productStyles={productStyles}
             selectStyle={selectStyle}
