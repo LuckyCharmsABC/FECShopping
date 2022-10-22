@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import RelatedItem from './RelatedItem.jsx';
 
 const RelatedList = ({ currentItem, setCurrentItem }) => {
@@ -9,6 +10,7 @@ const RelatedList = ({ currentItem, setCurrentItem }) => {
   useEffect(() => {
     axios.get(`/products/${currentItem.id}/related`)
       .then((results) => {
+        console.log('RELATED ITEMS', results.data);
         setRelatedItemsIDs(results.data);
       })
       .catch((err) => console.log(err));
@@ -30,7 +32,7 @@ const RelatedList = ({ currentItem, setCurrentItem }) => {
         <div className="related-scroll">
           <button className="left carousel-button" type="button" onClick={() => { leftScroll(); }}>&#8678;</button>
           <button className="right carousel-button" type="button" onClick={() => { rightScroll(); }}>&#8680;</button>
-          <div className="scroll-related-items  snaps-inline">
+          <div className="scroll-related-items snaps-inline">
             {relatedItemsIDs.map((currentID, i) => (
               <RelatedItem
                 currentID={currentID}

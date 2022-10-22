@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import ItemComparison from './ItemComparison.jsx';
 
 const RelatedItem = ({ currentID, setCurrentItem, detailItem }) => {
@@ -20,7 +21,7 @@ const RelatedItem = ({ currentID, setCurrentItem, detailItem }) => {
         setItemStyle(res.data.results);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [detailItem]);
 
   const updateDetail = () => {
     event.preventDefault();
@@ -47,15 +48,42 @@ const RelatedItem = ({ currentID, setCurrentItem, detailItem }) => {
         relatedItem={listItem}
         toggleModal={toggleModal}
       />
-      <div className="related-item" onClick={updateDetail}>
-        <img src={itemStyle[0]?.photos[0].thumbnail_url === null ? "https://www.fillmurray.com/140/200" : itemStyle[0]?.photos[0].thumbnail_url} alt="Placeholder" />
-        <button className="action-star" type="button" onClick={(e) => logComparison(e)}>&#9734;</button>
-        {listItem.category}
-        {`${listItem.name} ${itemStyle[0]?.name}`}
+      <Card onClick={updateDetail}>
+        <div>
+          <ItemImg src={itemStyle[0]?.photos[0].thumbnail_url === null ? "https://www.fillmurray.com/140/200" : itemStyle[0]?.photos[0].thumbnail_url} alt="Placeholder" />
+          <ActionButton className="action-star" type="button" onClick={(e) => logComparison(e)}>&#9734;</ActionButton>
+        </div>
+        <CardCategory>{listItem.category}</CardCategory>
+        <h4>{`${listItem.name} ${itemStyle[0]?.name}`}</h4>
         {itemStyle[0]?.original_price}
-      </div>
+      </Card>
     </div>
   );
 };
 
 export default RelatedItem;
+
+const Card = styled.div`
+  display: grid;
+  contain: content;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #0F3460
+  padding: 10px;
+  background: #ffffff;
+  cursor: pointer;
+  max-width: 255px;
+`;
+
+const ItemImg = styled.img`
+  inline-size: 100%;
+  aspect-ratio: 140 / 200;
+  object-fit: cover;
+`
+const CardCategory = styled.p`
+  font-variant: small-caps;
+`
+
+const ActionButton = styled.button`
+
+`

@@ -162,9 +162,9 @@ select {
 
 /* .related-scroll {
   display: grid;
+  justify-content: center;
   gap: 1em;
   grid-auto-flow: column;
-  grid-auto-columns: 33.33333%;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
 } */
@@ -190,12 +190,6 @@ select {
   object-fit: cover;
 }
 
-.related-item > img {
-  inline-size: 100%;
-  aspect-ratio: 140 / 200;
-  object-fit: cover;
-}
-
 .carousel-button {
   position: absolute;
   background: none;
@@ -206,6 +200,7 @@ select {
   border-radius: .25;
   padding: 0 .5rem;
   background-color: rgba(0, 0, 0, .1);
+  z-index: 1;
 }
 
 .carousel-button:hover,
@@ -220,15 +215,6 @@ select {
 
 .right{
   right: 1rem;
-}
-
-.scroll-related-items {
-  display: grid;
-  gap: 1em;
-  grid-auto-flow: column;
-  grid-auto-columns: 25%;
-  overflow-x: auto;
-  overscroll-behavior-inline: contain;
 }
 
 .item-image {
@@ -256,6 +242,16 @@ select {
 }
 
 .scroll-outfit-items {
+  display: grid;
+  justify-content: center;
+  gap: 1em;
+  grid-auto-flow: column;
+  grid-auto-columns: 25%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+
+.scroll-related-items {
   display: grid;
   gap: 1em;
   grid-auto-flow: column;

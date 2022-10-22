@@ -9,7 +9,7 @@ const RelatedItemsAndOutfits = ({ currentItem, setCurrentItem }) => (
       <RelatedList currentItem={currentItem} setCurrentItem={setCurrentItem} />
     </div>
     <div>
-      <Outfits currentItem={currentItem} setCurrentItem={setCurrentItem}/>
+      <Outfits currentItem={currentItem} setCurrentItem={setCurrentItem} />
     </div>
   </div>
 );
