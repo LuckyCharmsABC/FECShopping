@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 
-const SizeSelector = ({ productSkus, setItemSku, setItemQuant, maxQuant, changeMaxQuant }) => {
+const SizeSelector = ({
+  productSkus, setItemSku, setItemQuant, maxQuant, changeMaxQuant,
+}) => {
   console.log('product skus passed in is ', productSkus);
 
   const renderQuantOpts = (value) => {
@@ -33,7 +35,6 @@ const SizeSelector = ({ productSkus, setItemSku, setItemQuant, maxQuant, changeM
     options = options.concat(sizes);
     return options;
   };
-
 
   return (
     <div className="selectors">
