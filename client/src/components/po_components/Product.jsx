@@ -12,9 +12,12 @@ const Product = ({ currentItem, scrollToReviews }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [productStyles, setProductStyles] = useState({});
   const [selectedStyle, setSelectedStyle] = useState({});
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [maxQuant, setMaxQuant] = useState(-1);
   const product = currentItem;
-
+  const changeSelectedImgInx = (value) => {
+    setSelectedImageIndex(value);
+  };
   useEffect(() => {
     axios.get('/productstyles', { params: { id: product.id } })
       .then((response) => {
@@ -22,6 +25,8 @@ const Product = ({ currentItem, scrollToReviews }) => {
         setProductStyles(response.data.results);
         setSelectedStyle(response.data.results[0]);
         setIsLoading(false);
+        setMaxQuant(-1);
+        changeSelectedImgInx(0);
       })
       .catch((err) => {
         console.log(err);
@@ -35,6 +40,7 @@ const Product = ({ currentItem, scrollToReviews }) => {
   const selectStyle = (styleId) => {
     setSelectedStyle(styleId);
     changeMaxQuant(-1);
+    changeSelectedImgInx(0);
   };
 
   if (isLoading) {
@@ -43,7 +49,11 @@ const Product = ({ currentItem, scrollToReviews }) => {
   return (
     <div id="AllPO">
       <div id="PO">
-        <Gallery selectedStyle={selectedStyle} />
+        <Gallery
+          selectedStyle={selectedStyle}
+          selectedImageIndex={selectedImageIndex}
+          changeSelectedImgInx={setSelectedImageIndex}
+        />
         <div id="sideInfo">
           <Info product={product} selectedStyle={selectedStyle} scrollToReviews={scrollToReviews} />
           <StyleSelector

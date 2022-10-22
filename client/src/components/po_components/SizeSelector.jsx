@@ -9,7 +9,7 @@ const SizeSelector = ({ productSkus, setItemSku, setItemQuant, maxQuant, changeM
     }
     const options = [];
     for (let i = 1; i <= value; i += 1) {
-      options.push(<option value={i}>{i}</option>);
+      options.push(<option key={i} value={i}>{i}</option>);
     }
     return options;
   };
