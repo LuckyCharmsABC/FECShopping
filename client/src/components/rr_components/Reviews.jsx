@@ -9,23 +9,11 @@ const Reviews = ({
   data,
   count,
   averageRating,
+  reviews,
+  allReviews,
+  setReviews,
+  setAllReviews,
 }) => {
-  const [allReviews, setAllReviews] = useState({});
-  const [reviews, setReviews] = useState([]);
-
-  useEffect(() => {
-    axios.get('/reviews', {
-      params: {
-        product_id: currentItem.id,
-        sort: 'relevance',
-        count: 999999,
-      },
-    }).then((results) => {
-      setAllReviews(results.data);
-      setReviews(results.data.results.slice(0, 2));
-    });
-  }, [currentItem]);
-
   const showMore = (limit) => {
     setReviews(allReviews.results.slice(0, limit + 2));
   };
