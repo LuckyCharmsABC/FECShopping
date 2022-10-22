@@ -4,7 +4,11 @@ import _ from 'underscore';
 
 const itemComparison = ({ showModal, detailItem, relatedItem, toggleModal }) => {
   const getFeatures = (item1, item2) => {
-    const featureArray = item1.features.concat(item2.features);
+    const array1 = item1.features?.map((item) => item.feature);
+    const array2 = item2.features?.map((item) => item.feature);
+
+    const featureArray = _.uniq(array1.concat(array2));
+    console.log(featureArray);
     return featureArray;
   };
   const findValueDetail = (target) => {
@@ -14,7 +18,6 @@ const itemComparison = ({ showModal, detailItem, relatedItem, toggleModal }) => 
       }
     }
     return '';
-    // at each position, if features.feature matches the target, return the value.
   };
 
   const findValueRelated = (target) => {
@@ -40,9 +43,9 @@ const itemComparison = ({ showModal, detailItem, relatedItem, toggleModal }) => 
           <tbody>
             {getFeatures(detailItem, relatedItem).map((feature) => (
               <tr>
-                <td>{findValueDetail(feature.feature)}</td>
-                <td>{feature.feature}</td>
-                <td>{findValueRelated(feature.feature)}</td>
+                <td>{findValueDetail(feature)}</td>
+                <td>{feature}</td>
+                <td>{findValueRelated(feature)}</td>
               </tr>
             ))}
           </tbody>
