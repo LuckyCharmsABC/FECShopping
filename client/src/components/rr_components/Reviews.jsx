@@ -11,6 +11,8 @@ const Reviews = ({
   averageRating,
   reviews,
   allReviews,
+  setReviews,
+  setAllReviews,
 }) => {
   const showMore = (limit) => {
     setReviews(allReviews.results.slice(0, limit + 2));

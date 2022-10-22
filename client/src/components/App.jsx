@@ -38,7 +38,6 @@ const App = () => {
           allRatings += rating * i;
         });
         setMetaData(data.data);
-        setReviewCount(count);
         setAverageRating(Math.round((allRatings / count) * 10) / 10);
       });
 
@@ -51,7 +50,7 @@ const App = () => {
       }).then((results) => {
         setAllReviews(results.data);
         setReviews(results.data.results.slice(0, 2));
-        setCount(results.data.results.length);
+        setReviewCount(results.data.results.length);
       });
 
   }, [currentItem]);
