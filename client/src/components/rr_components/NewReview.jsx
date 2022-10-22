@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ImageUploading from 'react-images-uploading';
 import _ from 'underscore';
 
 const NewReview = ({ data }) => {
@@ -14,6 +15,8 @@ const NewReview = ({ data }) => {
   const [body, setBody] = useState('');
   const [remainingChars, setRemainingChars] = useState('Minimum required characters left: 50');
   const [images, setImages] = useState([]);
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
 
   const ratings = {
     1: '- Poor',
@@ -31,10 +34,6 @@ const NewReview = ({ data }) => {
     Quality: ['Poor', 'Below average', 'What I expected', 'Pretty great', 'Perfect'],
     Length: ['Runs short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
     Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly loose', 'Runs loose'],
-  };
-
-  const handleSubmit = () => {
-
   };
 
   const oneStar = () => {
@@ -99,8 +98,17 @@ const NewReview = ({ data }) => {
     setRemainingChars(event.target.value.length < 50 ? `Minimum required characters left: ${50 - event.target.value.length}` : 'Minimum Reached');
   };
 
-  const handleAddImage = (event) => {
-    setImages([...images, event.target.value]);
+  const handleAddImage = (imageList, addUpdateIndex) => {
+    console.log(imageList, addUpdateIndex);
+    setImages(imageList);
+  };
+
+  const handleNicknameChange = (event) => {
+    setNickname(event.target.value);
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
   };
 
   return (
@@ -109,6 +117,7 @@ const NewReview = ({ data }) => {
         <div>
           Overall rating (mandatory)
         </div>
+
         <div>
           <button type="button" onClick={oneStar}>
             {firstStar}
@@ -182,6 +191,7 @@ const NewReview = ({ data }) => {
         <div>
           Review Summary
         </div>
+
         <div>
           <input type="text" value={summary} onChange={handleSummary} maxLength="60" placeholder="Example: Best purchase ever!" size="60" />
         </div>
@@ -189,9 +199,11 @@ const NewReview = ({ data }) => {
         <div>
           Review body (mandatory)
         </div>
+
         <div>
           <textarea value={body} onChange={handleBody} minLength="50" maxLength="1000" placeholder="Why did you like the product or not?" rows="10" cols="60" />
         </div>
+
         <div>
           {remainingChars}
         </div>
@@ -199,16 +211,59 @@ const NewReview = ({ data }) => {
         <div>
           Upload your photos
         </div>
+
+        <ImageUploading
+          multiple
+          value={images}
+          maxNumber="5"
+          onChange={handleAddImage}
+          dataURLKey="data_url"
+        >
+          {({
+            imageList,
+            onImageUpload,
+            onImageRemoveAll,
+            onImageUpdate,
+            onImageRemove,
+          }) => (
+            <div>
+              <button
+                type="button"
+                onClick={onImageUpload}
+              >
+                Upload images
+              </button>
+              &nbsp;
+              <button type="button" onClick={onImageRemoveAll}>Remove all images</button>
+              {imageList.map((image, index) => (
+                <div key={index}>
+                  <img src={image.data_url} alt="" width="100" />
+                  <div>
+                    <button type="button" onClick={() => onImageUpdate(index)}>Update</button>
+                    <button type="button" onClick={() => onImageRemove(index)}>Remove</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </ImageUploading>
+
         <div>
-          <input type="file" accept="image/png, image/jpg" onInput={handleAddImage} multiple />
+          What is your nickname (mandatory)
         </div>
+
         <div>
-          {_.map(images, (image) => {
-            console.log(image);
-            return (
-              <img src={image} alt={image} />
-            )
-          })}
+          <input type="text" value={nickname} onChange={handleNicknameChange} maxLength="60" placeholder="Example: jackson11!" size="60" />
+        </div>
+
+        <small>For privacy reasons, do not use your full name or email address</small>
+
+        <div>
+          Your email (mandatory)
+        </div>
+
+        <div>
+          <input type="text" value={email} onChange={handleEmailChange} maxLength="60" placeholder="Example: jackson11@email.com" size="60" />
         </div>
       </form>
     </div>
