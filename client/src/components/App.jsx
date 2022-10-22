@@ -15,6 +15,8 @@ const App = () => {
   const [metaData, setMetaData] = useState({});
   const [reviewCount, setReviewCount] = useState(0);
   const [averageRating, setAverageRating] = useState(0);
+  const [allReviews, setAllReviews] = useState({});
+  const [reviews, setReviews] = useState({});
   const ref = useRef(null);
 
   useEffect(() => {
@@ -38,7 +40,19 @@ const App = () => {
         setMetaData(data.data);
         setReviewCount(count);
         setAverageRating(Math.round((allRatings / count) * 10) / 10);
-      })
+      });
+
+      axios.get('/reviews', {
+        params: {
+          product_id: currentItem.id,
+          sort: 'relevance',
+          count: 999999,
+        },
+      }).then((results) => {
+        setAllReviews(results.data);
+        setReviews(results.data.results.slice(0, 2));
+        setCount(results.data.results.length);
+      });
 
   }, [currentItem]);
 
@@ -59,7 +73,7 @@ const App = () => {
       <Product currentItem={currentItem} scrollToReviews={scrollToReviews} />
       <Related currentItem={currentItem} setCurrentItem={setCurrentItem} />
       <div ref={ref}>
-        <Reviews currentItem={currentItem} data={metaData} count={reviewCount} averageRating={averageRating} />
+        <Reviews currentItem={currentItem} data={metaData} count={reviewCount} averageRating={averageRating} allReviews={allReviews} reviews={reviews} />
       </div>
     </div>
   );
