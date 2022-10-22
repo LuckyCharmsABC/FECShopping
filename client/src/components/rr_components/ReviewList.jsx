@@ -18,11 +18,6 @@ const ReviewList = ({
     newReview.style.display = 'block';
   };
 
-  const hideNewReview = () => {
-    const newReview = document.getElementById('new-review');
-    newReview.style.display = 'none';
-  };
-
   const count = allReviews.results.length;
   const showMoreBtn = count - reviews.length ? <button type="button" onClick={handleShowMore}>Show More</button> : <div />;
   return (

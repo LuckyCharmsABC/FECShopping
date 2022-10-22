@@ -7,30 +7,46 @@ import StyleSelector from './StyleSelector.jsx';
 import Cart from './Cart.jsx';
 // import exampleData from './exampleStyles.js';
 
-const Product = ({ currentItem, scrollToReviews }) => {
+const Product = ({ currentItem, scrollToReviews, averageRating, reviewCount }) => {
 //  Example data to use for now
   const [isLoading, setIsLoading] = useState(true);
   const [productStyles, setProductStyles] = useState({});
   const [selectedStyle, setSelectedStyle] = useState({});
-  const [selectedStyleInd, setSelectedStyleInd] = useState('');
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [maxQuant, setMaxQuant] = useState(-1);
   const product = currentItem;
-
+  const changeSelectedImgInx = (value) => {
+    setSelectedImageIndex(value);
+  };
+  const determineImgInd = (style) => {
+    if (style.photos[selectedImageIndex]) {
+      return;
+    }
+    changeSelectedImgInx(0);
+  };
   useEffect(() => {
     axios.get('/productstyles', { params: { id: product.id } })
       .then((response) => {
         console.log(response.data.results);
         setProductStyles(response.data.results);
         setSelectedStyle(response.data.results[0]);
-        setSelectedStyleInd(0);
         setIsLoading(false);
+        setMaxQuant(-1);
+        changeSelectedImgInx(0);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [currentItem]);
 
-  const selectStyle = (styleId) => {
-    setSelectedStyle(styleId);
+  const changeMaxQuant = (value) => {
+    setMaxQuant(value);
+  };
+
+  const selectStyle = (style) => {
+    setSelectedStyle(style);
+    changeMaxQuant(-1);
+    determineImgInd(style);
   };
 
   if (isLoading) {
@@ -39,15 +55,25 @@ const Product = ({ currentItem, scrollToReviews }) => {
   return (
     <div id="AllPO">
       <div id="PO">
-        <Gallery selectedStyle={selectedStyle} />
+        <Gallery
+          selectedStyle={selectedStyle}
+          selectedImageIndex={selectedImageIndex}
+          changeSelectedImgInx={setSelectedImageIndex}
+        />
         <div id="sideInfo">
-          <Info product={product} selectedStyle={selectedStyle} scrollToReviews={scrollToReviews} />
+          <Info
+            product={product}
+            selectedStyle={selectedStyle}
+            scrollToReviews={scrollToReviews}
+            averageRating={averageRating}
+            reviewCount={reviewCount}
+          />
           <StyleSelector
             productStyles={productStyles}
             selectStyle={selectStyle}
             selectedStyle={selectedStyle}
           />
-          <Cart selectedStyle={selectedStyle} styleIndex={selectedStyleInd} />
+          <Cart selectedStyle={selectedStyle} maxQuant={maxQuant} changeMaxQuant={changeMaxQuant} />
         </div>
       </div>
       <AdditionalInfo product={product} />

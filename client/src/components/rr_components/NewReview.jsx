@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import ImageUploading from 'react-images-uploading';
 import _ from 'underscore';
+import axios from 'axios';
 
 const NewReview = ({ data }) => {
   const [firstStar, setFirstStar] = useState('⭐');
@@ -14,6 +16,9 @@ const NewReview = ({ data }) => {
   const [body, setBody] = useState('');
   const [remainingChars, setRemainingChars] = useState('Minimum required characters left: 50');
   const [images, setImages] = useState([]);
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
+  const [hasErrors, setHasErrors] = useState(false);
 
   const ratings = {
     1: '- Poor',
@@ -31,10 +36,6 @@ const NewReview = ({ data }) => {
     Quality: ['Poor', 'Below average', 'What I expected', 'Pretty great', 'Perfect'],
     Length: ['Runs short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
     Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly loose', 'Runs loose'],
-  };
-
-  const handleSubmit = () => {
-
   };
 
   const oneStar = () => {
@@ -99,8 +100,107 @@ const NewReview = ({ data }) => {
     setRemainingChars(event.target.value.length < 50 ? `Minimum required characters left: ${50 - event.target.value.length}` : 'Minimum Reached');
   };
 
-  const handleAddImage = (event) => {
-    setImages([...images, event.target.value]);
+  const handleAddImage = (imageList, addUpdateIndex) => {
+    console.log(imageList, addUpdateIndex);
+    setImages(imageList);
+  };
+
+  const handleNicknameChange = (event) => {
+    setNickname(event.target.value);
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const invalidEmail = () => {
+    const addressParts = email.split('@');
+    if (addressParts.length !== 2) return true;
+    const prefix = addressParts[0];
+    const domain = addressParts[1];
+    let validCharacters = 'qwertyuiopasdfghjklzxcvbnm1234567890-_.';
+    let semiValidCharacters = '-_.';
+
+    // prefixes
+    if (semiValidCharacters.includes(prefix[0])
+      || semiValidCharacters.includes(prefix[prefix.length - 1])) return true;
+
+    for (let i = 0; i < prefix.length; i += 1) {
+      if (!validCharacters.includes(prefix[i])) {
+        return true;
+      }
+
+      if (semiValidCharacters.includes(prefix[i]) && semiValidCharacters.includes(prefix[i + 1])) {
+        return true;
+      }
+    }
+
+    // domains
+
+    const domainParts = domain.split('.');
+    if (domainParts.length < 2) return true;
+    const suffix = domainParts[domainParts.length - 1];
+    validCharacters = 'qwertyuiopasdfghjklzxcvbnm1234567890-.';
+    semiValidCharacters = '-.';
+
+    if (suffix.length < 2) return true;
+
+    for (let i = 0; i < domain.length; i += 1) {
+      if (!validCharacters.includes(domain[i])) {
+        return true;
+      }
+
+      if (semiValidCharacters.includes(domain[i]) && semiValidCharacters.includes(domain[i + 1])) {
+        return true;
+      }
+    }
+
+    return false;
+  };
+
+  const checkForErrors = () => {
+    if (!rating) {
+      setHasErrors(true);
+      document.getElementById('empty-review').style.display = 'block';
+    }
+
+    if (_.size(characteristics) !== _.size(data.characteristics)) {
+      setHasErrors(true);
+      document.getElementById('empty-characteristics').style.display = 'block';
+    }
+
+    if (!body.length) {
+      setHasErrors(true);
+      document.getElementById('empty-body').style.display = 'block';
+    } else if (body.length < 50) {
+      setHasErrors(true);
+      document.getElementById('short-body').style.display = 'block';
+    }
+
+    if (!nickname.length) {
+      setHasErrors(true);
+      document.getElementById('empty-nickname').style.display = 'block';
+    }
+
+    if (!email.length) {
+      setHasErrors(true);
+      document.getElementById('empty-email').style.display = 'block';
+    } else if (invalidEmail()) {
+      setHasErrors(true);
+      document.getElementById('invalid-email').style.display = 'block';
+    }
+  };
+
+  const handleSubmit = () => {
+    setHasErrors(false);
+    const errors = document.getElementsByClassName('error');
+    _.each(errors, (error) => {
+      error.style.display = 'none';
+    });
+    new Promise(checkForErrors)
+      .then(() => {
+        console.log(hasErrors);
+      });
   };
 
   return (
@@ -109,6 +209,7 @@ const NewReview = ({ data }) => {
         <div>
           Overall rating (mandatory)
         </div>
+
         <div>
           <button type="button" onClick={oneStar}>
             {firstStar}
@@ -126,6 +227,10 @@ const NewReview = ({ data }) => {
             {fifthStar}
           </button>
           {ratings[rating]}
+        </div>
+
+        <div className="error" id="empty-review">
+          <small>This field is required</small>
         </div>
 
         <div>
@@ -179,9 +284,14 @@ const NewReview = ({ data }) => {
           </fieldset>
         </div>
 
+        <div className="error" id="empty-characteristics">
+          <small>This field is required</small>
+        </div>
+
         <div>
           Review Summary
         </div>
+
         <div>
           <input type="text" value={summary} onChange={handleSummary} maxLength="60" placeholder="Example: Best purchase ever!" size="60" />
         </div>
@@ -189,27 +299,92 @@ const NewReview = ({ data }) => {
         <div>
           Review body (mandatory)
         </div>
+
         <div>
           <textarea value={body} onChange={handleBody} minLength="50" maxLength="1000" placeholder="Why did you like the product or not?" rows="10" cols="60" />
         </div>
+
         <div>
           {remainingChars}
+        </div>
+
+        <div className="error" id="empty-body">
+          <small>This field is required</small>
+        </div>
+        <div className="error" id="short-body">
+          <small>Body must be at least 50 characters long</small>
         </div>
 
         <div>
           Upload your photos
         </div>
+
+        <ImageUploading
+          multiple
+          value={images}
+          maxNumber="5"
+          onChange={handleAddImage}
+          dataURLKey="data_url"
+        >
+          {({
+            imageList,
+            onImageUpload,
+            onImageRemoveAll,
+            onImageUpdate,
+            onImageRemove,
+          }) => (
+            <div>
+              <button
+                type="button"
+                onClick={onImageUpload}
+              >
+                Upload images
+              </button>
+              &nbsp;
+              <button type="button" onClick={onImageRemoveAll}>Remove all images</button>
+              {imageList.map((image, index) => (
+                <div key={index}>
+                  <img src={image.data_url} alt="" width="100" />
+                  <div>
+                    <button type="button" onClick={() => onImageUpdate(index)}>Update</button>
+                    <button type="button" onClick={() => onImageRemove(index)}>Remove</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </ImageUploading>
+
         <div>
-          <input type="file" accept="image/png, image/jpg" onInput={handleAddImage} multiple />
+          What is your nickname (mandatory)
         </div>
+
         <div>
-          {_.map(images, (image) => {
-            console.log(image);
-            return (
-              <img src={image} alt={image} />
-            )
-          })}
+          <input type="text" value={nickname} onChange={handleNicknameChange} maxLength="60" placeholder="Example: jackson11!" size="60" />
         </div>
+
+        <small>For privacy reasons, do not use your full name or email address</small>
+
+        <div className="error" id="empty-nickname">
+          <small>This field is required</small>
+        </div>
+
+        <div>
+          Your email (mandatory)
+        </div>
+
+        <div>
+          <input type="text" value={email} onChange={handleEmailChange} maxLength="60" placeholder="Example: jackson11@email.com" size="60" />
+        </div>
+
+        <div className="error" id="empty-email">
+          <small>This field is required</small>
+        </div>
+        <div className="error" id="invalid-email">
+          <small>Invalid email</small>
+        </div>
+
+        <button type="button" onClick={handleSubmit}>Submit</button>
       </form>
     </div>
   );

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import _ from 'underscore';
 import Product from './po_components/Product.jsx';
 import Related from './ri_components/RelatedItemsAndOutfits.jsx';
 import Reviews from './rr_components/Reviews.jsx';
@@ -11,6 +12,11 @@ import Reviews from './rr_components/Reviews.jsx';
 const App = () => {
   const [currentItem, setCurrentItem] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [metaData, setMetaData] = useState({});
+  const [reviewCount, setReviewCount] = useState(0);
+  const [averageRating, setAverageRating] = useState(0);
+  const [allReviews, setAllReviews] = useState({});
+  const [reviews, setReviews] = useState({});
   const ref = useRef(null);
 
   useEffect(() => {
@@ -22,6 +28,32 @@ const App = () => {
       })
       .catch((err) => { console.log(err); });
   }, []);
+
+  useEffect(() => {
+    axios.get('/reviewdata', { params: { product_id: currentItem.id } })
+      .then((data) => {
+        const count = parseInt(data.data.recommended.false, 10) + parseInt(data.data.recommended.true, 10);
+        let allRatings = 0;
+        _.each(data.data.ratings, (rating, i) => {
+          allRatings += rating * i;
+        });
+        setMetaData(data.data);
+        setAverageRating(Math.round((allRatings / count) * 10) / 10);
+      });
+
+      axios.get('/reviews', {
+        params: {
+          product_id: currentItem.id,
+          sort: 'relevance',
+          count: 999999,
+        },
+      }).then((results) => {
+        setAllReviews(results.data);
+        setReviews(results.data.results.slice(0, 2));
+        setReviewCount(results.data.results.length);
+      });
+
+  }, [currentItem]);
 
   const scrollToReviews = () => {
     ref.current?.scrollIntoView({behavior: 'smooth'});
@@ -37,10 +69,11 @@ const App = () => {
         <span className="title-text">Lucky & Charm</span>
       </div>
       <div id="merchandise-directory">New Arrivals</div>
-      <Product currentItem={currentItem} scrollToReviews={scrollToReviews} />
+      <Product currentItem={currentItem} scrollToReviews={scrollToReviews} averageRating={averageRating} reviewCount={reviewCount}/>
       <Related currentItem={currentItem} setCurrentItem={setCurrentItem} />
       <div ref={ref}>
-        <Reviews currentItem={currentItem} />
+        <Reviews currentItem={currentItem} data={metaData} count={reviewCount} averageRating={averageRating} allReviews={allReviews} reviews={reviews}
+        setAllReviews={setAllReviews} setReviews={setReviews} />
       </div>
     </div>
   );
