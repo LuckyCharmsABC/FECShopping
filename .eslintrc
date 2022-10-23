@@ -13,6 +13,7 @@
     "react/jsx-filename-extension": [0, { "allow": "as-needed" }],
     "jsx-a11y/label-has-associated-control": "off",
     "react/jsx-props-no-spreading": "off",
-    "react/no-array-index-key": "off"
+    "react/no-array-index-key": "off",
+    "no-param-reassign": "off"
   }
 }

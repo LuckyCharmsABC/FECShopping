@@ -197,7 +197,7 @@ const NewReview = ({ data }) => {
     _.each(errors, (error) => {
       error.style.display = 'none';
     });
-    new Promise(checkForErrors)
+    Promise(checkForErrors)
       .then(() => {
         console.log(hasErrors);
       });
