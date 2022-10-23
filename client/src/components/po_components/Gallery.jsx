@@ -20,6 +20,20 @@ const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) =>
           </div>
         ))}
       </div>
+      <section className="slider">
+        <div>
+          <ul id="s">
+            {selectedStyle.photos.map((photo, index) => (
+              <li id="s1">
+                <img src={selectedStyle.photos[selectedImageIndex].url} alt="x" />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+
+
       <div id="displayBkg">
         <img className="displayedImage" alt="x" src={selectedStyle.photos[selectedImageIndex].url} />
       </div>
