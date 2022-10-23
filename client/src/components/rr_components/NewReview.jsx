@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ImageUploading from 'react-images-uploading';
 import _ from 'underscore';
 import axios from 'axios';
+import Characteristic from './Characteristic.jsx';
 
 const NewReview = ({ data }) => {
   const [firstStar, setFirstStar] = useState('⭐');
@@ -251,36 +252,15 @@ const NewReview = ({ data }) => {
         <div>
           Characteristics (mandatory)
           <fieldset>
-            {_.map(data.characteristics, (char, i) => {
-              const [selected, setSelected] = useState('None Selected');
-              return (
-                <div key={char.id}>
-                  {`${i} - ${selected}`}
-                  <fieldset>
-                    {_.map([1, 2, 3, 4, 5], (num) => (
-                      <div key={num}>
-                        <input
-                          type="radio"
-                          name={i}
-                          id={num}
-                          value={num}
-                          onChange={() => {
-                            const characteristic = {};
-                            characteristic[i] = num;
-                            setCharacteristics(_.extend(characteristics, characteristic));
-                            setSelected(qualities[i][num - 1]);
-                          }}
-                        />
-                        <label htmlFor={num}>{num}</label>
-                      </div>
-                    ))}
-
-                  </fieldset>
-                  {`1 - ${qualities[i][0]} `}
-                  {`5 - ${qualities[i][4]}`}
-                </div>
-              );
-            })}
+            {_.map(data.characteristics, (char, i) => (
+              <Characteristic
+                key={char.id}
+                i={i}
+                characteristics={characteristics}
+                setCharacteristics={setCharacteristics}
+                qualities={qualities}
+              />
+            ))}
           </fieldset>
         </div>
 

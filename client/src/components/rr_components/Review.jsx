@@ -20,6 +20,11 @@ const Review = ({ review, helpful }) => {
       <h3>{review.summary}</h3>
       {recommended}
       <p>{review.body}</p>
+      <ul>
+        {review.photos.map((photo) => (
+          <img src={photo.url} key={photo.id} alt={photo.id} />
+        ))}
+      </ul>
       <button type="button" onClick={markHelpful}>
         Helpful? (
         { review.helpfulness }
