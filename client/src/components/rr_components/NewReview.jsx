@@ -198,7 +198,7 @@ const NewReview = ({ data }) => {
     _.each(errors, (error) => {
       error.style.display = 'none';
     });
-    Promise(checkForErrors)
+    new Promise(checkForErrors)
       .then(() => {
         console.log(hasErrors);
       });
@@ -299,6 +299,7 @@ const NewReview = ({ data }) => {
           Upload your photos
         </div>
 
+        {/* TODO: Switch to Cloudinary for images (once servers are back up) */}
         <ImageUploading
           multiple
           value={images}

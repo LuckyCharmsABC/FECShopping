@@ -38,7 +38,7 @@ const Reviews = ({
   return _.size(data) && _.size(allReviews) && _.size(reviews) ? (
     <div>
       <p>Ratings and Reviews</p>
-      <OverallRatings data={data} count={count} averageRating={averageRating} />
+      <OverallRatings data={data} averageRating={averageRating} />
       <ReviewList
         reviews={reviews}
         data={data}
