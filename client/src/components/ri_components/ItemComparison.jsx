@@ -33,14 +33,14 @@ const itemComparison = ({ showModal, detailItem, relatedItem, toggleModal }) => 
     return (
       <Modal onClick={() => toggleModal()}>
         <Table>
-          <thead>
+          <TableHead>
             <tr>
               <th>{detailItem.name}</th>
               <th>Comparison</th>
               <th>{relatedItem.name}</th>
             </tr>
-          </thead>
-          <tbody>
+          </TableHead>
+          <TableBody>
             {getFeatures(detailItem, relatedItem).map((feature) => (
               <tr>
                 <td>{findValueDetail(feature)}</td>
@@ -48,7 +48,7 @@ const itemComparison = ({ showModal, detailItem, relatedItem, toggleModal }) => 
                 <td>{findValueRelated(feature)}</td>
               </tr>
             ))}
-          </tbody>
+          </TableBody>
         </Table>
       </Modal>
     );
@@ -62,7 +62,15 @@ const Modal = styled.div`
   top: 50%;
   left: 50%;
   background: #FFFFFF;
+  z-index: 1;
 `;
-const Table = styled.table`
 
+const Table = styled.table`
+  border-collapse: collapse;
 `;
+
+const TableHead = styled.thead`
+`
+
+const TableBody = styled.tbody`
+`

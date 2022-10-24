@@ -41,7 +41,7 @@ const RelatedItem = ({ currentID, setCurrentItem, detailItem }) => {
   }
 
   return (
-    <div>
+    <CardContainer>
       <ItemComparison
         showModal={showModal}
         detailItem={detailItem}
@@ -49,26 +49,28 @@ const RelatedItem = ({ currentID, setCurrentItem, detailItem }) => {
         toggleModal={toggleModal}
       />
       <Card onClick={updateDetail}>
-        <div>
+        <ImageContainer>
           <ItemImg src={itemStyle[0]?.photos[0].thumbnail_url === null ? "https://www.fillmurray.com/140/200" : itemStyle[0]?.photos[0].thumbnail_url} alt="Placeholder" />
           <ActionButton className="action-star" type="button" onClick={(e) => logComparison(e)}>&#9734;</ActionButton>
-        </div>
+        </ImageContainer>
         <CardCategory>{listItem.category}</CardCategory>
-        <h4>{`${listItem.name} ${itemStyle[0]?.name}`}</h4>
-        {itemStyle[0]?.original_price}
+        <CardName>{`${listItem.name} - ${itemStyle[0]?.name}`}</CardName>
+        <Price>{itemStyle[0]?.original_price}</Price>
       </Card>
-    </div>
+    </CardContainer>
   );
 };
 
 export default RelatedItem;
 
+const CardContainer = styled.div`
+  position: relative;
+  max-width: 215px;
+`
+
 const Card = styled.div`
   display: grid;
   contain: content;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #0F3460
   padding: 10px;
   background: #ffffff;
   cursor: pointer;
@@ -82,8 +84,33 @@ const ItemImg = styled.img`
 `
 const CardCategory = styled.p`
   font-variant: small-caps;
+  font-size: small;
+  margin: 0;
+`
+
+const CardName = styled.h4`
+margin: 0;
+font-size: small;
+`
+
+const Price = styled.div`
+font-size: small;
+`
+
+const ImageContainer = styled.div`
+display: flex;
 `
 
 const ActionButton = styled.button`
-
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: rgba(255, 255, 255, .7);
+  cursor: pointer;
+  &:hover {
+    color: white;
+  }
 `

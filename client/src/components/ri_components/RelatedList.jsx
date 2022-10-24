@@ -30,9 +30,9 @@ const RelatedList = ({ currentItem, setCurrentItem }) => {
       <h3>Related Items</h3>
       <div>
         <div className="related-scroll">
-          <button className="left carousel-button" type="button" onClick={() => { leftScroll(); }}>&#8678;</button>
-          <button className="right carousel-button" type="button" onClick={() => { rightScroll(); }}>&#8680;</button>
           <div className="scroll-related-items snaps-inline">
+            <button className="left carousel-button" type="button" onClick={() => { leftScroll(); }}>&#8678;</button>
+            <button className="right carousel-button" type="button" onClick={() => { rightScroll(); }}>&#8680;</button>
             {relatedItemsIDs.map((currentID, i) => (
               <RelatedItem
                 currentID={currentID}

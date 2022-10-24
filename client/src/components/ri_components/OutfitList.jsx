@@ -36,11 +36,17 @@ const outfitList = ({ currentItem, setCurrentItem }) => {
         <div className="outfit-scroll">
           <button className="left carousel-button" type="button" onClick={() => { leftScroll(); }}>&#8678;</button>
           <button className="right carousel-button" type="button" onClick={() => { rightScroll(); }}>&#8680;</button>
-          <div>
+          <div className="scroll-outfit-items snaps-inline">
             <button className="add-outfit" type="button" onClick={addToOutfit}>&#43;</button>
             {outfitItemsIDs.map((currentID) => (
-              <OutfitItem detailItem={currentItem} setCurrentItem={setCurrentItem} key={currentID} currentID={currentID} setOutfitItemIDs={setOutfitItemIDs}/>
-              ))}
+              <OutfitItem
+                detailItem={currentItem}
+                etCurrentItem={setCurrentItem}
+                key={currentID}
+                currentID={currentID}
+                setOutfitItemIDs={setOutfitItemIDs}
+              />
+            ))}
           </div>
         </div>
       </div>
