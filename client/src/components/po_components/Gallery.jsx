@@ -30,11 +30,14 @@ const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) =>
       <section className="slider">
         <div>
           <ul id="s">
-            {selectedStyle.photos.map((photo, index) => (
-              <li id="s1">
-                <img className="newDisplayed" src={photo.url} alt="x" />
-              </li>
-            ))}
+            {selectedStyle.photos.map((photo, index) => {
+              const slideId = `s${index + 1}`;
+              return (
+                <li id={slideId}>
+                  <img className="newDisplayed" src={photo.url} alt="x" />
+                </li>
+              )
+            })}
           </ul>
         </div>
       </section>
