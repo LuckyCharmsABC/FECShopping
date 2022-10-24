@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const ExpandedGallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) => {
-  const selectedCss = { border: 'solid black' };
+  const selectedCss = { blackgroundColor: '#0F3460' };
   const [url, setUrl] = useState(window.location.href);
 
   return (
@@ -45,19 +45,19 @@ const ExpandedGallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgI
                     <a
                       className={index === 0 ? 'nav-button disabled' : 'nav-button'}
                       href={prev}
+                      onClick={() => { changeSelectedImgInx(index - 1)}}
                     >
                       <i
                         className={index === 0 ? "fa-solid fa-chevron-left fa-xl disabled-nav-button" : 'fa-solid fa-chevron-left fa-xl'}
-                        onClick={()=>{ changeSelectedImgInx(index - 1)}}
                       />
                     </a>
                     <a
                       className={index === length - 1 ? 'nav-button disabled' : 'nav-button'}
                       href={next}
+                      onClick={() => { changeSelectedImgInx(index + 1)}}
                     >
                       <i
                         className={index === length - 1 ? "fa-solid fa-chevron-right fa-xl disabled-nav-button" : 'fa-solid fa-chevron-right fa-xl'}
-                        onClick={()=>{ changeSelectedImgInx(index + 1)}}
                       />
                     </a>
                   </div>
@@ -66,8 +66,29 @@ const ExpandedGallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgI
             })}
           </ul>
         </div>
-
       </section>
+      <div class="navigator">
+        {selectedStyle.photos.map((photo, index) => {
+          const jumpSlideId = `#s${index + 1}`;
+          return (
+            <div
+              key={photo.url}
+              role="button"
+              onClick={() => { changeSelectedImgInx(index); }}
+              onKeyPress={() => {}}
+              tabIndex={0}
+              style={index === selectedImageIndex ? selectedCss : { blackgroundColor: 'blue' }}
+            >
+              <a
+                href={jumpSlideId}
+                className={index === selectedImageIndex ? 'dot-thumbnail selected' : 'dot-thumbnail'}
+              >
+                Navigate
+              </a>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
