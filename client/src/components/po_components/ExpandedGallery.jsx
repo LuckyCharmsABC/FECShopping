@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const ExpandedGallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) => {
   const selectedCss = { blackgroundColor: '#0F3460' };
+  const [zoomedIn, setZoomedIn] = useState(false);
 
   return (
     <div id="expanded-gallery">
@@ -14,8 +15,25 @@ const ExpandedGallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgI
               const prev = `#s${index}`;
               const next = `#s${index + 2}`;
               return (
-                <li id={slideId} className="expanded-slide">
-                  <img className="expanded-displayed" src={photo.url} alt="x" />
+                <li
+                  id={slideId}
+                  className="expanded-slide"
+                  onClick={(event)=> {
+                  event.preventDefault();
+                  if (!zoomedIn) {
+                    setZoomedIn(true);
+                  } else {
+                    setZoomedIn(false);
+                  }
+                  }}
+                >
+                  <div className="wrapper">
+                    <img
+                      className={zoomedIn ? 'enlarged expanded-displayed' : 'expanded-displayed'}
+                      src={photo.url}
+                      alt="x"
+                    />
+                  </div>
                   <div className="expanded-snapper">
                     <a
                       className={index === 0 ? 'nav-button disabled' : 'nav-button'}

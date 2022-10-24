@@ -181,7 +181,7 @@ body, button {
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  cursor: zoom-in;
+  cursor: crosshair;
 /*   height: calc(100% + 25px); */
   height: 100%;
 }
@@ -203,6 +203,15 @@ body, button {
   height: 100%;
   aspect-ratio: 1;
   object-fit: contain;
+}
+
+.wrapper {
+  overflow: auto;
+}
+
+.enlarged {
+  transform: scale(2.5);
+  transition: transform 0.25s ease;
 }
 
 .expanded-snapper {
