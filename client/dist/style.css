@@ -6,18 +6,22 @@ body {
   margin: 0;
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+
 .disabled {
   pointer-events: none;
 }
 
 .slider div {
+  overflow: hidden;
   width: 100%;
   max-width: 650px;
   max-height: 700px;
   margin: auto;
   aspect-ratio: 1;
-  overflow-y: hidden;
-  overflow-x: hidden;
 }
 
 .newDisplayed {

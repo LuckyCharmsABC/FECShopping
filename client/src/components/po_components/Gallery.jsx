@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) => {
   // const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const selectedCss = { border: 'solid black' };
+  const [url, setUrl] = useState(window.location.href);
 
   return (
     <div id="imageGallery">
@@ -33,7 +34,7 @@ const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) =>
         <div>
           <ul id="s">
             {selectedStyle.photos.map((photo, index) => {
-              const length = selectedStyle.photos.length;
+              const { length } = selectedStyle.photos;
               const slideId = `s${index + 1}`;
               const prev = `#s${index}`;
               const next = `#s${index + 2}`;
@@ -45,13 +46,18 @@ const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) =>
                       className={index === 0 ? 'nav-button disabled' : 'nav-button'}
                       href={prev}
                     >
-                      <i className="fa-solid fa-chevron-left" />
+                      <i
+                        className="fa-solid fa-chevron-left"
+                        onClick={()=>{ changeSelectedImgInx(index - 1)}}
+                      />
                     </a>
                     <a
                       className={index === length - 1 ? 'nav-button disabled' : 'nav-button'}
                       href={next}
                     >
-                      <i className="fa-solid fa-chevron-right" />
+                      <i className="fa-solid fa-chevron-right"
+                        onClick={()=>{ changeSelectedImgInx(index + 1)}}
+                      />
                     </a>
                   </div>
                 </li>
