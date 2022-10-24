@@ -28,30 +28,41 @@ const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) =>
         })}
       </div>
 
-      <div>
+{/*       <div>
         <a>
           <i class="fa-solid fa-chevron-left" />
         </a>
-      </div>
+      </div> */}
       <section className="slider">
         <div>
           <ul id="s">
             {selectedStyle.photos.map((photo, index) => {
               const slideId = `s${index + 1}`;
+              const prev = `#s${index}`;
+              const next = `#s${index + 2}`;
               return (
-                <li id={slideId}>
+                <li id={slideId} className="slide">
                   <img className="nav-button" className="newDisplayed" src={photo.url} alt="x" />
+                  <div className="snapper">
+                    <a className="prev-button" href={prev}>
+                      <i class="fa-solid fa-chevron-left" />
+                    </a>
+                    <a className="next-button" href={next}>
+                      <i class="fa-solid fa-chevron-right" />
+                    </a>
+                  </div>
                 </li>
-              )
+              );
             })}
           </ul>
         </div>
+
       </section>
-      <div>
+{/*       <div>
         <a>
           <i className="nav-button" class="fa-solid fa-chevron-right" />
         </a>
-      </div>
+      </div> */}
     </div>
   );
 };
