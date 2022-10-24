@@ -12,6 +12,11 @@ const Review = ({ review }) => {
     setHelpfulness(helpfulness + 1);
   };
 
+  const report = () => {
+    axios.put(`reviews/${review.review_id}/report`);
+    document.getElementById(`${review.review_id}-reported`).style.display = 'block';
+  };
+
   return (
     <div>
       <h4>{review.reviewer_name}</h4>
@@ -33,7 +38,10 @@ const Review = ({ review }) => {
         { helpfulness }
         )
       </button>
-      <button type="button">Report</button>
+      <button type="button" onClick={report}>Report</button>
+      <div className="reported" id={`${review.review_id}-reported`}>
+        <small><i>Reported! You won&apos;t see this review again</i></small>
+      </div>
     </div>
   );
 };

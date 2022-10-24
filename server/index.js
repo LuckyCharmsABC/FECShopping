@@ -23,7 +23,7 @@ app.get('/reviews/', controllers.getReviews);
 app.post('/reviews', controllers.addReview);
 app.get('/reviewdata', controllers.getReviewData);
 app.put('/reviews/:review_id/helpful', controllers.markHelpful);
-app.put('/reviews/:id/report', controllers.report);
+app.put('/reviews/:review_id/report', controllers.report);
 app.get('/products', controllers.getAll);
 app.get('/products/:id/related', controllers.getRelated);
 app.post('/interactions', controllers.addInteraction);

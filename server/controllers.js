@@ -125,8 +125,8 @@ module.exports = {
   },
 
   report(req, res) {
-    const requestURL = `${URL}/reviews/${req.body.review_id}/report`;
-    axios.put(requestURL, req.body, options)
+    const requestURL = `${URL}/reviews/${req.params.review_id}/report`;
+    axios.put(requestURL, req.params, options)
       .then((response) => {
         res.status(201).json(response.data);
       }).catch((err) => {
