@@ -1,35 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const ExpandedGallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) => {
   const selectedCss = { blackgroundColor: '#0F3460' };
-  const [url, setUrl] = useState(window.location.href);
 
   return (
     <div id="expanded-gallery">
-{/*       <div>Expanded view</div>
-      <div id="gallery">
-        {selectedStyle.photos.map((photo, index) => {
-          const jumpSlideId = `#s${index + 1}`;
-          return (
-            <div
-              className="thumbnail"
-              key={photo.url}
-              role="button"
-              onClick={() => { changeSelectedImgInx(index); }}
-              onKeyPress={() => {}}
-              tabIndex={0}
-              style={index === selectedImageIndex ? selectedCss : { border: 'solid white' }}
-            >
-              <a
-                href={jumpSlideId}
-              >
-                <img width="85" height="auto" alt="x" src={photo.thumbnail_url} />
-              </a>
-            </div>
-          );
-        })}
-      </div>
- */}
       <section className="expanded-slider">
         <div>
           <ul id="expanded-s">
@@ -48,16 +23,16 @@ const ExpandedGallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgI
                       onClick={() => { changeSelectedImgInx(index - 1)}}
                     >
                       <i
-                        className={index === 0 ? "fa-solid fa-chevron-left fa-xl disabled-nav-button" : 'fa-solid fa-chevron-left fa-xl'}
+                        className={index === 0 ? 'fa-solid fa-chevron-left fa-xl disabled-nav-button' : 'fa-solid fa-chevron-left fa-xl'}
                       />
                     </a>
                     <a
                       className={index === length - 1 ? 'nav-button disabled' : 'nav-button'}
                       href={next}
-                      onClick={() => { changeSelectedImgInx(index + 1)}}
+                      onClick={() => { changeSelectedImgInx(index + 1); }}
                     >
                       <i
-                        className={index === length - 1 ? "fa-solid fa-chevron-right fa-xl disabled-nav-button" : 'fa-solid fa-chevron-right fa-xl'}
+                        className={index === length - 1 ? 'fa-solid fa-chevron-right fa-xl disabled-nav-button' : 'fa-solid fa-chevron-right fa-xl'}
                       />
                     </a>
                   </div>
@@ -67,7 +42,7 @@ const ExpandedGallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgI
           </ul>
         </div>
       </section>
-      <div class="navigator">
+      <div className="navigator">
         {selectedStyle.photos.map((photo, index) => {
           const jumpSlideId = `#s${index + 1}`;
           return (

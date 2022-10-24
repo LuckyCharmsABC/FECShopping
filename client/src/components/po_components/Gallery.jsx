@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 
 const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx, changeView }) => {
-  // const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const selectedCss = { border: 'solid black' };
-  const [url, setUrl] = useState(window.location.href);
 
   return (
     <div id="imageGallery">
@@ -48,8 +46,7 @@ const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx, chan
                       onClick={()=>{ changeSelectedImgInx(index - 1)}}
                     >
                       <i
-                        className={index === 0 ? "fa-solid fa-chevron-left fa-xl disabled-nav-button" : 'fa-solid fa-chevron-left fa-xl'}
-/*                         onClick={()=>{ changeSelectedImgInx(index - 1)}} */
+                        className={index === 0 ? 'fa-solid fa-chevron-left fa-xl disabled-nav-button' : 'fa-solid fa-chevron-left fa-xl'}
                       />
                     </a>
                     <a
@@ -58,8 +55,7 @@ const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx, chan
                       onClick={()=>{ changeSelectedImgInx(index + 1)}}
                     >
                       <i
-                        className={index === length - 1 ? "fa-solid fa-chevron-right fa-xl disabled-nav-button" : 'fa-solid fa-chevron-right fa-xl'}
-/*                         onClick={()=>{ changeSelectedImgInx(index + 1)}} */
+                        className={index === length - 1 ? 'fa-solid fa-chevron-right fa-xl disabled-nav-button' : 'fa-solid fa-chevron-right fa-xl'}
                       />
                     </a>
                   </div>
