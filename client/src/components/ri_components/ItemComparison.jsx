@@ -23,6 +23,9 @@ const itemComparison = ({ showModal, detailItem, relatedItem, toggleModal }) => 
   const findValueRelated = (target) => {
     for (let i = 0; i < relatedItem.features.length; i += 1) {
       if (relatedItem.features[i].feature === target) {
+        // if (relatedItem.features[i].value === true) {
+        //   return &#10004;
+        // }
         return relatedItem.features[i].value;
       }
     }
