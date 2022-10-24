@@ -1,4 +1,4 @@
-body {
+body, button {
   font-family: -apple-system, -apple-system,
   BlinkMacSystemFont, 'Segoe UI', Roboto,
   Oxygen, Ubuntu, Cantarell, 'Open Sans',
@@ -19,6 +19,8 @@ body {
   font-size: 24px;
   font-family: Georgia, serif;
   padding-left: 20px;
+  position: sticky;
+  top: 0px;
 }
 
 #merchandise-directory {
@@ -72,6 +74,8 @@ body {
   object-fit: cover;
 }
 
+/********************Default view************************/
+
 #imageGallery {
   display: flex;
   flex-direction: row;
@@ -100,6 +104,7 @@ body {
 .thumbnail {
   padding: 3px;
 }
+
 
 .slider div {
   overflow: hidden;
@@ -138,7 +143,7 @@ body {
 
 .newDisplayed {
   max-width: 100%;
-/*   height: 100%; */
+  height: 100%;
   aspect-ratio: 1;
   object-fit: contain;
 }
@@ -152,6 +157,65 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+/********************************************/
+/********************Expanded view************************/
+#expanded-gallery {
+  margin: auto;
+}
+
+.expanded-slider div {
+  overflow: hidden;
+  width: 100%;
+/*   max-width: 1000px; */
+  max-height: 1000px;
+  margin: auto;
+  aspect-ratio: 1;
+}
+
+.expanded-slider ul {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 20px;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  cursor: zoom-in;
+/*   height: calc(100% + 25px); */
+  height: 100%;
+}
+
+.expanded-slider li {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+/*   height: calc(100% + 25px); */
+  height: 100%;
+}
+
+.expanded-slide{
+  position: relative;
+}
+
+.expanded-displayed {
+  max-width: 100%;
+  height: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.expanded-snapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/********************************************/
 
 
 .nav-button {
