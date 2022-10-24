@@ -59,47 +59,51 @@ const Product = ({ currentItem, scrollToReviews, averageRating, reviewCount }) =
     setExpandedView(value);
   }
 
-  const renderGallery = (expanded) => {
+  const renderPO = (expanded) => {
     if (expanded) {
       return (
+      <div id="AllPO">
         <ExpandedGallery
           selectedStyle={selectedStyle}
           selectedImageIndex={selectedImageIndex}
           changeSelectedImgInx={setSelectedImageIndex}
         />
+      </div>
       );
     }
     return (
-      <Gallery
-        selectedStyle={selectedStyle}
-        selectedImageIndex={selectedImageIndex}
-        changeSelectedImgInx={setSelectedImageIndex}
-        changeView={changeView}
-      />
+      <div id="AllPO">
+        <div id="PO">
+          <Gallery
+            selectedStyle={selectedStyle}
+            selectedImageIndex={selectedImageIndex}
+            changeSelectedImgInx={setSelectedImageIndex}
+            changeView={changeView}
+          />
+          <div id="sideInfo">
+            <Info
+              product={product}
+              selectedStyle={selectedStyle}
+              scrollToReviews={scrollToReviews}
+              averageRating={averageRating}
+              reviewCount={reviewCount}
+            />
+            <StyleSelector
+              productStyles={productStyles}
+              selectStyle={selectStyle}
+              selectedStyle={selectedStyle}
+            />
+            <Cart selectedStyle={selectedStyle} maxQuant={maxQuant} changeMaxQuant={changeMaxQuant} />
+          </div>
+        </div>
+        <AdditionalInfo product={product} />
+      </div>
     );
   };
 
   return (
-    <div id="AllPO">
-      <div id="PO">
-        {renderGallery(expandedView)}
-        <div id="sideInfo">
-          <Info
-            product={product}
-            selectedStyle={selectedStyle}
-            scrollToReviews={scrollToReviews}
-            averageRating={averageRating}
-            reviewCount={reviewCount}
-          />
-          <StyleSelector
-            productStyles={productStyles}
-            selectStyle={selectStyle}
-            selectedStyle={selectedStyle}
-          />
-          <Cart selectedStyle={selectedStyle} maxQuant={maxQuant} changeMaxQuant={changeMaxQuant} />
-        </div>
-      </div>
-      <AdditionalInfo product={product} />
+    <div>
+      { renderPO(expandedView) }
     </div>
   );
 };
