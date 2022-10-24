@@ -7,7 +7,6 @@ import ReviewList from './ReviewList.jsx';
 const Reviews = ({
   currentItem,
   data,
-  count,
   averageRating,
   reviews,
   allReviews,
@@ -16,10 +15,6 @@ const Reviews = ({
 }) => {
   const showMore = (limit) => {
     setReviews(allReviews.results.slice(0, limit + 2));
-  };
-
-  const helpful = (id) => {
-    axios.put(`reviews/${id}/helpful`);
   };
 
   const sort = (method) => {
@@ -44,7 +39,6 @@ const Reviews = ({
         data={data}
         allReviews={allReviews}
         showMore={showMore}
-        helpful={helpful}
         sort={sort}
       />
     </div>

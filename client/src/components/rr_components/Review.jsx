@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { format, parseISO } from 'date-fns';
+import axios from 'axios';
 
-const Review = ({ review, helpful }) => {
+const Review = ({ review }) => {
+  const [helpfulness, setHelpfulness] = useState(review.helpfulness);
   const recommended = review.recommend ? <h5>I recommend this product</h5> : <div />;
   const date = parseISO(review.date);
 
   const markHelpful = () => {
-    helpful();
+    axios.put(`reviews/${review.review_id}/helpful`);
+    setHelpfulness(helpfulness + 1);
   };
 
   return (
@@ -27,7 +30,7 @@ const Review = ({ review, helpful }) => {
       </ul>
       <button type="button" onClick={markHelpful}>
         Helpful? (
-        { review.helpfulness }
+        { helpfulness }
         )
       </button>
       <button type="button">Report</button>
