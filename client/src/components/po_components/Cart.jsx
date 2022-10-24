@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import SizeSelector from './SizeSelector.jsx';
 
-const Cart = ({ selectedStyle, styleIndex }) => {
+const Cart = ({ selectedStyle, maxQuant, changeMaxQuant }) => {
   const [selectedCombo, setSelectedCombo] = useState({ sku_id: '', count: 0 });
   const productSkus = [];
-  // console.log('selectedStyle passed into cart is ', selectedStyle);
   const skusKeys = Object.keys(selectedStyle.skus);
   // eslint-disable-next-line no-restricted-syntax
   for (const key of skusKeys) {
@@ -36,10 +35,11 @@ const Cart = ({ selectedStyle, styleIndex }) => {
         productSkus={productSkus}
         setItemSku={setItemSku}
         setItemQuant={setItemQuant}
-        styleIndex={styleIndex}
+        maxQuant={maxQuant}
+        changeMaxQuant={changeMaxQuant}
       />
       <div>
-        <button className="submit-button" id="add-to-cart" type="button" onClick={() => { addtoCart(selectedCombo); }}>ADD TO BAG</button>
+        <button className="submit-button" id="add-to-cart" type="button" onClick={(event) => { event.preventDefault(); addtoCart(selectedCombo); }}>ADD TO BAG</button>
         <button className="submit-button" type="submit">⭐️</button>
       </div>
     </div>

@@ -73,7 +73,7 @@ const App = () => {
         <span className="title-text">Lucky & Charm</span>
       </div>
       <div id="merchandise-directory">New Arrivals</div>
-      <Product currentItem={currentItem} scrollToReviews={scrollToReviews} />
+      <Product currentItem={currentItem} scrollToReviews={scrollToReviews} averageRating={averageRating} reviewCount={reviewCount}/>
       <Related currentItem={currentItem} setCurrentItem={setCurrentItem} />
       <div ref={ref}>
         <Reviews currentItem={currentItem} data={metaData} count={reviewCount} averageRating={averageRating} allReviews={allReviews} reviews={reviews}
