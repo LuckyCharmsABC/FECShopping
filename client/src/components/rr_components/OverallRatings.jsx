@@ -5,11 +5,11 @@ const OverallRatings = ({ data, averageRating, averageStarRating }) => {
   const totalCount = parseInt(data.recommended.true, 10) + parseInt(data.recommended.false, 10);
   const recommendPercent = Math.round((data.recommended.true / totalCount) * 100);
   const ratingPercents = {
-    5: Math.round((data.ratings[5] / totalCount) * 100),
-    4: Math.round((data.ratings[4] / totalCount) * 100),
+    1: Math.round((data.ratings[5] / totalCount) * 100),
+    2: Math.round((data.ratings[4] / totalCount) * 100),
     3: Math.round((data.ratings[3] / totalCount) * 100),
-    2: Math.round((data.ratings[2] / totalCount) * 100),
-    1: Math.round((data.ratings[1] / totalCount) * 100),
+    4: Math.round((data.ratings[2] / totalCount) * 100),
+    5: Math.round((data.ratings[1] / totalCount) * 100),
   };
 
   return (
@@ -23,10 +23,12 @@ const OverallRatings = ({ data, averageRating, averageStarRating }) => {
       <ul>
         {_.map(ratingPercents, (rating, i) => (
           <div key={i}>
-            {`${i} `}
-            Stars:
-            {` ${rating}`}
-            %
+            {`${5 - i + 1} `}
+            {'Star '}
+            <div className="rating-percent">
+              <span className="percent-bar" id={`${5 - i} stars`} style={{ width: `${rating}%` }} />
+            </div>
+            {` ${rating}%`}
           </div>
         ))}
       </ul>
