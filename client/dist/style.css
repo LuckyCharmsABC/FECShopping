@@ -11,77 +11,6 @@ body {
   background: transparent; /* make scrollbar transparent */
 }
 
-.slider div {
-  overflow: hidden;
-  width: 100%;
-  max-width: 650px;
-  max-height: 700px;
-  margin: auto;
-  aspect-ratio: 1;
-}
-
-.newDisplayed {
-  max-width: 100%;
-/*   height: 100%; */
-  aspect-ratio: 1;
-  object-fit: contain;
-}
-
-.slide{
-  position: relative;
-}
-
-.snapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-
-.nav-button {
-  padding: 5px;
-  background-color: white;
-}
-
-.disabled-nav-button {
-  content: none;
-  color: transparent;
-  background-color: transparent;
-}
-.disabled {
-  pointer-events: none;
-  background-color: transparent;
-}
-
-.slider ul {
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-flow: row nowrap;
-  gap: 20px;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  cursor: ew-resize;
-/*   height: calc(100% + 25px); */
-  height: 100%;
-}
-
-.slider li {
-  flex: 0 0 100%;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-/*   height: calc(100% + 25px); */
-  height: 100%;
-}
-
-.snapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .page-top {
   height: 50px;
   line-height: 50px;
@@ -104,14 +33,15 @@ body {
   margin:auto;
 }
 
-.additional-info {
-  margin: auto;
-}
-
 #PO {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.additional-info {
+  height: 250px;
+  margin: auto;
 }
 
 #sideInfo {
@@ -171,7 +101,76 @@ body {
   padding: 3px;
 }
 
-.displayedImage {
+.slider div {
+  overflow: hidden;
+  width: 100%;
+  max-width: 650px;
+  max-height: 700px;
+  margin: auto;
+  aspect-ratio: 1;
+}
+
+.slider ul {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 20px;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  cursor: zoom-in;
+/*   height: calc(100% + 25px); */
+  height: 100%;
+}
+
+.slider li {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+/*   height: calc(100% + 25px); */
+  height: 100%;
+}
+
+.slide{
+  position: relative;
+}
+
+.newDisplayed {
+  max-width: 100%;
+/*   height: 100%; */
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.snapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.nav-button {
+  padding: 5px;
+  background-color: white;
+}
+
+.disabled-nav-button {
+  content: none;
+  color: transparent;
+  background-color: transparent;
+}
+.disabled {
+  pointer-events: none;
+  background-color: transparent;
+}
+
+
+/* .displayedImage {
   width: 100%;
   height: 60vh;
   aspect-ratio: 1;
@@ -182,7 +181,7 @@ body {
 
 #displayBkg {
   margin:10px;
-}
+} */
 
 .dropdown-list {
   height: 45px;
