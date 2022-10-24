@@ -16,7 +16,7 @@ const NewReview = ({ data }) => {
   const [body, setBody] = useState('');
   const [remainingChars, setRemainingChars] = useState('Minimum required characters left: 50');
   // eslint-disable-next-line no-array-constructor
-  const [photos, setPhotos] = useState(Array());
+  const [photos, setPhotos] = useState([]);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
@@ -50,9 +50,9 @@ const NewReview = ({ data }) => {
     (err, res) => {
       if (!err && res && res.event === 'success') {
         console.log('Done! Here is the image info: ', res.info);
-        const photo = {};
-        photo[res.info.version_id] = res.info.secure_url;
-        setPhotos(_.extend(photos, photo));
+        const photo = res.info.secure_url;
+        setPhotos([...photos, photo]);
+        console.log(photos);
       }
     },
   );
@@ -262,7 +262,7 @@ const NewReview = ({ data }) => {
         characteristics,
       };
       console.log(completeReview);
-      // axios.post('/reviews', completeReview).then(exitNewReview);
+      axios.post('/reviews', completeReview).then(exitNewReview);
     }
   };
 
@@ -360,7 +360,6 @@ const NewReview = ({ data }) => {
           <small>Body must be at least 50 characters long</small>
         </div>
 
-        {/* TODO: Switch to Cloudinary for photos (once servers are back up) */}
         <div>
           Upload your photos
         </div>
@@ -373,7 +372,7 @@ const NewReview = ({ data }) => {
 
         <div>
           {_.map(photos, (url) => (
-            <img src={url} alt="" />
+            <img src={url} alt="" key={url} width="200px" />
           ))}
         </div>
 
