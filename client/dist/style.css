@@ -6,10 +6,6 @@ body {
   margin: 0;
 }
 
-select {
-
-}
-
 .page-top {
   height: 50px;
   line-height: 50px;
@@ -146,6 +142,10 @@ select {
 
 .error {
   color: red;
+  display: none;
+}
+
+.reported {
   display: none;
 }
 

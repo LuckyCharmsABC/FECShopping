@@ -103,10 +103,10 @@ module.exports = {
   },
 
   markHelpful(req, res) {
-    const requestURL = `${URL}/reviews/${req.body.review_id}/helpful`;
-    axios.put(requestURL, req.body, options)
+    const requestURL = `${URL}/reviews/${req.params.review_id}/helpful`;
+    axios.put(requestURL, req.params, options)
       .then(() => {
-        res.status(201).json(`marked review ${req.body.review_id} as helpful`);
+        res.status(201).json(`marked review ${req.params.review_id} as helpful`);
       }).catch((err) => {
         console.log(err);
         res.sendStatus(500);
@@ -125,8 +125,8 @@ module.exports = {
   },
 
   report(req, res) {
-    const requestURL = `${URL}/reviews/${req.body.review_id}/report`;
-    axios.put(requestURL, req.body, options)
+    const requestURL = `${URL}/reviews/${req.params.review_id}/report`;
+    axios.put(requestURL, req.params, options)
       .then((response) => {
         res.status(201).json(response.data);
       }).catch((err) => {

@@ -3,7 +3,7 @@ import Review from './Review.jsx';
 import NewReview from './NewReview.jsx';
 
 const ReviewList = ({
-  allReviews, data, reviews, showMore, helpful, sort,
+  allReviews, data, reviews, showMore, sort,
 }) => {
   const handleShowMore = () => {
     showMore(reviews.length);
@@ -40,7 +40,7 @@ const ReviewList = ({
 
       <ul id="review-list">
         {reviews.map((review) => (
-          <Review review={review} key={review.review_id} helpful={helpful} />))}
+          <Review review={review} key={review.review_id} />))}
       </ul>
 
       <button type="button" id="add-review" onClick={showNewReview}>Add Review</button>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import ImageUploading from 'react-images-uploading';
 import _ from 'underscore';
 import axios from 'axios';
+import Characteristic from './Characteristic.jsx';
 
 const NewReview = ({ data }) => {
   const [firstStar, setFirstStar] = useState('⭐');
@@ -10,15 +10,15 @@ const NewReview = ({ data }) => {
   const [fourthStar, setFourthStar] = useState('⭐');
   const [fifthStar, setFifthStar] = useState('⭐');
   const [rating, setRating] = useState(null);
-  const [recommended, setRecommended] = useState(true);
+  const [recommend, setRecommend] = useState(true);
   const [characteristics, setCharacteristics] = useState({});
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
   const [remainingChars, setRemainingChars] = useState('Minimum required characters left: 50');
-  const [images, setImages] = useState([]);
-  const [nickname, setNickname] = useState('');
+  // eslint-disable-next-line no-array-constructor
+  const [photos, setPhotos] = useState(Array());
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [hasErrors, setHasErrors] = useState(false);
 
   const ratings = {
     1: '- Poor',
@@ -38,6 +38,25 @@ const NewReview = ({ data }) => {
     Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly loose', 'Runs loose'],
   };
 
+  // eslint-disable-next-line camelcase
+  const product_id = parseInt(data.product_id, 10);
+
+  const uploadWidget = cloudinary.createUploadWidget(
+    {
+      cloudName: 'dr31wlnyj',
+      uploadPreset: 'front-end-capstone',
+      maxFiles: 5,
+    },
+    (err, res) => {
+      if (!err && res && res.event === 'success') {
+        console.log('Done! Here is the image info: ', res.info);
+        const photo = {};
+        photo[res.info.version_id] = res.info.secure_url;
+        setPhotos(_.extend(photos, photo));
+      }
+    },
+  );
+
   const oneStar = () => {
     setFirstStar('🌟');
     setSecondStar('⭐');
@@ -45,6 +64,7 @@ const NewReview = ({ data }) => {
     setFourthStar('⭐');
     setFifthStar('⭐');
     setRating(1);
+    document.getElementById('empty-review').style.display = 'none';
   };
 
   const twoStar = () => {
@@ -54,6 +74,7 @@ const NewReview = ({ data }) => {
     setFourthStar('⭐');
     setFifthStar('⭐');
     setRating(2);
+    document.getElementById('empty-review').style.display = 'none';
   };
 
   const threeStar = () => {
@@ -63,6 +84,7 @@ const NewReview = ({ data }) => {
     setFourthStar('⭐');
     setFifthStar('⭐');
     setRating(3);
+    document.getElementById('empty-review').style.display = 'none';
   };
 
   const fourStar = () => {
@@ -72,6 +94,7 @@ const NewReview = ({ data }) => {
     setFourthStar('🌟');
     setFifthStar('⭐');
     setRating(4);
+    document.getElementById('empty-review').style.display = 'none';
   };
 
   const fiveStar = () => {
@@ -81,14 +104,15 @@ const NewReview = ({ data }) => {
     setFourthStar('🌟');
     setFifthStar('🌟');
     setRating(5);
+    document.getElementById('empty-review').style.display = 'none';
   };
 
-  const handleRecommended = () => {
-    setRecommended(true);
+  const handleRecommend = () => {
+    setRecommend(true);
   };
 
-  const handleNotRecommended = () => {
-    setRecommended(false);
+  const handleNotRecommend = () => {
+    setRecommend(false);
   };
 
   const handleSummary = (event) => {
@@ -98,19 +122,23 @@ const NewReview = ({ data }) => {
   const handleBody = (event) => {
     setBody(event.target.value);
     setRemainingChars(event.target.value.length < 50 ? `Minimum required characters left: ${50 - event.target.value.length}` : 'Minimum Reached');
+    document.getElementById('empty-body').style.display = 'none';
+    document.getElementById('short-body').style.display = 'none';
   };
 
-  const handleAddImage = (imageList, addUpdateIndex) => {
-    console.log(imageList, addUpdateIndex);
-    setImages(imageList);
+  const handleAddImage = () => {
+    uploadWidget.open();
   };
 
-  const handleNicknameChange = (event) => {
-    setNickname(event.target.value);
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+    document.getElementById('empty-name').style.display = 'none';
   };
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
+    document.getElementById('empty-email').style.display = 'none';
+    document.getElementById('invalid-email').style.display = 'none';
   };
 
   const invalidEmail = () => {
@@ -158,53 +186,89 @@ const NewReview = ({ data }) => {
     return false;
   };
 
-  const checkForErrors = () => {
+  const hasNoErrors = () => {
+    let noErrors = true;
     if (!rating) {
-      setHasErrors(true);
+      noErrors = false;
       document.getElementById('empty-review').style.display = 'block';
     }
 
     if (_.size(characteristics) !== _.size(data.characteristics)) {
-      setHasErrors(true);
+      noErrors = false;
       document.getElementById('empty-characteristics').style.display = 'block';
     }
 
     if (!body.length) {
-      setHasErrors(true);
+      noErrors = false;
       document.getElementById('empty-body').style.display = 'block';
     } else if (body.length < 50) {
-      setHasErrors(true);
+      noErrors = false;
       document.getElementById('short-body').style.display = 'block';
     }
 
-    if (!nickname.length) {
-      setHasErrors(true);
-      document.getElementById('empty-nickname').style.display = 'block';
+    if (!name.length) {
+      noErrors = false;
+      document.getElementById('empty-name').style.display = 'block';
     }
 
     if (!email.length) {
-      setHasErrors(true);
+      noErrors = false;
       document.getElementById('empty-email').style.display = 'block';
     } else if (invalidEmail()) {
-      setHasErrors(true);
+      noErrors = false;
       document.getElementById('invalid-email').style.display = 'block';
     }
+    return noErrors;
+  };
+
+  const exitNewReview = () => {
+    document.getElementById('new-review').style.display = 'none';
+
+    setFirstStar('⭐');
+    setSecondStar('⭐');
+    setThirdStar('⭐');
+    setFourthStar('⭐');
+    setFifthStar('⭐');
+    setRating(null);
+
+    document.getElementById('recommend').checked = true;
+    setRecommend(true);
+
+    const charBtns = document.getElementsByClassName('char-btn');
+    _.each(charBtns, (btn) => {
+      btn.checked = false;
+    });
+    setCharacteristics({});
+
+    setSummary('');
+    setBody('');
+    setPhotos([]);
+    setName('');
+    setEmail('');
   };
 
   const handleSubmit = () => {
-    setHasErrors(false);
-    const errors = document.getElementsByClassName('error');
-    _.each(errors, (error) => {
-      error.style.display = 'none';
-    });
-    new Promise(checkForErrors)
-      .then(() => {
-        console.log(hasErrors);
-      });
+    if (hasNoErrors()) {
+      const completeReview = {
+        // eslint-disable-next-line camelcase
+        product_id,
+        rating,
+        summary,
+        body,
+        recommend,
+        name,
+        email,
+        photos,
+        characteristics,
+      };
+      console.log(completeReview);
+      // axios.post('/reviews', completeReview).then(exitNewReview);
+    }
   };
 
   return (
     <div id="new-review">
+      <button type="button" onClick={exitNewReview}>x</button>
       <form>
         <div>
           Overall rating (mandatory)
@@ -237,13 +301,13 @@ const NewReview = ({ data }) => {
           Do you recommend this product? (mandatory)
           <fieldset>
             <div>
-              <input type="radio" value="yes" id="recommended" name="rec" onChange={handleRecommended} defaultChecked />
-              <label htmlFor="recommended">Yes</label>
+              <input type="radio" value="yes" id="recommend" name="rec" onChange={handleRecommend} defaultChecked />
+              <label htmlFor="recommend">Yes</label>
             </div>
 
             <div>
-              <input type="radio" value="no" id="not-recommended" name="rec" onChange={handleNotRecommended} />
-              <label htmlFor="not-recommended">No</label>
+              <input type="radio" value="no" id="not-recommend" name="rec" onChange={handleNotRecommend} />
+              <label htmlFor="not-recommend">No</label>
             </div>
           </fieldset>
         </div>
@@ -251,36 +315,17 @@ const NewReview = ({ data }) => {
         <div>
           Characteristics (mandatory)
           <fieldset>
-            {_.map(data.characteristics, (char, i) => {
-              const [selected, setSelected] = useState('None Selected');
-              return (
-                <div key={char.id}>
-                  {`${i} - ${selected}`}
-                  <fieldset>
-                    {_.map([1, 2, 3, 4, 5], (num) => (
-                      <div key={num}>
-                        <input
-                          type="radio"
-                          name={i}
-                          id={num}
-                          value={num}
-                          onChange={() => {
-                            const characteristic = {};
-                            characteristic[i] = num;
-                            setCharacteristics(_.extend(characteristics, characteristic));
-                            setSelected(qualities[i][num - 1]);
-                          }}
-                        />
-                        <label htmlFor={num}>{num}</label>
-                      </div>
-                    ))}
-
-                  </fieldset>
-                  {`1 - ${qualities[i][0]} `}
-                  {`5 - ${qualities[i][4]}`}
-                </div>
-              );
-            })}
+            {_.map(data.characteristics, (char, i) => (
+              <Characteristic
+                key={char.id}
+                char={char}
+                i={i}
+                data={data}
+                characteristics={characteristics}
+                setCharacteristics={setCharacteristics}
+                qualities={qualities}
+              />
+            ))}
           </fieldset>
         </div>
 
@@ -315,57 +360,34 @@ const NewReview = ({ data }) => {
           <small>Body must be at least 50 characters long</small>
         </div>
 
+        {/* TODO: Switch to Cloudinary for photos (once servers are back up) */}
         <div>
           Upload your photos
         </div>
 
-        <ImageUploading
-          multiple
-          value={images}
-          maxNumber="5"
-          onChange={handleAddImage}
-          dataURLKey="data_url"
-        >
-          {({
-            imageList,
-            onImageUpload,
-            onImageRemoveAll,
-            onImageUpdate,
-            onImageRemove,
-          }) => (
-            <div>
-              <button
-                type="button"
-                onClick={onImageUpload}
-              >
-                Upload images
-              </button>
-              &nbsp;
-              <button type="button" onClick={onImageRemoveAll}>Remove all images</button>
-              {imageList.map((image, index) => (
-                <div key={index}>
-                  <img src={image.data_url} alt="" width="100" />
-                  <div>
-                    <button type="button" onClick={() => onImageUpdate(index)}>Update</button>
-                    <button type="button" onClick={() => onImageRemove(index)}>Remove</button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </ImageUploading>
-
         <div>
-          What is your nickname (mandatory)
+          <button type="button" onClick={handleAddImage}>
+            Upload files
+          </button>
         </div>
 
         <div>
-          <input type="text" value={nickname} onChange={handleNicknameChange} maxLength="60" placeholder="Example: jackson11!" size="60" />
+          {_.map(photos, (url) => (
+            <img src={url} alt="" />
+          ))}
+        </div>
+
+        <div>
+          What is your name (mandatory)
+        </div>
+
+        <div>
+          <input type="text" value={name} onChange={handleNameChange} maxLength="60" placeholder="Example: jackson11!" size="60" />
         </div>
 
         <small>For privacy reasons, do not use your full name or email address</small>
 
-        <div className="error" id="empty-nickname">
+        <div className="error" id="empty-name">
           <small>This field is required</small>
         </div>
 

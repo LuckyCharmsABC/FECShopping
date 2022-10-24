@@ -1,14 +1,15 @@
 import React from 'react';
 import _ from 'underscore';
 
-const OverallRatings = ({ data, count, averageRating }) => {
-  const recommendPercent = Math.round((data.recommended.true / count) * 100);
+const OverallRatings = ({ data, averageRating }) => {
+  const totalCount = parseInt(data.recommended.true, 10) + parseInt(data.recommended.false, 10);
+  const recommendPercent = Math.round((data.recommended.true / totalCount) * 100);
   const ratingPercents = {
-    5: Math.round((data.ratings[5] / count) * 100),
-    4: Math.round((data.ratings[4] / count) * 100),
-    3: Math.round((data.ratings[3] / count) * 100),
-    2: Math.round((data.ratings[2] / count) * 100),
-    1: Math.round((data.ratings[1] / count) * 100),
+    5: Math.round((data.ratings[5] / totalCount) * 100),
+    4: Math.round((data.ratings[4] / totalCount) * 100),
+    3: Math.round((data.ratings[3] / totalCount) * 100),
+    2: Math.round((data.ratings[2] / totalCount) * 100),
+    1: Math.round((data.ratings[1] / totalCount) * 100),
   };
 
   return (
