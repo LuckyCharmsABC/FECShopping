@@ -6,6 +6,8 @@ const Characteristic = ({
   characteristics,
   setCharacteristics,
   qualities,
+  data,
+  char,
 }) => {
   const [selected, setSelected] = useState('None Selected');
   return (
@@ -17,13 +19,17 @@ const Characteristic = ({
             <input
               type="radio"
               name={i}
+              className="char-btn"
               id={num}
               value={num}
               onChange={() => {
                 const characteristic = {};
-                characteristic[i] = num;
+                characteristic[char.id] = num;
                 setCharacteristics(_.extend(characteristics, characteristic));
                 setSelected(qualities[i][num - 1]);
+                if (_.size(characteristics) === _.size(data.characteristics)) {
+                  document.getElementById('empty-characteristics').style.display = 'none';
+                }
               }}
             />
             <label htmlFor={num}>{num}</label>
