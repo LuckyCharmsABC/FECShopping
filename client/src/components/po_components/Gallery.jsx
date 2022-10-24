@@ -6,19 +6,26 @@ const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) =>
   return (
     <div id="imageGallery">
       <div id="gallery">
-        {selectedStyle.photos.map((photo, index) => (
-          <div
-            className="thumbnail"
-            key={photo.url}
-            role="button"
-            onClick={() => { changeSelectedImgInx(index); }}
-            onKeyPress={() => {}}
-            tabIndex={0}
-            style={index === selectedImageIndex ? selectedCss : { border: 'solid white' }}
-          >
-            <img width="80" height="auto" alt="x" src={photo.thumbnail_url} />
-          </div>
-        ))}
+        {selectedStyle.photos.map((photo, index) => {
+          const jumpSlideId = `#s${index + 1}`;
+          return (
+            <div
+              className="thumbnail"
+              key={photo.url}
+              role="button"
+              onClick={() => { changeSelectedImgInx(index); }}
+              onKeyPress={() => {}}
+              tabIndex={0}
+              style={index === selectedImageIndex ? selectedCss : { border: 'solid white' }}
+            >
+              <a
+                href={jumpSlideId}
+              >
+                <img width="85" height="auto" alt="x" src={photo.thumbnail_url} />
+              </a>
+            </div>
+          );
+        })}
       </div>
       <section className="slider">
         <div>
