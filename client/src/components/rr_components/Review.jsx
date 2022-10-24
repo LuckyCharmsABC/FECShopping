@@ -30,7 +30,7 @@ const Review = ({ review }) => {
       <p>{review.body}</p>
       <ul>
         {review.photos.map((photo) => (
-          <img src={photo.url} key={photo.id} alt={photo.id} />
+          <img src={photo.url} key={photo.id} alt={photo.id} width="200px" />
         ))}
       </ul>
       <button type="button" onClick={markHelpful}>
