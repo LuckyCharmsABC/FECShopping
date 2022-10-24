@@ -102,6 +102,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content:center;
+  align-items: center;
   height: 700px;
   width:40%;
   margin: 10px;

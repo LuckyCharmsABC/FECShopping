@@ -27,6 +27,12 @@ const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) =>
           );
         })}
       </div>
+
+      <div>
+        <a>
+          <i class="fa-solid fa-chevron-left" />
+        </a>
+      </div>
       <section className="slider">
         <div>
           <ul id="s">
@@ -34,16 +40,18 @@ const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) =>
               const slideId = `s${index + 1}`;
               return (
                 <li id={slideId}>
-                  <img className="newDisplayed" src={photo.url} alt="x" />
+                  <img className="nav-button" className="newDisplayed" src={photo.url} alt="x" />
                 </li>
               )
             })}
           </ul>
         </div>
       </section>
-{/*       <div id="displayBkg">
-        <img className="displayedImage" alt="x" src={selectedStyle.photos[selectedImageIndex].url} />
-      </div> */}
+      <div>
+        <a>
+          <i className="nav-button" class="fa-solid fa-chevron-right" />
+        </a>
+      </div>
     </div>
   );
 };
