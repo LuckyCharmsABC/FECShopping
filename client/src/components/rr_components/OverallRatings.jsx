@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'underscore';
 
-const OverallRatings = ({ data, averageRating }) => {
+const OverallRatings = ({ data, averageRating, averageStarRating }) => {
   const totalCount = parseInt(data.recommended.true, 10) + parseInt(data.recommended.false, 10);
   const recommendPercent = Math.round((data.recommended.true / totalCount) * 100);
   const ratingPercents = {
@@ -15,10 +15,7 @@ const OverallRatings = ({ data, averageRating }) => {
   return (
     <div>
       <h1>{averageRating}</h1>
-      <h5>
-        {`${averageRating} `}
-        but in stars
-      </h5>
+      {averageStarRating}
       <h3>
         {recommendPercent}
         % of users recommend this product

@@ -229,6 +229,42 @@ body {
 
 /********************************************/
 
+.star {
+  display: inline-block;
+  position: relative;
+  font-size: 14px;
+  color: #ddd;
+}
+
+.star::after {
+  font-family: FontAwesome;
+  content: "\f005";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  overflow: hidden;
+  color: #0F3460;
+}
+
+.quarter-star::after {
+  width: 35%;
+}
+
+.half-star::after {
+  width: 50%;
+}
+
+.three-quarters-star::after {
+  width: 65%;
+}
+
+.full-star::after {
+  width: 100%;
+}
+
+/********************************************/
+
 #new-review {
   display: none;
   position: fixed;

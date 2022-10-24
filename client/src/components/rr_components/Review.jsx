@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { format, parseISO } from 'date-fns';
 import axios from 'axios';
+import _ from 'underscore';
 
 const Review = ({ review }) => {
   const [helpfulness, setHelpfulness] = useState(review.helpfulness);
@@ -17,14 +18,23 @@ const Review = ({ review }) => {
     document.getElementById(`${review.review_id}-reported`).style.display = 'block';
   };
 
+  const starRating = (
+    <div>
+      {_.map(Array(review.rating), (elem, i) => (
+        <span className="star fa fa-star full-star" key={i} />
+      ))}
+
+      {_.map(Array(5 - review.rating), (elem, i) => (
+        <span className="star fa fa-star" key={i + review.rating} />
+      ))}
+    </div>
+  );
+
   return (
     <div>
       <h4>{review.reviewer_name}</h4>
       <h5>{format(date, 'PPP')}</h5>
-      <h5>
-        {review.rating}
-        stars
-      </h5>
+      {starRating}
       <h3>{review.summary}</h3>
       {recommended}
       <p>{review.body}</p>
