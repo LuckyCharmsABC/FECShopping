@@ -8,8 +8,8 @@ body {
 
 .slider div {
   width: 100%;
-  max-width: 800px;
-  max-height: 800px;
+  max-width: 650px;
+  max-height: 650px;
   margin: auto;
   aspect-ratio: 1;
 }
@@ -25,12 +25,16 @@ body {
   display: flex;
   flex-flow: row nowrap;
   overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
   cursor: ew-resize;
   height: calc(100% + 25px);
 }
 
 .slider li {
   flex: 0 0 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
   height: calc(100% + 25px);
 }
 
