@@ -3,6 +3,7 @@ import React from 'react';
 const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) => {
   // const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const selectedCss = { border: 'solid black' };
+
   return (
     <div id="imageGallery">
       <div id="gallery">
@@ -28,27 +29,29 @@ const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) =>
         })}
       </div>
 
-{/*       <div>
-        <a>
-          <i class="fa-solid fa-chevron-left" />
-        </a>
-      </div> */}
       <section className="slider">
         <div>
           <ul id="s">
             {selectedStyle.photos.map((photo, index) => {
+              const length = selectedStyle.photos.length;
               const slideId = `s${index + 1}`;
               const prev = `#s${index}`;
               const next = `#s${index + 2}`;
               return (
                 <li id={slideId} className="slide">
-                  <img className="nav-button" className="newDisplayed" src={photo.url} alt="x" />
+                  <img className="newDisplayed" src={photo.url} alt="x" />
                   <div className="snapper">
-                    <a className="prev-button" href={prev}>
-                      <i class="fa-solid fa-chevron-left" />
+                    <a
+                      className={index === 0 ? 'nav-button disabled' : 'nav-button'}
+                      href={prev}
+                    >
+                      <i className="fa-solid fa-chevron-left" />
                     </a>
-                    <a className="next-button" href={next}>
-                      <i class="fa-solid fa-chevron-right" />
+                    <a
+                      className={index === length - 1 ? 'nav-button disabled' : 'nav-button'}
+                      href={next}
+                    >
+                      <i className="fa-solid fa-chevron-right" />
                     </a>
                   </div>
                 </li>
@@ -58,11 +61,6 @@ const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) =>
         </div>
 
       </section>
-{/*       <div>
-        <a>
-          <i className="nav-button" class="fa-solid fa-chevron-right" />
-        </a>
-      </div> */}
     </div>
   );
 };

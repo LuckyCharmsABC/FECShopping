@@ -6,6 +6,10 @@ body {
   margin: 0;
 }
 
+.disabled {
+  pointer-events: none;
+}
+
 .slider div {
   width: 100%;
   max-width: 650px;
