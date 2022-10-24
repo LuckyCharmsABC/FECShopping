@@ -15,7 +15,7 @@ const Product = ({ currentItem, scrollToReviews, averageRating, reviewCount }) =
   const [selectedStyle, setSelectedStyle] = useState({});
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [maxQuant, setMaxQuant] = useState(-1);
-  const [expandedView, setExpandedView] = useState(true);
+  const [expandedView, setExpandedView] = useState(false);
   const product = currentItem;
   const changeSelectedImgInx = (value) => {
     setSelectedImageIndex(value);

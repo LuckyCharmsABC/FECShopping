@@ -38,7 +38,7 @@ const ExpandedGallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgI
                     <a
                       className={index === 0 ? 'nav-button disabled' : 'nav-button'}
                       href={prev}
-                      onClick={() => { changeSelectedImgInx(index - 1)}}
+                      onClick={(event) => { event.stopPropagation(); changeSelectedImgInx(index - 1)}}
                     >
                       <i
                         className={index === 0 ? 'fa-solid fa-chevron-left fa-xl disabled-nav-button' : 'fa-solid fa-chevron-left fa-xl'}
@@ -47,7 +47,7 @@ const ExpandedGallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgI
                     <a
                       className={index === length - 1 ? 'nav-button disabled' : 'nav-button'}
                       href={next}
-                      onClick={() => { changeSelectedImgInx(index + 1); }}
+                      onClick={(event) => { event.stopPropagation(); changeSelectedImgInx(index + 1); }}
                     >
                       <i
                         className={index === length - 1 ? 'fa-solid fa-chevron-right fa-xl disabled-nav-button' : 'fa-solid fa-chevron-right fa-xl'}

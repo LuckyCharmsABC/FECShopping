@@ -39,13 +39,13 @@ const Gallery = ({
               const prev = `#s${index}`;
               const next = `#s${index + 2}`;
               return (
-                <li id={slideId} className="slide" onClick={(event) => {event.preventDefault(); changeView(true)}}>
+                <li id={slideId} className="slide" onClick={(event) => {console.log('change view click invoked'); event.preventDefault(); changeView(true);}}>
                   <img className="newDisplayed" src={photo.url} alt="x" />
                   <div className="snapper">
                     <a
                       className={index === 0 ? 'nav-button disabled' : 'nav-button'}
                       href={prev}
-                      onClick={() => { changeSelectedImgInx(index - 1); }}
+                      onClick={(event) => { event.stopPropagation(); changeSelectedImgInx(index - 1); }}
                     >
                       <i
                         className={index === 0 ? 'fa-solid fa-chevron-left fa-xl disabled-nav-button' : 'fa-solid fa-chevron-left fa-xl'}
@@ -54,7 +54,7 @@ const Gallery = ({
                     <a
                       className={index === length - 1 ? 'nav-button disabled' : 'nav-button'}
                       href={next}
-                      onClick={() => { changeSelectedImgInx(index + 1); }}
+                      onClick={(event) => { event.stopPropagation(); changeSelectedImgInx(index + 1); }}
                     >
                       <i
                         className={index === length - 1 ? 'fa-solid fa-chevron-right fa-xl disabled-nav-button' : 'fa-solid fa-chevron-right fa-xl'}

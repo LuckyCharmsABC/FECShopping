@@ -81,8 +81,8 @@ body, button {
   flex-direction: row;
   justify-content:center;
   align-items: center;
-  height: 700px;
-  width:40%;
+  height: 900px;
+  width:60%;
   margin: 10px;
 }
 
@@ -109,8 +109,8 @@ body, button {
 .slider div {
   overflow: hidden;
   width: 100%;
-  max-width: 650px;
-  max-height: 700px;
+  max-width: 750px;
+  max-height: 800px;
   margin: auto;
   aspect-ratio: 1;
 }
