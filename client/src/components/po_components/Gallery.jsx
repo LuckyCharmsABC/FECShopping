@@ -47,7 +47,7 @@ const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) =>
                       href={prev}
                     >
                       <i
-                        className="fa-solid fa-chevron-left"
+                        className={index === 0 ? "fa-solid fa-chevron-left fa-xl disabled-nav-button" : 'fa-solid fa-chevron-left fa-xl'}
                         onClick={()=>{ changeSelectedImgInx(index - 1)}}
                       />
                     </a>
@@ -55,7 +55,8 @@ const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) =>
                       className={index === length - 1 ? 'nav-button disabled' : 'nav-button'}
                       href={next}
                     >
-                      <i className="fa-solid fa-chevron-right"
+                      <i
+                        className={index === length - 1 ? "fa-solid fa-chevron-right fa-xl disabled-nav-button" : 'fa-solid fa-chevron-right fa-xl'}
                         onClick={()=>{ changeSelectedImgInx(index + 1)}}
                       />
                     </a>

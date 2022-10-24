@@ -11,10 +11,6 @@ body {
   background: transparent; /* make scrollbar transparent */
 }
 
-.disabled {
-  pointer-events: none;
-}
-
 .slider div {
   overflow: hidden;
   width: 100%;
@@ -39,6 +35,22 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+
+.nav-button {
+  padding: 5px;
+  background-color: white;
+}
+
+.disabled-nav-button {
+  content: none;
+  color: transparent;
+  background-color: transparent;
+}
+.disabled {
+  pointer-events: none;
+  background-color: transparent;
 }
 
 .slider ul {
