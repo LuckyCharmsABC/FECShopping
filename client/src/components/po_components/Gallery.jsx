@@ -25,18 +25,15 @@ const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) =>
           <ul id="s">
             {selectedStyle.photos.map((photo, index) => (
               <li id="s1">
-                <img src={selectedStyle.photos[selectedImageIndex].url} alt="x" />
+                <img className="newDisplayed" src={photo.url} alt="x" />
               </li>
             ))}
           </ul>
         </div>
       </section>
-
-
-
-      <div id="displayBkg">
+{/*       <div id="displayBkg">
         <img className="displayedImage" alt="x" src={selectedStyle.photos[selectedImageIndex].url} />
-      </div>
+      </div> */}
     </div>
   );
 };

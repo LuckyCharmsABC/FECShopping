@@ -6,8 +6,32 @@ body {
   margin: 0;
 }
 
-select {
+.slider div {
+  width: 100%;
+  max-width: 800px;
+  max-height: 800px;
+  margin: auto;
+  aspect-ratio: 1;
+}
 
+.newDisplayed {
+  aspect-ratio: 1;
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.slider ul {
+  display: flex;
+  flex-flow: row nowrap;
+  overflow-x: scroll;
+  cursor: ew-resize;
+  height: calc(100% + 25px);
+}
+
+.slider li {
+  flex: 0 0 100%;
+  height: calc(100% + 25px);
 }
 
 .page-top {
