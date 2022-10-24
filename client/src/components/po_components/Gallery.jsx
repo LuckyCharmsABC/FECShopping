@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) => {
+const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx, changeView }) => {
   // const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const selectedCss = { border: 'solid black' };
   const [url, setUrl] = useState(window.location.href);
@@ -39,7 +39,7 @@ const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) =>
               const prev = `#s${index}`;
               const next = `#s${index + 2}`;
               return (
-                <li id={slideId} className="slide">
+                <li id={slideId} className="slide" onClick={(event) => {event.preventDefault(); changeView(true)}}>
                   <img className="newDisplayed" src={photo.url} alt="x" />
                   <div className="snapper">
                     <a
