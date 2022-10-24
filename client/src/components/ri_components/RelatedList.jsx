@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import RelatedItem from './RelatedItem.jsx';
 
 const RelatedList = ({ currentItem, setCurrentItem }) => {
@@ -9,13 +10,8 @@ const RelatedList = ({ currentItem, setCurrentItem }) => {
   useEffect(() => {
     axios.get(`/products/${currentItem.id}/related`)
       .then((results) => {
+        console.log('RELATED ITEMS', results.data);
         setRelatedItemsIDs(results.data);
-      })
-      .catch((err) => console.log(err));
-    axios.get('./products')
-      .then((results) => {
-        // console.log('Get All', results.data);
-        setAllItems(results.data);
       })
       .catch((err) => console.log(err));
   }, [currentItem]);
@@ -34,11 +30,16 @@ const RelatedList = ({ currentItem, setCurrentItem }) => {
       <h3>Related Items</h3>
       <div>
         <div className="related-scroll">
-          <button className="left carousel-button" type="button" onClick={() => { leftScroll(); }}>&#8678;</button>
-          <button className="right carousel-button" type="button" onClick={() => { rightScroll(); }}>&#8680;</button>
-          <div className="scroll-related-items  snaps-inline">
-            {relatedItemsIDs.map((currentID) => (
-              <RelatedItem currentID={currentID} key={currentID} setCurrentItem={setCurrentItem} detailItem={currentItem}/>
+          <div className="scroll-related-items snaps-inline">
+            <button className="left carousel-button" type="button" onClick={() => { leftScroll(); }}>&#8678;</button>
+            <button className="right carousel-button" type="button" onClick={() => { rightScroll(); }}>&#8680;</button>
+            {relatedItemsIDs.map((currentID, i) => (
+              <RelatedItem
+                currentID={currentID}
+                key={i}
+                setCurrentItem={setCurrentItem}
+                detailItem={currentItem}
+              />
             ))}
           </div>
         </div>

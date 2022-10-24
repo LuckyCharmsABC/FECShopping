@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
+import ItemComparison from './ItemComparison.jsx';
 
 const RelatedItem = ({ currentID, setCurrentItem, detailItem }) => {
   const [listItem, setListItem] = useState({});
   const [itemStyle, setItemStyle] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     axios.get(`./product?id=${currentID}`)
@@ -18,7 +21,7 @@ const RelatedItem = ({ currentID, setCurrentItem, detailItem }) => {
         setItemStyle(res.data.results);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [detailItem]);
 
   const updateDetail = () => {
     event.preventDefault();
@@ -26,15 +29,88 @@ const RelatedItem = ({ currentID, setCurrentItem, detailItem }) => {
     setCurrentItem(listItem);
   };
 
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  }
+
+  const logComparison = (e) => {
+    e.stopPropagation();
+    toggleModal();
+    console.log('PRODUCT DETAIL ITEM', detailItem);
+    console.log('ITEM TO COMPARE', listItem);
+  }
+
   return (
-    <div className="related-item" onClick={updateDetail}>
-      <img src={itemStyle[0]?.photos[0].thumbnail_url === null ? "https://www.fillmurray.com/140/200" : itemStyle[0]?.photos[0].thumbnail_url} alt="Placeholder" />
-      <button className="action-star" type="button">&#9734;</button>
-      {listItem.category}
-      {`${listItem.name} ${itemStyle[0]?.name}`}
-      {itemStyle[0]?.original_price}
-    </div>
+    <CardContainer>
+      <ItemComparison
+        showModal={showModal}
+        detailItem={detailItem}
+        relatedItem={listItem}
+        toggleModal={toggleModal}
+      />
+      <Card onClick={updateDetail}>
+        <ImageContainer>
+          <ItemImg src={itemStyle[0]?.photos[0].thumbnail_url === null ? "https://www.fillmurray.com/140/200" : itemStyle[0]?.photos[0].thumbnail_url} alt="Placeholder" />
+          <ActionButton className="action-star" type="button" onClick={(e) => logComparison(e)}>&#9734;</ActionButton>
+        </ImageContainer>
+        <CardCategory>{listItem.category}</CardCategory>
+        <CardName>{`${listItem.name} - ${itemStyle[0]?.name}`}</CardName>
+        <Price>{itemStyle[0]?.original_price}</Price>
+      </Card>
+    </CardContainer>
   );
 };
 
 export default RelatedItem;
+
+const CardContainer = styled.div`
+  position: relative;
+  max-width: 215px;
+`
+
+const Card = styled.div`
+  display: grid;
+  contain: content;
+  padding: 10px;
+  background: #ffffff;
+  cursor: pointer;
+  max-width: 255px;
+`;
+
+const ItemImg = styled.img`
+  inline-size: 100%;
+  aspect-ratio: 140 / 200;
+  object-fit: cover;
+`
+const CardCategory = styled.p`
+  font-variant: small-caps;
+  font-size: small;
+  margin: 0;
+`
+
+const CardName = styled.h4`
+margin: 0;
+font-size: small;
+`
+
+const Price = styled.div`
+font-size: small;
+`
+
+const ImageContainer = styled.div`
+display: flex;
+`
+
+const ActionButton = styled.button`
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: rgba(255, 255, 255, .7);
+  cursor: pointer;
+  &:hover {
+    color: white;
+  }
+`

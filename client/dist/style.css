@@ -243,14 +243,19 @@ body {
 
 /******************************************/
 
-/* .related-scroll {
+.related-scroll {
   display: grid;
+  position: relative;
+  justify-content: center;
   gap: 1em;
-  grid-auto-flow: column;
-  grid-auto-columns: 33.33333%;
-  overflow-x: auto;
-  overscroll-behavior-inline: contain;
-} */
+}
+
+.outfit-scroll {
+  display: grid;
+  position: relative;
+  justify-content: center;
+  gap: 1em;
+}
 
 .snaps-inline {
   scroll-snap-type: inline mandatory;
@@ -273,76 +278,62 @@ body {
   object-fit: cover;
 }
 
-.related-item > img {
-  inline-size: 100%;
-  aspect-ratio: 140 / 200;
-  object-fit: cover;
-}
-
 .carousel-button {
-  position: absolute;
   background: none;
   border: none;
-  font-size: 4rem;
+  font-size: 3rem;
   color: rgba(255, 255, 255, .5);
   cursor: pointer;
   border-radius: .25;
-  padding: 0 .5rem;
-  background-color: rgba(0, 0, 0, .1);
+  z-index: 1;
 }
 
 .carousel-button:hover,
 .carousel-button:focus {
   color: white;
-  background-color: rgba(0, 0, 0, .2);
 }
 
 .left {
-  left: 1rem;
+  position: absolute;
+  left: 1px;
+  top: 40%;
 }
 
 .right{
-  right: 1rem;
-}
-
-.scroll-related-items {
-  display: grid;
-  gap: 1em;
-  grid-auto-flow: column;
-  grid-auto-columns: 25%;
-  overflow-x: auto;
-  overscroll-behavior-inline: contain;
+  position: absolute;
+  right: 1px;
+  top: 40%;
 }
 
 .item-image {
   position: relative;
 }
 
-/* .item-image > img {
-  inline-size: 100%;
-  aspect-ratio: 140 / 200;
-  object-fit: cover;
-}
-
-.item-image > button {
-  position: absolute;
-
-} */
-
-.outfit-scroll {
-  display: grid;
-  gap: 1em;
-  grid-auto-flow: column;
-  grid-auto-columns: 25%;
-  overflow-x: auto;
-  overscroll-behavior-inline: contain;
-}
-
 .scroll-outfit-items {
   display: grid;
   gap: 1em;
   grid-auto-flow: column;
-  grid-auto-columns: 25%;
+  grid-auto-columns: 23.5%;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
+  max-width: 1100px;
+}
+
+.scroll-related-items {
+  display: grid;
+  position: relative;
+  gap: 1em;
+  grid-auto-flow: column;
+  grid-auto-columns: 23.5%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+
+.add-outfit {
+  background-color: #0F3460;
+  color: white;
+  font-size: 4em;
+  border: none;
+  height: 213.38;
+  width: 360;
 }
