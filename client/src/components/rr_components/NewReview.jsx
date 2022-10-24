@@ -15,7 +15,8 @@ const NewReview = ({ data }) => {
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
   const [remainingChars, setRemainingChars] = useState('Minimum required characters left: 50');
-  const [photos, setPhotos] = useState([]);
+  // eslint-disable-next-line no-array-constructor
+  const [photos, setPhotos] = useState(Array());
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
@@ -39,6 +40,22 @@ const NewReview = ({ data }) => {
 
   // eslint-disable-next-line camelcase
   const product_id = parseInt(data.product_id, 10);
+
+  const uploadWidget = cloudinary.createUploadWidget(
+    {
+      cloudName: 'dr31wlnyj',
+      uploadPreset: 'front-end-capstone',
+      maxFiles: 5,
+    },
+    (err, res) => {
+      if (!err && res && res.event === 'success') {
+        console.log('Done! Here is the image info: ', res.info);
+        const photo = {};
+        photo[res.info.version_id] = res.info.secure_url;
+        setPhotos(_.extend(photos, photo));
+      }
+    },
+  );
 
   const oneStar = () => {
     setFirstStar('🌟');
@@ -109,9 +126,8 @@ const NewReview = ({ data }) => {
     document.getElementById('short-body').style.display = 'none';
   };
 
-  const handleAddImage = (imageList, addUpdateIndex) => {
-    console.log(imageList, addUpdateIndex);
-    setPhotos(imageList);
+  const handleAddImage = () => {
+    uploadWidget.open();
   };
 
   const handleNameChange = (event) => {
@@ -233,7 +249,7 @@ const NewReview = ({ data }) => {
 
   const handleSubmit = () => {
     if (hasNoErrors()) {
-      axios.post('/reviews', {
+      const completeReview = {
         // eslint-disable-next-line camelcase
         product_id,
         rating,
@@ -244,7 +260,9 @@ const NewReview = ({ data }) => {
         email,
         photos,
         characteristics,
-      }).then(exitNewReview);
+      };
+      console.log(completeReview);
+      // axios.post('/reviews', completeReview).then(exitNewReview);
     }
   };
 
@@ -342,11 +360,22 @@ const NewReview = ({ data }) => {
           <small>Body must be at least 50 characters long</small>
         </div>
 
+        {/* TODO: Switch to Cloudinary for photos (once servers are back up) */}
         <div>
           Upload your photos
         </div>
 
-        {/* TODO: Switch to Cloudinary for photos (once servers are back up) */}
+        <div>
+          <button type="button" onClick={handleAddImage}>
+            Upload files
+          </button>
+        </div>
+
+        <div>
+          {_.map(photos, (url) => (
+            <img src={url} alt="" />
+          ))}
+        </div>
 
         <div>
           What is your name (mandatory)
