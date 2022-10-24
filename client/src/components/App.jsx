@@ -19,18 +19,22 @@ const App = () => {
   const [reviews, setReviews] = useState({});
   const ref = useRef(null);
 
+  const renderReviews = (id = 40344) => {
+
+  }
+
   useEffect(() => {
     axios.get('product/?id=40344')
       .then((results) => {
-        // console.log('result from getProduct is ', results);
         setCurrentItem(results.data);
         setIsLoading(false);
       })
       .catch((err) => { console.log(err); });
+    renderReviews();
   }, []);
 
   useEffect(() => {
-    axios.get('/reviewdata', { params: { product_id: currentItem.id } })
+    axios.get('/reviewdata', { params: { product_id: currentItem.id || 40344 } })
       .then((data) => {
         const count = parseInt(data.data.recommended.false, 10) + parseInt(data.data.recommended.true, 10);
         let allRatings = 0;
@@ -39,20 +43,20 @@ const App = () => {
         });
         setMetaData(data.data);
         setAverageRating(Math.round((allRatings / count) * 10) / 10);
-      });
+      })
+      .catch((err) => { console.log(err); });
 
-      axios.get('/reviews', {
-        params: {
-          product_id: currentItem.id,
-          sort: 'relevance',
-          count: 999999,
-        },
-      }).then((results) => {
-        setAllReviews(results.data);
-        setReviews(results.data.results.slice(0, 2));
-        setReviewCount(results.data.results.length);
-      });
-
+    axios.get('/reviews', {
+      params: {
+        product_id: currentItem.id || 40344,
+        sort: 'relevance',
+        count: 999999,
+      },
+    }).then((results) => {
+      setAllReviews(results.data);
+      setReviews(results.data.results.slice(0, 2));
+      setReviewCount(results.data.results.length);
+    }, [currentItem]);
   }, [currentItem]);
 
   const scrollToReviews = () => {
