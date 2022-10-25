@@ -47,16 +47,19 @@ export default OutfitItem;
 
 const CardContainer = styled.div`
   position: relative;
-  max-width: 215px;
+  width: 25vw;
+  max-width: 255px;
 `
 
 const Card = styled.div`
   display: grid;
   contain: content;
-  padding: 10px;
   background: #ffffff;
   cursor: pointer;
-  max-width: 255px;
+  border-radius: 10px;
+  &:hover {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  }
 `;
 
 const ItemImg = styled.img`
@@ -64,6 +67,7 @@ const ItemImg = styled.img`
   aspect-ratio: 140 / 200;
   object-fit: cover;
 `
+
 const CardCategory = styled.p`
   font-variant: small-caps;
   font-size: small;
@@ -89,7 +93,7 @@ const ActionButton = styled.button`
   right: .5%;
   background: none;
   border: none;
-  font-size: 3rem;
+  font-size: 2rem;
   color: rgba(255, 255, 255, .7);
   cursor: pointer;
   &:hover {

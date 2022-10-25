@@ -5,7 +5,6 @@ import RelatedItem from './RelatedItem.jsx';
 
 const RelatedList = ({ currentItem, setCurrentItem }) => {
   const [relatedItemsIDs, setRelatedItemsIDs] = useState([]);
-  const [allItems, setAllItems] = useState([]);
 
   useEffect(() => {
     axios.get(`/products/${currentItem.id}/related`)
@@ -18,29 +17,31 @@ const RelatedList = ({ currentItem, setCurrentItem }) => {
 
   const leftScroll = () => {
     const left = document.querySelector('.scroll-related-items');
-    left.scrollBy(-500, 0);
+    left.scrollBy(-200, 0);
   };
   const rightScroll = () => {
     const right = document.querySelector('.scroll-related-items');
-    right.scrollBy(500, 0);
+    right.scrollBy(200, 0);
   };
 
   return (
     <div>
-      <h3>Related Items</h3>
       <div>
         <div className="related-scroll">
-          <div className="scroll-related-items snaps-inline">
+          <div className="tempwrapper">
+            <h3>Related Items</h3>
             <button className="left carousel-button" type="button" onClick={() => { leftScroll(); }}>&#8678;</button>
             <button className="right carousel-button" type="button" onClick={() => { rightScroll(); }}>&#8680;</button>
-            {relatedItemsIDs.map((currentID, i) => (
-              <RelatedItem
-                currentID={currentID}
-                key={i}
-                setCurrentItem={setCurrentItem}
-                detailItem={currentItem}
-              />
-            ))}
+            <div className="scroll-related-items snaps-inline">
+              {relatedItemsIDs.map((currentID) => (
+                <RelatedItem
+                  currentID={currentID}
+                  key={currentID}
+                  setCurrentItem={setCurrentItem}
+                  detailItem={currentItem}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

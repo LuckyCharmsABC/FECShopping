@@ -1,73 +1,73 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Gallery = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx }) => {
-  // const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+const Gallery = ({
+  selectedStyle, selectedImageIndex, changeSelectedImgInx, changeView,
+}) => {
   const selectedCss = { border: 'solid black' };
-  const [url, setUrl] = useState(window.location.href);
-
+  const { length } = selectedStyle.photos;
+/*   const fadeOutImage = () => {
+    console.log('fadeout invoked');
+    const newImage = document.getElementById('display');
+    const fadeHandler = () => {
+      newImage.removeEventListener('animationed', fadeHandler, false);
+      newImage.classList.remove('imageFadeOut');
+    };
+    newImage.addEventListener('animationed', fadeHandler, false);
+    newImage.classList.add('imageFadeOut');
+  }; */
+/*   const fadeOutImage = () => {
+    console.log('fadeout invoked');
+    const newImage = document.getElementById('display');
+    newImage.addClass('imageFadeOut').one('animationed', () => {
+      newImage.removeClass('imageFadeOut');
+    });
+  }; */
   return (
     <div id="imageGallery">
       <div id="gallery">
-        {selectedStyle.photos.map((photo, index) => {
-          const jumpSlideId = `#s${index + 1}`;
-          return (
-            <div
-              className="thumbnail"
-              key={photo.url}
-              role="button"
-              onClick={() => { changeSelectedImgInx(index); }}
-              onKeyPress={() => {}}
-              tabIndex={0}
-              style={index === selectedImageIndex ? selectedCss : { border: 'solid white' }}
-            >
-              <a
-                href={jumpSlideId}
-              >
-                <img width="85" height="auto" alt="x" src={photo.thumbnail_url} />
-              </a>
-            </div>
-          );
-        })}
+        {selectedStyle.photos.map((photo, index) => (
+          <div
+            className="thumbnail"
+            key={photo.url}
+            role="button"
+            onClick={() => { changeSelectedImgInx(index); }}
+            onKeyPress={() => {}}
+            tabIndex={0}
+            style={index === selectedImageIndex ? selectedCss : { border: 'solid white' }}
+          >
+            <img width="85" height="auto" alt="x" src={photo.thumbnail_url} />
+          </div>
+        ))}
       </div>
-
-      <section className="slider">
-        <div>
-          <ul id="s">
-            {selectedStyle.photos.map((photo, index) => {
-              const { length } = selectedStyle.photos;
-              const slideId = `s${index + 1}`;
-              const prev = `#s${index}`;
-              const next = `#s${index + 2}`;
-              return (
-                <li id={slideId} className="slide">
-                  <img className="newDisplayed" src={photo.url} alt="x" />
-                  <div className="snapper">
-                    <a
-                      className={index === 0 ? 'nav-button disabled' : 'nav-button'}
-                      href={prev}
-                    >
-                      <i
-                        className={index === 0 ? "fa-solid fa-chevron-left fa-xl disabled-nav-button" : 'fa-solid fa-chevron-left fa-xl'}
-                        onClick={()=>{ changeSelectedImgInx(index - 1)}}
-                      />
-                    </a>
-                    <a
-                      className={index === length - 1 ? 'nav-button disabled' : 'nav-button'}
-                      href={next}
-                    >
-                      <i
-                        className={index === length - 1 ? "fa-solid fa-chevron-right fa-xl disabled-nav-button" : 'fa-solid fa-chevron-right fa-xl'}
-                        onClick={()=>{ changeSelectedImgInx(index + 1)}}
-                      />
-                    </a>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-
-      </section>
+      <div
+        className="nav-button"
+        role="button"
+        tabIndex={0}
+        onKeyPress={() => {}}
+        width={selectedImageIndex === 0 ? '0' : '20px'}
+        onClick={() => {
+          if (selectedImageIndex !== 0) {
+            changeSelectedImgInx(selectedImageIndex - 1);
+          }
+        }}
+      >
+        <i className={selectedImageIndex === 0 ? 'fa-solid fa-chevron-left fa-xl disabled-nav-button' : 'fa-solid fa-chevron-left fa-xl'} />
+      </div>
+      <div onClick={() => {changeView(true)}}>
+        <img id="display" className="displayed-image" src={selectedStyle.photos[selectedImageIndex].url} alt="x" />
+      </div>
+      <button
+        className="nav-button"
+        type="submit"
+        onClick={() => {
+          if (selectedImageIndex !== length - 1) {
+            changeSelectedImgInx(selectedImageIndex + 1);
+/*             fadeOutImage(); */
+          }
+        }}
+      >
+        <i className={selectedImageIndex === length - 1 ? 'fa-solid fa-chevron-right fa-xl disabled-nav-button' : 'fa-solid fa-chevron-right fa-xl'} />
+      </button>
     </div>
   );
 };

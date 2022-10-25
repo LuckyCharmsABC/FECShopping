@@ -36,8 +36,8 @@ const RelatedItem = ({ currentID, setCurrentItem, detailItem }) => {
   const logComparison = (e) => {
     e.stopPropagation();
     toggleModal();
-    console.log('PRODUCT DETAIL ITEM', detailItem);
-    console.log('ITEM TO COMPARE', listItem);
+    // console.log('PRODUCT DETAIL ITEM', detailItem);
+    // console.log('ITEM TO COMPARE', listItem);
   }
 
   return (
@@ -65,16 +65,19 @@ export default RelatedItem;
 
 const CardContainer = styled.div`
   position: relative;
-  max-width: 215px;
+  width: 25vw;
+  max-width: 255px;
 `
 
 const Card = styled.div`
   display: grid;
   contain: content;
-  padding: 10px;
   background: #ffffff;
   cursor: pointer;
-  max-width: 255px;
+  border-radius: 10px;
+  &:hover {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  }
 `;
 
 const ItemImg = styled.img`
