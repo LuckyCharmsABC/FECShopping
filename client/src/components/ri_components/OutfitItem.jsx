@@ -93,7 +93,7 @@ const ActionButton = styled.button`
   right: .5%;
   background: none;
   border: none;
-  font-size: 3rem;
+  font-size: 2rem;
   color: rgba(255, 255, 255, .7);
   cursor: pointer;
   &:hover {
