@@ -182,6 +182,25 @@ button {
   margin: auto;
 }
 
+/* .wrapper {
+  width: 100%;
+  height: 85vh;
+  overflow:hidden;
+}
+
+.zoomImage {
+  width: 100%;
+  height: 100%;
+}
+
+.zoomImage img {
+  transition: all 0.5s ease;
+}
+
+.zoomImage:hover img {
+  transform: scale(2.5);
+} */
+
 .expanded-displayed-image {
   margin: 20px;
   height: 85vh;
@@ -230,6 +249,11 @@ button {
 
 .wrapper {
   overflow: auto;
+} */
+
+/* .wrapper {
+  overflow: scroll;
+  scroll-behavior: smooth;
 } */
 
 .enlarged {
