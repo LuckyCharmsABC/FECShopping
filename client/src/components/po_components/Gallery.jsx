@@ -29,45 +29,9 @@ const Gallery = ({
           );
         })}
       </div>
-
-      <section className="slider">
-        <div>
-          <ul id="s">
-            {selectedStyle.photos.map((photo, index) => {
-              const { length } = selectedStyle.photos;
-              const slideId = `s${index + 1}`;
-              const prev = `#s${index}`;
-              const next = `#s${index + 2}`;
-              return (
-                <li id={slideId} className="slide" onClick={(event) => {console.log('change view click invoked'); event.preventDefault(); changeView(true);}}>
-                  <img className="newDisplayed" src={photo.url} alt="x" />
-                  <div className="snapper">
-                    <a
-                      className={index === 0 ? 'nav-button disabled' : 'nav-button'}
-                      href={prev}
-                      onClick={(event) => { event.stopPropagation(); changeSelectedImgInx(index - 1); }}
-                    >
-                      <i
-                        className={index === 0 ? 'fa-solid fa-chevron-left fa-xl disabled-nav-button' : 'fa-solid fa-chevron-left fa-xl'}
-                      />
-                    </a>
-                    <a
-                      className={index === length - 1 ? 'nav-button disabled' : 'nav-button'}
-                      href={next}
-                      onClick={(event) => { event.stopPropagation(); changeSelectedImgInx(index + 1); }}
-                    >
-                      <i
-                        className={index === length - 1 ? 'fa-solid fa-chevron-right fa-xl disabled-nav-button' : 'fa-solid fa-chevron-right fa-xl'}
-                      />
-                    </a>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-
-      </section>
+      <div>
+        <img className="displayed-image" src={selectedStyle.photos[selectedImageIndex].url}/>
+      </div>
     </div>
   );
 };
