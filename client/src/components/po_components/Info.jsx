@@ -1,6 +1,8 @@
 import React from 'react';
 
-const Info = ({ product, selectedStyle, scrollToReviews, averageRating, reviewCount }) => {
+const Info = ({
+  product, selectedStyle, scrollToReviews, averageRating, reviewCount, averageStarRating,
+}) => {
   const saleStyle = { color: '#CC3636' };
   const saleOriginal = { textDecoration: 'line-through' };
   const originalPrice = `$${selectedStyle.original_price}`;
@@ -12,12 +14,14 @@ const Info = ({ product, selectedStyle, scrollToReviews, averageRating, reviewCo
         onKeyPress={() => {}}
         tabIndex={0}
       >
+        {averageStarRating}
+        {averageRating}
         Read all
         {reviewCount}
         reviews
       </div>
       <div>CATAGORY</div>
-      <div>{product.name}</div>
+      <div className="product-name">{product.name}</div>
       <div id="price-area">
         <div style={selectedStyle.sale_price ? saleOriginal : { color: 'black' }}>
           {selectedStyle.sale_price ? originalPrice : ''}
