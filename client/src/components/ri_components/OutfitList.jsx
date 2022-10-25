@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import OutfitItem from './OutfitItem.jsx';
 
-const outfitList = ({ currentItem, setCurrentItem }) => {
+const outfitList = ({ currentItem, setCurrentItem, getStars }) => {
   const [outfitItemsIDs, setOutfitItemIDs] = useState([]);
 
   useEffect(() => {
@@ -46,6 +46,7 @@ const outfitList = ({ currentItem, setCurrentItem }) => {
                   key={currentID}
                   currentID={currentID}
                   setOutfitItemIDs={setOutfitItemIDs}
+                  getStars={getStars}
                 />
               ))}
             </div>

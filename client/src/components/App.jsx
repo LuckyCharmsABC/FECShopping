@@ -103,7 +103,7 @@ const App = () => {
       </div>
       <div id="merchandise-directory">New Arrivals</div>
       <Product currentItem={currentItem} scrollToReviews={scrollToReviews} averageRating={averageRating} reviewCount={reviewCount} averageStarRating={averageStarRating}/>
-      <Related currentItem={currentItem} setCurrentItem={setCurrentItem} />
+      <Related currentItem={currentItem} setCurrentItem={setCurrentItem} getStars={calculateStarRating}/>
       <div ref={ref}>
         <Reviews currentItem={currentItem} data={metaData} count={reviewCount} averageRating={averageRating} allReviews={allReviews} reviews={reviews}
         setAllReviews={setAllReviews} setReviews={setReviews} averageStarRating={averageStarRating} />
