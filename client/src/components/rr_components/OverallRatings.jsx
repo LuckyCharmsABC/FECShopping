@@ -18,14 +18,16 @@ const OverallRatings = ({
   };
 
   return (
-    <div>
-      <h1>{averageRating}</h1>
-      {averageStarRating}
-      <h3>
+    <div className="overall-ratings">
+      <div className="average-rating-header">
+        <h1 className="average-rating-num">{averageRating}</h1>
+        {averageStarRating}
+      </div>
+      <h3 className="recommend-percentage">
         {recommendPercent}
         % of users recommend this product
       </h3>
-      <ul>
+      <ul className="rating-list">
         {_.map(ratingPercents, (rating, i) => (
           <div key={i}>
             {`${5 - i + 1} `}
@@ -33,11 +35,10 @@ const OverallRatings = ({
             <div className="rating-percent">
               <span className="percent-bar" id={`${5 - i} stars`} style={{ width: `${rating}%` }} />
             </div>
-            {` ${rating}%`}
           </div>
         ))}
       </ul>
-      <ul>
+      <ul className="char-list">
         {_.map(data.characteristics, (char, i) => (
           <div className="characteristics-scale">
             <span className="char-name">{i}</span>
