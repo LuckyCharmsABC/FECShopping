@@ -42,6 +42,11 @@ const Cart = ({ selectedStyle, maxQuant, changeMaxQuant }) => {
         <button className="submit-button" id="add-to-cart" type="button" onClick={(event) => { event.preventDefault(); addtoCart(selectedCombo); }}>ADD TO BAG</button>
         <button className="submit-button" type="submit">⭐️</button>
       </div>
+      <div className="share-buttons">
+        <i className="fa-brands fa-facebook fa-xl" />
+        <i className="fa-brands fa-twitter fa-xl" />
+        <i className="fa-brands fa-pinterest fa-xl" />
+      </div>
     </div>
   );
 };

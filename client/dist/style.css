@@ -4,6 +4,7 @@ body, button {
   Oxygen, Ubuntu, Cantarell, 'Open Sans',
   'Helvetica Neue', sans-serif;
   margin: 0;
+  --fa-primary-color: #0F3460;
 }
 
 button {
@@ -15,6 +16,16 @@ button {
   background: transparent; /* make scrollbar transparent */
 }
 
+@keyframes fadeOut {
+  0%, 100% {opacity: 0;}
+  50% {opacity: 1;}
+}
+
+/* @keyframes fadeOut {
+  from {opacity: 1;}
+  to {opacity: 0;}
+} */
+
 .page-top {
   height: 50px;
   line-height: 50px;
@@ -25,6 +36,7 @@ button {
   padding-left: 20px;
   position: sticky;
   top: 0px;
+  z-index: 2;
 }
 
 #merchandise-directory {
@@ -53,17 +65,77 @@ button {
 #sideInfo {
   display: flex;
   flex-direction: column;
-  width: 270px;
+  width: 350px;
   min-width: 250px;
   margin: 10px;
 }
 
+.general-review {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.starRating {
+  display: flex;
+  flex-direction: row;
+  gap:10px;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.readReviews {
+  font-size: 18px;
+  color: #394553;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
 #price-area {
   display: flex;
   flex-direction: row;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.product-name {
+  font-size: 35px;
+  color: #0F3460;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.share-buttons {
+  height:30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 15px;
+  margin-top: 40px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+}
+
+.divider {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid rgb(83, 79, 79);
+}
+
+.styleName {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #0F3460;
 }
 
 .styleList {
+  width: 330px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -72,8 +144,8 @@ button {
 }
 
 .styleThumbnail {
-  width:50px;
-  height:50px;
+  width:65px;
+  height:65px;
   padding: 3px;
   object-fit: cover;
   cursor: pointer;
@@ -93,7 +165,7 @@ button {
 
 #gallery {
   margin: 10px;
-  margin-right: 60px;
+  margin-right: 20px;
   height: 650px;
   width:105px;
   min-width: 105px;
@@ -150,6 +222,14 @@ button {
   aspect-ratio: 1;
   object-fit: contain;
   cursor: zoom-in;
+}
+
+.imageFadeOut {
+  animation: fadeOut 0.5s;
+}
+
+.imageFadeIn {
+  animation: fadeIn 0.5s
 }
 
 

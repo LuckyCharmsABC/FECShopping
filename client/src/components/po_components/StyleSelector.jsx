@@ -4,9 +4,9 @@ const StyleSelector = ({ productStyles, selectedStyle, selectStyle }) => {
   const selectedCss = { border: 'solid #0F3460' };
   return (
     <div>
-      <p>
-        <b>STYLE</b>
-      </p>
+      <div className="styleName">
+        <b>STYLE</b> {'>'} {selectedStyle.name}
+      </div>
       <div className="styleList">
         {productStyles.map((style) => (
           <div
