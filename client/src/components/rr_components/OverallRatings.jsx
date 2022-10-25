@@ -40,7 +40,7 @@ const OverallRatings = ({
       </ul>
       <ul className="char-list">
         {_.map(data.characteristics, (char, i) => (
-          <div className="characteristics-scale">
+          <div className="characteristics-scale" key={char.id}>
             <span className="char-name">{i}</span>
             <span className="fa fa-caret-down caret-down" style={{ left: `${Math.round((char.value / 5) * 100)}%` }} />
             <span className="char-bar" />

@@ -19,16 +19,17 @@ const ReviewList = ({
   };
 
   const count = allReviews.results.length;
-  const showMoreBtn = count - reviews.length ? <button type="button" onClick={handleShowMore}>Show More</button> : <div />;
+  const showMoreBtn = count - reviews.length ? <button type="button" onClick={handleShowMore} className="submit-button rl-btns-bottom">Show More</button> : <div />;
   return (
-    <div>
+    <div className="review-list">
       <NewReview data={data} qualities={qualities} />
-      <form>
+      <form className="sortby">
         <label htmlFor="sort">
           { `${count} ` }
           reviews, sorted by:
         </label>
         <select
+          className="review-btn sort-btn"
           name="sort"
           onChange={handleSort}
         >
@@ -38,12 +39,12 @@ const ReviewList = ({
         </select>
       </form>
 
-      <ul id="review-list">
+      <ul id="reviews">
         {reviews.map((review) => (
           <Review review={review} key={review.review_id} />))}
       </ul>
 
-      <button type="button" id="add-review" onClick={showNewReview}>Add Review</button>
+      <button type="button" id="add-review" className="submit-button rl-btns-bottom" onClick={showNewReview}>Add Review</button>
       {showMoreBtn}
     </div>
   );

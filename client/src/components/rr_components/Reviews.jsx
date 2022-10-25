@@ -42,20 +42,23 @@ const Reviews = ({
 
   return _.size(data) && _.size(allReviews) && _.size(reviews) ? (
     <div>
-      <OverallRatings
-        data={data}
-        averageRating={averageRating}
-        averageStarRating={averageStarRating}
-        qualities={qualities}
-      />
-      <ReviewList
-        reviews={reviews}
-        data={data}
-        allReviews={allReviews}
-        showMore={showMore}
-        sort={sort}
-        qualities={qualities}
-      />
+      <h3 className="rnr-header">—————————————————————— Ratings and Reviews ——————————————————————</h3>
+      <div className="ratings-and-reviews">
+        <OverallRatings
+          data={data}
+          averageRating={averageRating}
+          averageStarRating={averageStarRating}
+          qualities={qualities}
+        />
+        <ReviewList
+          reviews={reviews}
+          data={data}
+          allReviews={allReviews}
+          showMore={showMore}
+          sort={sort}
+          qualities={qualities}
+        />
+      </div>
     </div>
   ) : <div />;
 };

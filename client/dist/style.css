@@ -197,7 +197,8 @@ body, button {
   background-color: #0F3460;
   color: white;
   border: none;
-  margin: 5px
+  margin: 5px;
+  cursor: pointer;
 }
 
 #add-to-cart {
@@ -213,8 +214,9 @@ body, button {
 }
 /********************************************/
 
-#review-list {
+#reviews {
   max-height: 800px;
+  padding: 0;
   overflow: auto
 }
 
@@ -398,6 +400,38 @@ body, button {
 .review:last-of-type {
   padding-bottom: 0;
   border: none;
+}
+
+.review-list {
+  margin-left: 100px;
+  width: 40%;
+}
+
+.ratings-and-reviews {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.rnr-header {
+  margin: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.sortby,
+.sort-btn {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#add-review {
+  margin-left: 0;
+}
+
+.rl-btns-bottom {
+  height: 25px;
 }
 
 /********************************************/
