@@ -120,7 +120,6 @@ button {
   margin: auto;
   aspect-ratio: 1;
 }
-
 .slider ul {
   padding: 0;
   list-style: none;
@@ -133,14 +132,12 @@ button {
   cursor: zoom-in;
   height: 100%;
 }
-
 .slider li {
   flex: 0 0 100%;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   height: 100%;
 }
-
 .slide{
   position: relative;
 }
@@ -190,16 +187,13 @@ button {
   height: 85vh;
   overflow:hidden;
 }
-
 .zoomImage {
   width: 100%;
   height: 100%;
 }
-
 .zoomImage img {
   transition: all 0.5s ease;
 }
-
 .zoomImage:hover img {
   transform: scale(2.5);
 } */
@@ -219,7 +213,6 @@ button {
   margin: auto;
   aspect-ratio: 1;
 }
-
 .expanded-slider ul {
   padding: 0;
   list-style: none;
@@ -232,25 +225,21 @@ button {
   cursor: crosshair;
   height: 100%;
 }
-
 .expanded-slider li {
   flex: 0 0 100%;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   height: 100%;
 }
-
 .expanded-slide{
   position: relative;
 }
-
 .expanded-displayed {
   max-width: 100%;
   height: 100%;
   aspect-ratio: 1;
   object-fit: contain;
 }
-
 .wrapper {
   overflow: auto;
 } */
@@ -275,7 +264,6 @@ button {
   justify-content: space-between;
   align-items: center;
 }
-
 .navigator {
   display: flex;
   flex-direction: row;
@@ -341,7 +329,6 @@ button {
   max-height: 800px;
   object-fit: contain
 }
-
 #displayBkg {
   margin:10px;
 } */
@@ -387,6 +374,57 @@ button {
 
 .reported {
   display: none;
+}
+
+/********************************************/
+
+.star {
+  display: inline-block;
+  position: relative;
+  font-size: 14px;
+  color: #ddd;
+}
+
+.star::after {
+  font-family: FontAwesome;
+  content: "\f005";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  overflow: hidden;
+  color: #0F3460;
+}
+
+.quarter-star::after {
+  width: 35%;
+}
+
+.half-star::after {
+  width: 50%;
+}
+
+.three-quarters-star::after {
+  width: 65%;
+}
+
+.full-star::after {
+  width: 100%;
+}
+
+.rating-percent {
+  display: inline-block;
+  width: 200px;
+  height: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.percent-bar {
+  display: block;
+  height: 100%;
+  background: linear-gradient(#0F3460, #164782, #0F3460);
+  border-radius: 2px;
 }
 
 /********************************************/
