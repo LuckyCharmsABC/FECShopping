@@ -33,7 +33,7 @@ const Info = ({
   return (
     <div id="productInfo">
       {renderReview(reviewCount)}
-      <div>CATAGORY</div>
+      <div>CATEGORY {product.category}</div>
       <div className="product-name">{product.name}</div>
       <div id="price-area">
         <div style={selectedStyle.sale_price ? saleOriginal : { color: 'black' }}>
