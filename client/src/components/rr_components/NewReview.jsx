@@ -3,7 +3,7 @@ import _ from 'underscore';
 import axios from 'axios';
 import Characteristic from './Characteristic.jsx';
 
-const NewReview = ({ data }) => {
+const NewReview = ({ data, qualities }) => {
   const [firstStar, setFirstStar] = useState('⭐');
   const [secondStar, setSecondStar] = useState('⭐');
   const [thirdStar, setThirdStar] = useState('⭐');
@@ -27,15 +27,6 @@ const NewReview = ({ data }) => {
     4: '- Good',
     5: '- Great',
     null: '',
-  };
-
-  const qualities = {
-    Size: ['A size too small', '½ a size too small', 'Perfect', '½ a size too large', 'A size too large'],
-    Width: ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly Wide', 'Too wide'],
-    Comfort: ['Uncomfortable', 'Slightly comfortable', 'Ok', 'Comfortable', 'Perfect'],
-    Quality: ['Poor', 'Below average', 'What I expected', 'Pretty great', 'Perfect'],
-    Length: ['Runs short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
-    Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly loose', 'Runs loose'],
   };
 
   // eslint-disable-next-line camelcase

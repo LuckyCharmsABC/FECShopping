@@ -278,6 +278,40 @@ body, button {
   border-radius: 2px;
 }
 
+.characteristics-scale {
+  width: 250px;
+}
+
+.char-bar {
+  position: relative;
+  top: -17px;
+  display: inline-block;
+  width: 100%;
+  height: 10px;
+  background-color: #ddd;
+}
+
+.attributes {
+  position: relative;
+  top: -17px;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.char-name {
+  display: block;
+}
+
+.caret-down {
+  color: #0F3460;
+  font-size: 25;
+  position: relative;
+  display: block;
+  z-index: 1;
+  margin-left: -4px;
+}
+
 /********************************************/
 
 #new-review {

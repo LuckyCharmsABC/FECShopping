@@ -1,7 +1,12 @@
 import React from 'react';
 import _ from 'underscore';
 
-const OverallRatings = ({ data, averageRating, averageStarRating }) => {
+const OverallRatings = ({
+  data,
+  averageRating,
+  averageStarRating,
+  qualities,
+}) => {
   const totalCount = parseInt(data.recommended.true, 10) + parseInt(data.recommended.false, 10);
   const recommendPercent = Math.round((data.recommended.true / totalCount) * 100);
   const ratingPercents = {
@@ -34,8 +39,15 @@ const OverallRatings = ({ data, averageRating, averageStarRating }) => {
       </ul>
       <ul>
         {_.map(data.characteristics, (char, i) => (
-          <div key={char.id}>
-            <h5>{`${i}: ${Math.round((char.value / 5) * 100)}`}</h5>
+          <div className="characteristics-scale">
+            <span className="char-name">{i}</span>
+            <span className="fa fa-caret-down caret-down" style={{ left: `${Math.round((char.value / 5) * 100)}%` }} />
+            <span className="char-bar" />
+            <div className="attributes">
+              <span className="left-option">{qualities[i][0]}</span>
+              <span className="mid-option">{qualities[i][2]}</span>
+              <span className="right-option">{qualities[i][4]}</span>
+            </div>
           </div>
         ))}
       </ul>

@@ -18,6 +18,15 @@ const Reviews = ({
     setReviews(allReviews.results.slice(0, limit + 2));
   };
 
+  const qualities = {
+    Size: ['A size too small', '½ a size too small', 'Perfect', '½ a size too large', 'A size too large'],
+    Width: ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly Wide', 'Too wide'],
+    Comfort: ['Uncomfortable', 'Slightly comfortable', 'Ok', 'Comfortable', 'Perfect'],
+    Quality: ['Poor', 'Below average', 'What I expected', 'Pretty great', 'Perfect'],
+    Length: ['Runs short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
+    Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly loose', 'Runs loose'],
+  };
+
   const sort = (method) => {
     axios.get('/reviews', {
       params: {
@@ -38,6 +47,7 @@ const Reviews = ({
         data={data}
         averageRating={averageRating}
         averageStarRating={averageStarRating}
+        qualities={qualities}
       />
       <ReviewList
         reviews={reviews}
@@ -45,6 +55,7 @@ const Reviews = ({
         allReviews={allReviews}
         showMore={showMore}
         sort={sort}
+        qualities={qualities}
       />
     </div>
   ) : <div />;

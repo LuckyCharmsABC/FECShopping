@@ -3,7 +3,7 @@ import Review from './Review.jsx';
 import NewReview from './NewReview.jsx';
 
 const ReviewList = ({
-  allReviews, data, reviews, showMore, sort,
+  allReviews, data, reviews, showMore, sort, qualities,
 }) => {
   const handleShowMore = () => {
     showMore(reviews.length);
@@ -22,7 +22,7 @@ const ReviewList = ({
   const showMoreBtn = count - reviews.length ? <button type="button" onClick={handleShowMore}>Show More</button> : <div />;
   return (
     <div>
-      <NewReview data={data} />
+      <NewReview data={data} qualities={qualities} />
       <form>
         <label htmlFor="sort">
           { `${count} ` }
