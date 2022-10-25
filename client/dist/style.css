@@ -607,6 +607,7 @@ button {
   width: 25vw;
   max-width: 255px;
   border-radius: 10px;
+  aspect-ratio: 255/412.28;
 }
 
 .add-outfit:hover {
