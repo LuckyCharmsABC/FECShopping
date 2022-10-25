@@ -36,7 +36,7 @@ const Gallery = ({
       >
         <i className={selectedImageIndex === 0 ? 'fa-solid fa-chevron-left fa-xl disabled-nav-button' : 'fa-solid fa-chevron-left fa-xl'} />
       </div>
-      <div>
+      <div onClick={() => {changeView(true)}}>
         <img className="displayed-image" src={selectedStyle.photos[selectedImageIndex].url} alt="x" />
       </div>
       <div
