@@ -39,12 +39,9 @@ const Gallery = ({
       <div onClick={() => {changeView(true)}}>
         <img className="displayed-image" src={selectedStyle.photos[selectedImageIndex].url} alt="x" />
       </div>
-      <div
+      <button
         className="nav-button"
-        role="button"
-        tabIndex={0}
-        onKeyPress={() => {}}
-        width={selectedImageIndex === length - 1 ? '0' : '20px'}
+        type="submit"
         onClick={() => {
           if (selectedImageIndex !== length - 1) {
             changeSelectedImgInx(selectedImageIndex + 1);
@@ -52,7 +49,7 @@ const Gallery = ({
         }}
       >
         <i className={selectedImageIndex === length - 1 ? 'fa-solid fa-chevron-right fa-xl disabled-nav-button' : 'fa-solid fa-chevron-right fa-xl'} />
-      </div>
+      </button>
     </div>
   );
 };

@@ -62,13 +62,14 @@ const Product = ({ currentItem, scrollToReviews, averageRating, reviewCount }) =
   const renderPO = (expanded) => {
     if (expanded) {
       return (
-      <div id="AllPO">
-        <ExpandedGallery
-          selectedStyle={selectedStyle}
-          selectedImageIndex={selectedImageIndex}
-          changeSelectedImgInx={setSelectedImageIndex}
-        />
-      </div>
+        <div id="AllPO">
+          <ExpandedGallery
+            selectedStyle={selectedStyle}
+            selectedImageIndex={selectedImageIndex}
+            changeSelectedImgInx={setSelectedImageIndex}
+            changeView={changeView}
+          />
+        </div>
       );
     }
     return (
@@ -93,7 +94,11 @@ const Product = ({ currentItem, scrollToReviews, averageRating, reviewCount }) =
               selectStyle={selectStyle}
               selectedStyle={selectedStyle}
             />
-            <Cart selectedStyle={selectedStyle} maxQuant={maxQuant} changeMaxQuant={changeMaxQuant} />
+            <Cart
+              selectedStyle={selectedStyle}
+              maxQuant={maxQuant}
+              changeMaxQuant={changeMaxQuant}
+            />
           </div>
         </div>
         <AdditionalInfo product={product} />

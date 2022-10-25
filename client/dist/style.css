@@ -6,6 +6,10 @@ body, button {
   margin: 0;
 }
 
+button {
+  cursor: pointer;
+}
+
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent; /* make scrollbar transparent */
@@ -148,18 +152,20 @@ body, button {
   object-fit: contain;
 }
 
+
+.nav-button {
+  padding: 5px;
+  margin: 10px;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
 .disabled-nav-button {
   content: none;
   color: transparent;
   background-color: transparent;
 }
-
-.nav-button {
-  padding: 5px;
-  margin: 10px;
-  cursor: pointer;
-}
-
 
 /* .snapper {
   position: absolute;
@@ -176,10 +182,16 @@ body, button {
   margin: auto;
 }
 
-.expanded-slider div {
+.expanded-displayed-image {
+  margin: 20px;
+  height: 85vh;
+  width: auto;
+  object-fit: contain;
+}
+
+/* .expanded-slider div {
   overflow: hidden;
   width: 100%;
-/*   max-width: 1000px; */
   max-height: 1000px;
   margin: auto;
   aspect-ratio: 1;
@@ -195,7 +207,6 @@ body, button {
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   cursor: crosshair;
-/*   height: calc(100% + 25px); */
   height: 100%;
 }
 
@@ -203,7 +214,6 @@ body, button {
   flex: 0 0 100%;
   scroll-snap-align: start;
   scroll-snap-stop: always;
-/*   height: calc(100% + 25px); */
   height: 100%;
 }
 
@@ -220,14 +230,14 @@ body, button {
 
 .wrapper {
   overflow: auto;
-}
+} */
 
 .enlarged {
   transform: scale(2.5);
   transition: transform 0.25s ease;
 }
 
-.expanded-snapper {
+/* .expanded-snapper {
   position: absolute;
   top: 0;
   left: 0;
@@ -236,6 +246,12 @@ body, button {
   justify-content: space-between;
   align-items: center;
 }
+
+.navigator {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+} */
 
 .navigator {
   display: flex;
@@ -256,6 +272,26 @@ body, button {
 
 .selected {
   background-color: #0F3460;
+}
+
+.close {
+  position: absolute;
+  top: 120px;
+  right: 20px;
+  border: none;
+  background-color: transparent;
+}
+
+.expanded-nav-left {
+  position: absolute;
+  top: 50%;
+  left: 100px;
+}
+
+.expanded-nav-right {
+  position: absolute;
+  top: 50%;
+  right: 100px;
 }
 
 /********************************************/
