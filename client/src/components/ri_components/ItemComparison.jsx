@@ -8,7 +8,6 @@ const itemComparison = ({ showModal, detailItem, relatedItem, toggleModal }) => 
     const array2 = item2.features?.map((item) => item.feature);
 
     const featureArray = _.uniq(array1.concat(array2));
-    console.log(featureArray);
     return featureArray;
   };
   const findValueDetail = (target) => {
@@ -38,9 +37,9 @@ const itemComparison = ({ showModal, detailItem, relatedItem, toggleModal }) => 
         <Table>
           <TableHead>
             <tr>
-              <th>{detailItem.name}</th>
-              <th>Comparison</th>
-              <th>{relatedItem.name}</th>
+              <Head>{detailItem.name}</Head>
+              <Head>Comparison</Head>
+              <Head>{relatedItem.name}</Head>
             </tr>
           </TableHead>
           <TableBody>
@@ -64,17 +63,28 @@ const Modal = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
-  background: #D4F1F4;
+  transform: translate(-50%, -50%);
+  background: #E4EBE0;;
+  border-radius: 10px;
+  padding: 5px solid;
   z-index: 1;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
 `;
 
 const Table = styled.table`
   border-collapse: collapse;
+  min-width: 400px;
 `;
 
 const TableHead = styled.thead`
+  text-align: left;
 `
 
 const TableBody = styled.tbody`
-  padding: 10px 0;
+`
+
+const Head = styled.th`
+`
+
+const Data = styled.td`
 `

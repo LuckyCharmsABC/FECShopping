@@ -36,8 +36,8 @@ const RelatedItem = ({ currentID, setCurrentItem, detailItem }) => {
   const logComparison = (e) => {
     e.stopPropagation();
     toggleModal();
-    console.log('PRODUCT DETAIL ITEM', detailItem);
-    console.log('ITEM TO COMPARE', listItem);
+    // console.log('PRODUCT DETAIL ITEM', detailItem);
+    // console.log('ITEM TO COMPARE', listItem);
   }
 
   return (
