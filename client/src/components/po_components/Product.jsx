@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Info from './Info.jsx';
 import Gallery from './Gallery.jsx';
+import ExpandedGallery from './ExpandedGallery.jsx';
 import AdditionalInfo from './AdditionalInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import Cart from './Cart.jsx';
@@ -14,6 +15,7 @@ const Product = ({ currentItem, scrollToReviews, averageRating, reviewCount }) =
   const [selectedStyle, setSelectedStyle] = useState({});
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [maxQuant, setMaxQuant] = useState(-1);
+  const [expandedView, setExpandedView] = useState(false);
   const product = currentItem;
   const changeSelectedImgInx = (value) => {
     setSelectedImageIndex(value);
@@ -52,31 +54,56 @@ const Product = ({ currentItem, scrollToReviews, averageRating, reviewCount }) =
   if (isLoading) {
     return (<div>Loading</div>);
   }
-  return (
-    <div id="AllPO">
-      <div id="PO">
-        <Gallery
+
+  const changeView = (value) => {
+    setExpandedView(value);
+  }
+
+  const renderPO = (expanded) => {
+    if (expanded) {
+      return (
+      <div id="AllPO">
+        <ExpandedGallery
           selectedStyle={selectedStyle}
           selectedImageIndex={selectedImageIndex}
           changeSelectedImgInx={setSelectedImageIndex}
         />
-        <div id="sideInfo">
-          <Info
-            product={product}
-            selectedStyle={selectedStyle}
-            scrollToReviews={scrollToReviews}
-            averageRating={averageRating}
-            reviewCount={reviewCount}
-          />
-          <StyleSelector
-            productStyles={productStyles}
-            selectStyle={selectStyle}
-            selectedStyle={selectedStyle}
-          />
-          <Cart selectedStyle={selectedStyle} maxQuant={maxQuant} changeMaxQuant={changeMaxQuant} />
-        </div>
       </div>
-      <AdditionalInfo product={product} />
+      );
+    }
+    return (
+      <div id="AllPO">
+        <div id="PO">
+          <Gallery
+            selectedStyle={selectedStyle}
+            selectedImageIndex={selectedImageIndex}
+            changeSelectedImgInx={setSelectedImageIndex}
+            changeView={changeView}
+          />
+          <div id="sideInfo">
+            <Info
+              product={product}
+              selectedStyle={selectedStyle}
+              scrollToReviews={scrollToReviews}
+              averageRating={averageRating}
+              reviewCount={reviewCount}
+            />
+            <StyleSelector
+              productStyles={productStyles}
+              selectStyle={selectStyle}
+              selectedStyle={selectedStyle}
+            />
+            <Cart selectedStyle={selectedStyle} maxQuant={maxQuant} changeMaxQuant={changeMaxQuant} />
+          </div>
+        </div>
+        <AdditionalInfo product={product} />
+      </div>
+    );
+  };
+
+  return (
+    <div>
+      { renderPO(expandedView) }
     </div>
   );
 };
