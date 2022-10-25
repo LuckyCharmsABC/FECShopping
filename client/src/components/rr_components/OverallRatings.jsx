@@ -1,7 +1,12 @@
 import React from 'react';
 import _ from 'underscore';
 
-const OverallRatings = ({ data, averageRating, averageStarRating }) => {
+const OverallRatings = ({
+  data,
+  averageRating,
+  averageStarRating,
+  qualities,
+}) => {
   const totalCount = parseInt(data.recommended.true, 10) + parseInt(data.recommended.false, 10);
   const recommendPercent = Math.round((data.recommended.true / totalCount) * 100);
   const ratingPercents = {
@@ -13,14 +18,16 @@ const OverallRatings = ({ data, averageRating, averageStarRating }) => {
   };
 
   return (
-    <div>
-      <h1>{averageRating}</h1>
-      {averageStarRating}
-      <h3>
+    <div className="overall-ratings">
+      <div className="average-rating-header">
+        <h1 className="average-rating-num">{averageRating}</h1>
+        {averageStarRating}
+      </div>
+      <h3 className="recommend-percentage">
         {recommendPercent}
         % of users recommend this product
       </h3>
-      <ul>
+      <ul className="rating-list">
         {_.map(ratingPercents, (rating, i) => (
           <div key={i}>
             {`${5 - i + 1} `}
@@ -28,14 +35,20 @@ const OverallRatings = ({ data, averageRating, averageStarRating }) => {
             <div className="rating-percent">
               <span className="percent-bar" id={`${5 - i} stars`} style={{ width: `${rating}%` }} />
             </div>
-            {` ${rating}%`}
           </div>
         ))}
       </ul>
-      <ul>
+      <ul className="char-list">
         {_.map(data.characteristics, (char, i) => (
-          <div key={char.id}>
-            <h5>{`${i}: ${Math.round((char.value / 5) * 100)}`}</h5>
+          <div className="characteristics-scale" key={char.id}>
+            <span className="char-name">{i}</span>
+            <span className="fa fa-caret-down caret-down" style={{ left: `${Math.round((char.value / 5) * 100)}%` }} />
+            <span className="char-bar" />
+            <div className="attributes">
+              <span className="mid-option">{qualities[i][2]}</span>
+              <span className="left-option">{qualities[i][0]}</span>
+              <span className="right-option">{qualities[i][4]}</span>
+            </div>
           </div>
         ))}
       </ul>
