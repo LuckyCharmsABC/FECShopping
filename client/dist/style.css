@@ -70,6 +70,29 @@ button {
   margin: 10px;
 }
 
+.general-review {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.starRating {
+  display: flex;
+  flex-direction: row;
+  gap:10px;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.readReviews {
+  font-size: 18px;
+  color: #394553;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
 #price-area {
   display: flex;
   flex-direction: row;
@@ -84,6 +107,7 @@ button {
   margin-top: 15px;
   margin-bottom: 15px;
 }
+
 .share-buttons {
   height:30px;
   display: flex;
@@ -93,6 +117,14 @@ button {
   margin-top: 40px;
   margin-bottom: 0px;
   margin-left: 5px;
+}
+
+.divider {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid rgb(83, 79, 79);
 }
 
 .styleName {

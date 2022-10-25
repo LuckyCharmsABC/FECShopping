@@ -92,6 +92,7 @@ const Product = ({
               reviewCount={reviewCount}
               averageStarRating={averageStarRating}
             />
+            <span className="divider" />
             <StyleSelector
               productStyles={productStyles}
               selectStyle={selectStyle}

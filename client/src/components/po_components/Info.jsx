@@ -6,20 +6,33 @@ const Info = ({
   const saleStyle = { color: '#CC3636' };
   const saleOriginal = { textDecoration: 'line-through' };
   const originalPrice = `$${selectedStyle.original_price}`;
+  const renderReview = (reviewNo) => {
+    if (reviewNo === 0) {
+      return <div />;
+    }
+    return (
+      <div className="general-review">
+        <div className="starRating">
+          {averageStarRating}
+          {averageRating}
+          {` (${reviewCount}) `}
+        </div>
+        <div
+          className="readReviews"
+          role="button"
+          onClick={scrollToReviews}
+          onKeyPress={() => {}}
+          tabIndex={0}
+        >
+          Read all {reviewCount} reviews
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div id="productInfo">
-      <div
-        role="button"
-        onClick={scrollToReviews}
-        onKeyPress={() => {}}
-        tabIndex={0}
-      >
-        {averageStarRating}
-        {averageRating}
-        Read all
-        {reviewCount}
-        reviews
-      </div>
+      {renderReview(reviewCount)}
       <div>CATAGORY</div>
       <div className="product-name">{product.name}</div>
       <div id="price-area">
