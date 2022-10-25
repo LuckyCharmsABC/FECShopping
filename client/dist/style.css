@@ -72,13 +72,22 @@ button {
 #price-area {
   display: flex;
   flex-direction: row;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .product-name {
-  font-size: 30px;
+  font-size: 35px;
   color: #0F3460;
-  margin: 10px;
-
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.styleName {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #0F3460;
 }
 
 .styleList {
