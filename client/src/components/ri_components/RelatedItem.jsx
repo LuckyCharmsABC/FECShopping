@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import _ from 'underscore';
 import ItemComparison from './ItemComparison.jsx';
 
-const RelatedItem = ({ currentID, setCurrentItem, detailItem }) => {
+const RelatedItem = ({ currentID, setCurrentItem, detailItem, getStars }) => {
   const [listItem, setListItem] = useState({});
   const [itemStyle, setItemStyle] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [avgRating, setAvgRating] = useState(0);
 
   useEffect(() => {
     axios.get(`./product?id=${currentID}`)
@@ -19,6 +21,17 @@ const RelatedItem = ({ currentID, setCurrentItem, detailItem }) => {
       .then((res) => {
         // console.log('GET STYLES', res.data);
         setItemStyle(res.data.results);
+      })
+      .catch((err) => console.log(err));
+    axios.get('/reviewdata', { params: { product_id: currentID } })
+      .then((data) => {
+        const count = parseInt(data.data.recommended.false, 10) + parseInt(data.data.recommended.true, 10);
+        let allRatings = 0;
+        _.each(data.data.ratings, (rating, i) => {
+          allRatings += rating * i;
+        });
+        console.log(Math.round((allRatings / count) * 10) / 10)
+        setAvgRating(Math.round((allRatings / count) * 10) / 10);
       })
       .catch((err) => console.log(err));
   }, [detailItem]);
@@ -56,6 +69,7 @@ const RelatedItem = ({ currentID, setCurrentItem, detailItem }) => {
         <CardCategory>{listItem.category}</CardCategory>
         <CardName>{`${listItem.name} - ${itemStyle[0]?.name}`}</CardName>
         <Price>{itemStyle[0]?.original_price}</Price>
+        {getStars(avgRating)}
       </Card>
     </CardContainer>
   );
