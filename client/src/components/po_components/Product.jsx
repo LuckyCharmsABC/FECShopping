@@ -8,7 +8,9 @@ import StyleSelector from './StyleSelector.jsx';
 import Cart from './Cart.jsx';
 // import exampleData from './exampleStyles.js';
 
-const Product = ({ currentItem, scrollToReviews, averageRating, reviewCount }) => {
+const Product = ({
+  currentItem, scrollToReviews, averageRating, reviewCount, averageStarRating,
+}) => {
 //  Example data to use for now
   const [isLoading, setIsLoading] = useState(true);
   const [productStyles, setProductStyles] = useState({});
@@ -88,7 +90,9 @@ const Product = ({ currentItem, scrollToReviews, averageRating, reviewCount }) =
               scrollToReviews={scrollToReviews}
               averageRating={averageRating}
               reviewCount={reviewCount}
+              averageStarRating={averageStarRating}
             />
+            <span className="divider" />
             <StyleSelector
               productStyles={productStyles}
               selectStyle={selectStyle}
