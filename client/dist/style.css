@@ -148,6 +148,19 @@ body, button {
   object-fit: contain;
 }
 
+.disabled-nav-button {
+  content: none;
+  color: transparent;
+  background-color: transparent;
+}
+
+.nav-button {
+  padding: 5px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+
 /* .snapper {
   position: absolute;
   top: 0;
@@ -248,16 +261,7 @@ body, button {
 /********************************************/
 
 
-.nav-button {
-  padding: 5px;
-  background-color: white;
-}
 
-.disabled-nav-button {
-  content: none;
-  color: transparent;
-  background-color: transparent;
-}
 .disabled {
   pointer-events: none;
   background-color: transparent;

@@ -4,7 +4,7 @@ const Gallery = ({
   selectedStyle, selectedImageIndex, changeSelectedImgInx, changeView,
 }) => {
   const selectedCss = { border: 'solid black' };
-
+  const length = selectedStyle.photos.length;
   return (
     <div id="imageGallery">
       <div id="gallery">
@@ -29,8 +29,36 @@ const Gallery = ({
           );
         })}
       </div>
+      <div
+        className="nav-button"
+        role="button"
+        tabIndex={0}
+        onKeyPress={() => {}}
+        width={selectedImageIndex === 0 ? '0' : '20px'}
+        onClick={() => {
+          if (selectedImageIndex !== 0) {
+            changeSelectedImgInx(selectedImageIndex - 1);
+          }
+        }}
+      >
+        <i className={selectedImageIndex === 0 ? 'fa-solid fa-chevron-left fa-xl disabled-nav-button' : 'fa-solid fa-chevron-left fa-xl'} />
+      </div>
       <div>
-        <img className="displayed-image" src={selectedStyle.photos[selectedImageIndex].url}/>
+        <img className="displayed-image" src={selectedStyle.photos[selectedImageIndex].url} alt="x" />
+      </div>
+      <div
+        className="nav-button"
+        role="button"
+        tabIndex={0}
+        onKeyPress={() => {}}
+        width={selectedImageIndex === length - 1 ? '0' : '20px'}
+        onClick={() => {
+          if (selectedImageIndex !== length - 1) {
+            changeSelectedImgInx(selectedImageIndex + 1);
+          }
+        }}
+      >
+        <i className={selectedImageIndex === length - 1 ? 'fa-solid fa-chevron-right fa-xl disabled-nav-button' : 'fa-solid fa-chevron-right fa-xl'} />
       </div>
     </div>
   );
