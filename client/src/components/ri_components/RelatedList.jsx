@@ -18,11 +18,11 @@ const RelatedList = ({ currentItem, setCurrentItem }) => {
 
   const leftScroll = () => {
     const left = document.querySelector('.scroll-related-items');
-    left.scrollBy(-500, 0);
+    left.scrollBy(-200, 0);
   };
   const rightScroll = () => {
     const right = document.querySelector('.scroll-related-items');
-    right.scrollBy(500, 0);
+    right.scrollBy(200, 0);
   };
 
   return (
@@ -30,17 +30,19 @@ const RelatedList = ({ currentItem, setCurrentItem }) => {
       <h3>Related Items</h3>
       <div>
         <div className="related-scroll">
-          <div className="scroll-related-items snaps-inline">
+          <div className="tempwrapper">
             <button className="left carousel-button" type="button" onClick={() => { leftScroll(); }}>&#8678;</button>
             <button className="right carousel-button" type="button" onClick={() => { rightScroll(); }}>&#8680;</button>
-            {relatedItemsIDs.map((currentID, i) => (
-              <RelatedItem
-                currentID={currentID}
-                key={i}
-                setCurrentItem={setCurrentItem}
-                detailItem={currentItem}
-              />
-            ))}
+            <div className="scroll-related-items snaps-inline">
+              {relatedItemsIDs.map((currentID, i) => (
+                <RelatedItem
+                  currentID={currentID}
+                  key={i}
+                  setCurrentItem={setCurrentItem}
+                  detailItem={currentItem}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

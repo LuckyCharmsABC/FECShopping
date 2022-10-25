@@ -313,9 +313,10 @@ body {
   display: grid;
   gap: 1em;
   grid-auto-flow: column;
-  grid-auto-columns: 23.5%;
+  grid-auto-columns: 24%;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
+  scroll-behavior: smooth;
   max-width: 1100px;
 }
 
@@ -324,9 +325,11 @@ body {
   position: relative;
   gap: 1em;
   grid-auto-flow: column;
-  grid-auto-columns: 23.5%;
+  grid-auto-columns: 24%;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
+  scroll-behavior: smooth;
+  max-width: 1068px;
 }
 
 .add-outfit {
@@ -336,4 +339,9 @@ body {
   border: none;
   height: 213.38;
   width: 360;
+}
+
+.tempwrapper {
+  position: relative;
+  max-width: 1068px;
 }

@@ -47,16 +47,14 @@ export default OutfitItem;
 
 const CardContainer = styled.div`
   position: relative;
-  max-width: 215px;
+  max-width: 255px;
 `
 
 const Card = styled.div`
   display: grid;
   contain: content;
-  padding: 10px;
   background: #ffffff;
   cursor: pointer;
-  max-width: 255px;
 `;
 
 const ItemImg = styled.img`
