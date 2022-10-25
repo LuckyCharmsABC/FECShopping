@@ -15,6 +15,16 @@ button {
   background: transparent; /* make scrollbar transparent */
 }
 
+@keyframes fadeOut {
+  0%, 100% {opacity: 0;}
+  50% {opacity: 1;}
+}
+
+/* @keyframes fadeOut {
+  from {opacity: 1;}
+  to {opacity: 0;}
+} */
+
 .page-top {
   height: 50px;
   line-height: 50px;
@@ -54,7 +64,7 @@ button {
 #sideInfo {
   display: flex;
   flex-direction: column;
-  width: 270px;
+  width: 350px;
   min-width: 250px;
   margin: 10px;
 }
@@ -64,7 +74,15 @@ button {
   flex-direction: row;
 }
 
+.product-name {
+  font-size: 30px;
+  color: #0F3460;
+  margin: 10px;
+
+}
+
 .styleList {
+  width: 330px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -73,8 +91,8 @@ button {
 }
 
 .styleThumbnail {
-  width:50px;
-  height:50px;
+  width:65px;
+  height:65px;
   padding: 3px;
   object-fit: cover;
   cursor: pointer;
@@ -94,7 +112,7 @@ button {
 
 #gallery {
   margin: 10px;
-  margin-right: 60px;
+  margin-right: 20px;
   height: 650px;
   width:105px;
   min-width: 105px;
@@ -151,6 +169,14 @@ button {
   aspect-ratio: 1;
   object-fit: contain;
   cursor: zoom-in;
+}
+
+.imageFadeOut {
+  animation: fadeOut 0.5s;
+}
+
+.imageFadeIn {
+  animation: fadeIn 0.5s
 }
 
 
