@@ -76,6 +76,7 @@ button {
   height:50px;
   padding: 3px;
   object-fit: cover;
+  cursor: pointer;
 }
 
 /********************Default view************************/
@@ -107,6 +108,7 @@ button {
 
 .thumbnail {
   padding: 3px;
+  cursor:pointer;
 }
 
 
@@ -150,6 +152,7 @@ button {
   max-height: 850px;
   aspect-ratio: 1;
   object-fit: contain;
+  cursor: zoom-in;
 }
 
 
@@ -206,6 +209,7 @@ button {
   height: 85vh;
   width: auto;
   object-fit: contain;
+  cursor: crosshair;
 }
 
 /* .expanded-slider div {
@@ -257,6 +261,7 @@ button {
 } */
 
 .enlarged {
+  cursor: zoom-out;
   transform: scale(2.5);
   transition: transform 0.25s ease;
 }
