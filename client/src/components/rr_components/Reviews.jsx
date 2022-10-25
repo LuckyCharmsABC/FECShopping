@@ -12,6 +12,7 @@ const Reviews = ({
   allReviews,
   setReviews,
   setAllReviews,
+  averageStarRating,
 }) => {
   const showMore = (limit) => {
     setReviews(allReviews.results.slice(0, limit + 2));
@@ -33,7 +34,11 @@ const Reviews = ({
   return _.size(data) && _.size(allReviews) && _.size(reviews) ? (
     <div>
       <p>Ratings and Reviews</p>
-      <OverallRatings data={data} averageRating={averageRating} />
+      <OverallRatings
+        data={data}
+        averageRating={averageRating}
+        averageStarRating={averageStarRating}
+      />
       <ReviewList
         reviews={reviews}
         data={data}
