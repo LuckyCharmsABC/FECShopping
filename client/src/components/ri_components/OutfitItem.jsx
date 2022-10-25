@@ -41,9 +41,15 @@ const OutfitItem = ({ detailItem, setCurrentItem, currentID, setOutfitItemIDs, g
     setOutfitItemIDs(Object.keys(localStorage))
   }
 
+  const updateDetail = () => {
+    event.preventDefault();
+    console.log(outfitItem);
+    setCurrentItem(outfitItem);
+  };
+
   return (
     <CardContainer>
-      <Card>
+      <Card onClick={updateDetail}>
         <ImageContainer>
           <ItemImg src={itemStyle[0]?.photos[0].thumbnail_url === null ? "https://www.fillmurray.com/140/200" : itemStyle[0]?.photos[0].thumbnail_url} alt="Placeholder" />
           <ActionButton type="button" onClick={removeItem}>&#x2612;</ActionButton>
