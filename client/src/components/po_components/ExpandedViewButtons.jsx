@@ -1,33 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Gallery = ({
-  selectedStyle, selectedImageIndex, changeSelectedImgInx, changeView,
-}) => {
-  const selectedCss = { border: 'solid black' };
+const ExpandedViewButtons = ({ selectedStyle, selectedImageIndex, changeSelectedImgInx, changeView, zoomedIn }) => {
   const { length } = selectedStyle.photos;
+  const selectedCss = { blackgroundColor: '#0F3460' };
+  if (zoomedIn) {
+    return <div></div>;
+  }
   return (
-    <div id="imageGallery">
-      <div id="gallery">
+    <div>
+      <div className="navigator">
         {selectedStyle.photos.map((photo, index) => (
+          // eslint-disable-next-line jsx-a11y/control-has-associated-label
           <div
-            className="thumbnail"
+            className={index === selectedImageIndex ? 'dot-thumbnail selected' : 'dot-thumbnail'}
             key={photo.url}
             role="button"
             onClick={() => { changeSelectedImgInx(index); }}
             onKeyPress={() => {}}
             tabIndex={0}
-            style={index === selectedImageIndex ? selectedCss : { border: 'solid white' }}
-          >
-            <img width="85" height="auto" alt="x" src={photo.thumbnail_url} />
-          </div>
+            style={index === selectedImageIndex ? selectedCss : { blackgroundColor: 'blue' }}
+          />
         ))}
       </div>
-      <div
-        className="nav-button"
-        role="button"
-        tabIndex={0}
-        onKeyPress={() => {}}
-        width={selectedImageIndex === 0 ? '0' : '20px'}
+      <button className="close" type="submit" onClick={() => { changeView(false); }}>
+        <i className="fa-solid fa-xmark fa-2xl" />
+      </button>
+      <button
+        className="nav-button expanded-nav-left"
+        type="submit"
         onClick={() => {
           if (selectedImageIndex !== 0) {
             changeSelectedImgInx(selectedImageIndex - 1);
@@ -35,12 +35,9 @@ const Gallery = ({
         }}
       >
         <i className={selectedImageIndex === 0 ? 'fa-solid fa-chevron-left fa-xl disabled-nav-button' : 'fa-solid fa-chevron-left fa-xl'} />
-      </div>
-      <div onClick={() => {changeView(true)}}>
-        <img className="displayed-image" src={selectedStyle.photos[selectedImageIndex].url} alt="x" />
-      </div>
+      </button>
       <button
-        className="nav-button"
+        className="nav-button expanded-nav-right"
         type="submit"
         onClick={() => {
           if (selectedImageIndex !== length - 1) {
@@ -54,4 +51,4 @@ const Gallery = ({
   );
 };
 
-export default Gallery;
+export default ExpandedViewButtons;
