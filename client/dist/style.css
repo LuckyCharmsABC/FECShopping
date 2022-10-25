@@ -4,6 +4,7 @@ body, button {
   Oxygen, Ubuntu, Cantarell, 'Open Sans',
   'Helvetica Neue', sans-serif;
   margin: 0;
+  --fa-primary-color: #0F3460;
 }
 
 button {
@@ -80,9 +81,20 @@ button {
 .product-name {
   font-size: 35px;
   color: #0F3460;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
+.share-buttons {
+  height:30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 15px;
+  margin-top: 40px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+}
+
 .styleName {
   margin-top: 10px;
   margin-bottom: 10px;

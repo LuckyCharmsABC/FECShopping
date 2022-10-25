@@ -31,11 +31,6 @@ const Info = ({
           { selectedStyle.sale_price ? selectedStyle.sale_price : selectedStyle.original_price }
         </div>
       </div>
-      <div>
-        <i className="fa-brands fa-facebook" />
-        <i className="fa-brands fa-twitter" />
-        <i className="fa-brands fa-pinterest" />
-      </div>
     </div>
   );
 };
