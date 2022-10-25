@@ -121,7 +121,6 @@ button {
   margin: auto;
   aspect-ratio: 1;
 }
-
 .slider ul {
   padding: 0;
   list-style: none;
@@ -134,14 +133,12 @@ button {
   cursor: zoom-in;
   height: 100%;
 }
-
 .slider li {
   flex: 0 0 100%;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   height: 100%;
 }
-
 .slide{
   position: relative;
 }
@@ -191,16 +188,13 @@ button {
   height: 85vh;
   overflow:hidden;
 }
-
 .zoomImage {
   width: 100%;
   height: 100%;
 }
-
 .zoomImage img {
   transition: all 0.5s ease;
 }
-
 .zoomImage:hover img {
   transform: scale(2.5);
 } */
@@ -220,7 +214,6 @@ button {
   margin: auto;
   aspect-ratio: 1;
 }
-
 .expanded-slider ul {
   padding: 0;
   list-style: none;
@@ -233,25 +226,21 @@ button {
   cursor: crosshair;
   height: 100%;
 }
-
 .expanded-slider li {
   flex: 0 0 100%;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   height: 100%;
 }
-
 .expanded-slide{
   position: relative;
 }
-
 .expanded-displayed {
   max-width: 100%;
   height: 100%;
   aspect-ratio: 1;
   object-fit: contain;
 }
-
 .wrapper {
   overflow: auto;
 } */
@@ -276,7 +265,6 @@ button {
   justify-content: space-between;
   align-items: center;
 }
-
 .navigator {
   display: flex;
   flex-direction: row;
@@ -342,7 +330,6 @@ button {
   max-height: 800px;
   object-fit: contain
 }
-
 #displayBkg {
   margin:10px;
 } */
@@ -480,43 +467,30 @@ button {
   scroll-padding-inline: 1rem;
 }
 
-.related-item .outfit-item {
-  display: grid;
-  padding: 1em;
-  background: rgb(240, 249, 255);
-}
-
-.related-item > img {
-  inline-size: 100%;
-  aspect-ratio: 140 / 200;
-  object-fit: cover;
-}
-
 .carousel-button {
   background: none;
   border: none;
   font-size: 3rem;
-  color: rgba(255, 255, 255, .5);
+  color: rgba(95, 92, 92, 0.5);
   cursor: pointer;
   border-radius: .25;
   z-index: 1;
 }
 
-.carousel-button:hover,
-.carousel-button:focus {
+.carousel-button:hover {
   color: white;
 }
 
 .left {
   position: absolute;
   left: 1px;
-  top: 40%;
+  top: 50%;
 }
 
 .right{
   position: absolute;
   right: 1px;
-  top: 40%;
+  top: 50%;
 }
 
 .item-image {
@@ -525,12 +499,13 @@ button {
 
 .scroll-outfit-items {
   display: grid;
+  position: relative;
   gap: 1em;
   grid-auto-flow: column;
-  grid-auto-columns: 23.5%;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
-  max-width: 1100px;
+  scroll-behavior: smooth;
+  max-width: 1068px;
 }
 
 .scroll-related-items {
@@ -538,16 +513,29 @@ button {
   position: relative;
   gap: 1em;
   grid-auto-flow: column;
-  grid-auto-columns: 23.5%;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
+  scroll-behavior: smooth;
+  max-width: 1068px;
 }
 
 .add-outfit {
   background-color: #0F3460;
+  padding: 0;
   color: white;
   font-size: 4em;
   border: none;
-  height: 213.38;
-  width: 360;
+  width: 25vw;
+  max-width: 255px;
+  border-radius: 10px;
+}
+
+.add-outfit:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  cursor: pointer;
+}
+
+.tempwrapper {
+  position: relative;
+  max-width: 1068px;
 }
