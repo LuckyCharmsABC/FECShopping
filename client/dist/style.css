@@ -295,8 +295,21 @@ body, button {
   position: relative;
   top: -17px;
   font-size: 12px;
+}
+
+.left-option,
+.right-option {
+  position: relative;
+  top: -16px;
+}
+
+.mid-option {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+}
+
+.right-option {
+  float: right;
 }
 
 .char-name {

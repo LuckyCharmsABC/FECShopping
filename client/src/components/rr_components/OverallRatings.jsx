@@ -44,8 +44,8 @@ const OverallRatings = ({
             <span className="fa fa-caret-down caret-down" style={{ left: `${Math.round((char.value / 5) * 100)}%` }} />
             <span className="char-bar" />
             <div className="attributes">
-              <span className="left-option">{qualities[i][0]}</span>
               <span className="mid-option">{qualities[i][2]}</span>
+              <span className="left-option">{qualities[i][0]}</span>
               <span className="right-option">{qualities[i][4]}</span>
             </div>
           </div>
