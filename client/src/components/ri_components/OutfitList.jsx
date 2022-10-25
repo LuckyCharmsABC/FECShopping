@@ -31,10 +31,10 @@ const outfitList = ({ currentItem, setCurrentItem }) => {
 
   return (
     <div>
-      <h3>Outfit</h3>
       <div>
         <div className="outfit-scroll">
           <div className="tempwrapper">
+            <h3>Outfit</h3>
             <button className="left carousel-button" type="button" onClick={() => { leftScroll(); }}>&#8678;</button>
             <button className="right carousel-button" type="button" onClick={() => { rightScroll(); }}>&#8680;</button>
             <div className="scroll-outfit-items snaps-inline">

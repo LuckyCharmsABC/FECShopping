@@ -266,18 +266,6 @@ body {
   scroll-padding-inline: 1rem;
 }
 
-.related-item .outfit-item {
-  display: grid;
-  padding: 1em;
-  background: rgb(240, 249, 255);
-}
-
-.related-item > img {
-  inline-size: 100%;
-  aspect-ratio: 140 / 200;
-  object-fit: cover;
-}
-
 .carousel-button {
   background: none;
   border: none;
@@ -288,8 +276,7 @@ body {
   z-index: 1;
 }
 
-.carousel-button:hover,
-.carousel-button:focus {
+.carousel-button:hover {
   color: white;
 }
 
@@ -311,13 +298,13 @@ body {
 
 .scroll-outfit-items {
   display: grid;
+  position: relative;
   gap: 1em;
   grid-auto-flow: column;
-  grid-auto-columns: 24%;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
   scroll-behavior: smooth;
-  max-width: 1100px;
+  max-width: 1068px;
 }
 
 .scroll-related-items {
@@ -325,7 +312,6 @@ body {
   position: relative;
   gap: 1em;
   grid-auto-flow: column;
-  grid-auto-columns: 24%;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
   scroll-behavior: smooth;
@@ -334,14 +320,27 @@ body {
 
 .add-outfit {
   background-color: #0F3460;
+  padding: 0;
   color: white;
   font-size: 4em;
   border: none;
-  height: 213.38;
-  width: 360;
+  width: 25vw;
+  max-width: 255px;
+  border-radius: 10px;
+}
+
+.add-outfit:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  cursor: pointer;
 }
 
 .tempwrapper {
   position: relative;
   max-width: 1068px;
+}
+
+.ro-titles {
+  max-width: 1068px;
+  text-align: left;
+  justify-content: center;
 }

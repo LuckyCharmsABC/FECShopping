@@ -27,10 +27,10 @@ const RelatedList = ({ currentItem, setCurrentItem }) => {
 
   return (
     <div>
-      <h3>Related Items</h3>
       <div>
         <div className="related-scroll">
           <div className="tempwrapper">
+            <h3>Related Items</h3>
             <button className="left carousel-button" type="button" onClick={() => { leftScroll(); }}>&#8678;</button>
             <button className="right carousel-button" type="button" onClick={() => { rightScroll(); }}>&#8680;</button>
             <div className="scroll-related-items snaps-inline">

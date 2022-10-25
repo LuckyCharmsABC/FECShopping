@@ -47,6 +47,7 @@ export default OutfitItem;
 
 const CardContainer = styled.div`
   position: relative;
+  width: 25vw;
   max-width: 255px;
 `
 
@@ -55,6 +56,10 @@ const Card = styled.div`
   contain: content;
   background: #ffffff;
   cursor: pointer;
+  border-radius: 10px;
+  &:hover {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  }
 `;
 
 const ItemImg = styled.img`
@@ -62,6 +67,7 @@ const ItemImg = styled.img`
   aspect-ratio: 140 / 200;
   object-fit: cover;
 `
+
 const CardCategory = styled.p`
   font-variant: small-caps;
   font-size: small;

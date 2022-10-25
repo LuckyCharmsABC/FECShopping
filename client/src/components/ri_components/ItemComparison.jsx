@@ -23,9 +23,9 @@ const itemComparison = ({ showModal, detailItem, relatedItem, toggleModal }) => 
   const findValueRelated = (target) => {
     for (let i = 0; i < relatedItem.features.length; i += 1) {
       if (relatedItem.features[i].feature === target) {
-        // if (relatedItem.features[i].value === true) {
-        //   return &#10004;
-        // }
+        if (relatedItem.features[i].value === true) {
+          return '&#10004';
+        }
         return relatedItem.features[i].value;
       }
     }
@@ -64,7 +64,7 @@ const Modal = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
-  background: #FFFFFF;
+  background: #D4F1F4;
   z-index: 1;
 `;
 
@@ -76,4 +76,5 @@ const TableHead = styled.thead`
 `
 
 const TableBody = styled.tbody`
+  padding: 10px 0;
 `

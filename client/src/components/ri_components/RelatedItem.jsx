@@ -65,6 +65,7 @@ export default RelatedItem;
 
 const CardContainer = styled.div`
   position: relative;
+  width: 25vw;
   max-width: 255px;
 `
 
@@ -73,6 +74,10 @@ const Card = styled.div`
   contain: content;
   background: #ffffff;
   cursor: pointer;
+  border-radius: 10px;
+  &:hover {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  }
 `;
 
 const ItemImg = styled.img`
