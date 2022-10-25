@@ -214,7 +214,7 @@ body, button {
 /********************************************/
 
 #review-list {
-  height: 600px;
+  max-height: 800px;
   overflow: auto
 }
 
@@ -357,6 +357,47 @@ body, button {
 .recommend-percentage,
 .average-rating-num {
   font-weight: normal;
+}
+
+.review-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.review-btns {
+  margin-top: 10px;
+}
+
+.mark-helpful {
+  padding-left: 0;
+}
+
+.recommend {
+  font-weight: normal;
+}
+
+.review-summary {
+  margin: 10px 0;
+}
+
+.review-body {
+  margin-top: 5px;
+}
+
+.review {
+  padding: 25px 0;
+  border-bottom: 1px solid #0F3460;
+}
+
+.review:first-of-type {
+  padding-top: 0;
+}
+
+.review:last-of-type {
+  padding-bottom: 0;
+  border: none;
 }
 
 /********************************************/

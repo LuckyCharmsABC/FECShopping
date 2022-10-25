@@ -5,7 +5,17 @@ import _ from 'underscore';
 
 const Review = ({ review }) => {
   const [helpfulness, setHelpfulness] = useState(review.helpfulness);
-  const recommended = review.recommend ? <h5>I recommend this product</h5> : <div />;
+  const recommended = review.recommend ? (
+    <h5 className="recommend">
+      <span className="fa fa-solid fa-check" />
+      {' I recommend this product'}
+    </h5>
+  ) : (
+    <h5 className="recommend">
+      <span className="fa fa-solid fa-xmark" />
+      {' I do not recommend this product'}
+    </h5>
+  );
   const date = parseISO(review.date);
 
   const markHelpful = () => {
@@ -31,26 +41,28 @@ const Review = ({ review }) => {
   );
 
   return (
-    <div>
-      <h4>{review.reviewer_name}</h4>
-      <h5>{format(date, 'PPP')}</h5>
+    <div className="review">
       {starRating}
-      <h3>{review.summary}</h3>
+      <h3 className="review-summary">{review.summary}</h3>
+      <p className="review-body">{review.body}</p>
       {recommended}
-      <p>{review.body}</p>
       <ul>
         {review.photos.map((photo) => (
           <img src={photo.url} key={photo.id} alt={photo.id} width="200px" />
         ))}
       </ul>
-      <button type="button" onClick={markHelpful}>
-        Helpful? (
-        { helpfulness }
-        )
-      </button>
-      <button type="button" onClick={report}>Report</button>
-      <div className="reported" id={`${review.review_id}-reported`}>
-        <small><i>Reported! You won&apos;t see this review again</i></small>
+      <small><i>{`Submitted by ${review.reviewer_name} on ${format(date, 'PPP')}`}</i></small>
+      <div className="review-btns">
+        <button type="button" className="review-btn mark-helpful" onClick={markHelpful}>
+          Helpful? (
+          { helpfulness }
+          )
+        </button>
+        {' | '}
+        <button type="button" className="review-btn" onClick={report}>Report</button>
+        <div className="reported" id={`${review.review_id}-reported`}>
+          <small><i>Reported! You won&apos;t see this review again</i></small>
+        </div>
       </div>
     </div>
   );
