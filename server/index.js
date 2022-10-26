@@ -31,7 +31,7 @@ app.get('/productstyles', controllers.getStyles);
 app.get('/cart', controllers.getCart);
 app.post('/cart', controllers.addToCart);
 
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 app.listen(port);
 console.log(`server listening at http://localhost:${port}`);
