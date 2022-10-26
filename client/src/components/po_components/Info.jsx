@@ -24,7 +24,7 @@ const Info = ({
           onKeyPress={() => {}}
           tabIndex={0}
         >
-          Read all {reviewCount} reviews
+          {`Read all ${reviewCount} reviews`}
         </div>
       </div>
     );
@@ -33,7 +33,7 @@ const Info = ({
   return (
     <div id="productInfo">
       {renderReview(reviewCount)}
-      <div>CATEGORY {product.category}</div>
+      <div>{`CATEGORY ${product.category}`}</div>
       <div role="heading" aria-level="1" name="productName" className="product-name">{product.name}</div>
       <div id="price-area">
         <div style={selectedStyle.sale_price ? saleOriginal : { color: 'black' }}>
