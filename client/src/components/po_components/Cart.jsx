@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SizeSelector from './SizeSelector.jsx';
+import axios from 'axios';
 
 const Cart = ({ selectedStyle, maxQuant, changeMaxQuant }) => {
   const [selectedCombo, setSelectedCombo] = useState({ sku_id: '', count: 0 });
@@ -27,6 +28,13 @@ const Cart = ({ selectedStyle, maxQuant, changeMaxQuant }) => {
   const addtoCart = (items) => {
     const itemsToAdd = items;
     console.log('item to add to bag is ', itemsToAdd);
+    axios.post('/cart', { params: itemsToAdd })
+      .then(() => {
+        console.log('items added');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
