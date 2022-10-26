@@ -91,7 +91,7 @@ const App = () => {
 
   const scrollToReviews = () => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
-  }
+  };
 
   if (isLoading) {
     return (<div>Loading</div>);
