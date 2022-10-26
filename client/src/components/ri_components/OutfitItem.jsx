@@ -29,7 +29,6 @@ const OutfitItem = ({ detailItem, setCurrentItem, currentID, setOutfitItemIDs, g
         _.each(data.data.ratings, (rating, i) => {
           allRatings += rating * i;
         });
-        console.log(Math.round((allRatings / count) * 10) / 10)
         setAvgRating(Math.round((allRatings / count) * 10) / 10);
       })
       .catch((err) => console.log(err));
