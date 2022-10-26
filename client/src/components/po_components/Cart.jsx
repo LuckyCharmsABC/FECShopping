@@ -28,7 +28,7 @@ const Cart = ({ selectedStyle, maxQuant, changeMaxQuant }) => {
   const addtoCart = (items) => {
     const itemsToAdd = items;
     console.log('item to add to bag is ', itemsToAdd);
-    axios.post('/cart', { params: itemsToAdd })
+    axios.post('/cart', itemsToAdd)
       .then(() => {
         console.log('items added');
       })

@@ -137,11 +137,20 @@ module.exports = {
 
   addToCart(req, res) {
     const requestURL = `${URL}/cart`;
-    console.log(req.body.sku_id);
-    axios.post(requestURL, req.body, options)
+    const { count } = req.body;
+    const skuObj = { sku_id: req.body.sku_id };
+    const promises = [];
+    console.log(`count is ${count}`);
+    for (let i = 1; i <= count; i += 1) {
+      console.log(`iteration ${i}`);
+      promises.push(
+        axios.post(requestURL, skuObj, options));
+    }
+    Promise.all(promises)
       .then(() => {
         res.status(201).json('item added to cart');
-      }).catch((err) => {
+      })
+      .catch((err) => {
         console.log(err);
         res.sendStatus(500);
       });
