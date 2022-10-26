@@ -47,7 +47,7 @@ const App = () => {
       starPerc = 'quarter-star';
     }
     return (
-      <div className="average-star-rating">
+      <div>
         {_.map(Array(starFloor), (elem, i) => (
           <span className="star fa fa-star full-star" key={i} />
         ))}

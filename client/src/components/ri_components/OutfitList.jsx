@@ -42,7 +42,7 @@ const outfitList = ({ currentItem, setCurrentItem, getStars }) => {
               {outfitItemsIDs.map((currentID) => (
                 <OutfitItem
                   detailItem={currentItem}
-                  etCurrentItem={setCurrentItem}
+                  setCurrentItem={setCurrentItem}
                   key={currentID}
                   currentID={currentID}
                   setOutfitItemIDs={setOutfitItemIDs}
