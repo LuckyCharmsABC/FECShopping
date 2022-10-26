@@ -17,7 +17,7 @@ const App = () => {
   const [averageRating, setAverageRating] = useState(0);
   const [allReviews, setAllReviews] = useState({});
   const [reviews, setReviews] = useState({});
-  const [averageStarRating, setAverageStarRating] = useState(<div />)
+  const [averageStarRating, setAverageStarRating] = useState(<div />);
   const ref = useRef(null);
 
   useEffect(() => {
@@ -32,9 +32,9 @@ const App = () => {
   const calculateStarRating = (rating) => {
     const starFloor = Math.floor(rating);
     const starDec = rating - starFloor;
-    const from25 = Math.abs(starDec - .25);
-    const from50 = Math.abs(starDec - .5);
-    const from75 = Math.abs(starDec - .75);
+    const from25 = Math.abs(starDec - 0.25);
+    const from50 = Math.abs(starDec - 0.5);
+    const from75 = Math.abs(starDec - 0.75);
     const from100 = 1 - starDec;
     let starPerc = 'empty-star';
     if (from100 < from75) {
@@ -52,19 +52,20 @@ const App = () => {
           <span className="star fa fa-star full-star" key={i} />
         ))}
 
-        {<span className={`star fa fa-star ${starPerc}`} />}
+        <span className={`star fa fa-star ${starPerc}`} />
 
         {_.map(Array(5 - (starFloor + 1)), (elem, i) => (
           <span className="star fa fa-star" key={starFloor + 1 + i} />
         ))}
       </div>
     );
-  }
+  };
 
   useEffect(() => {
     axios.get('/reviewdata', { params: { product_id: currentItem.id || 40344 } })
       .then((data) => {
-        const count = parseInt(data.data.recommended.false, 10) + parseInt(data.data.recommended.true, 10);
+        const count = parseInt(data.data.recommended.false, 10)
+        + parseInt(data.data.recommended.true, 10);
         let allRatings = 0;
         _.each(data.data.ratings, (rating, i) => {
           allRatings += rating * i;
@@ -89,7 +90,7 @@ const App = () => {
   }, [currentItem]);
 
   const scrollToReviews = () => {
-    ref.current?.scrollIntoView({behavior: 'smooth'});
+    ref.current?.scrollIntoView({ behavior: 'smooth' });
   }
 
   if (isLoading) {
@@ -102,11 +103,30 @@ const App = () => {
         <span className="title-text">Lucky & Charm</span>
       </div>
       <div id="merchandise-directory">New Arrivals</div>
-      <Product currentItem={currentItem} scrollToReviews={scrollToReviews} averageRating={averageRating} reviewCount={reviewCount} averageStarRating={averageStarRating}/>
-      <Related currentItem={currentItem} setCurrentItem={setCurrentItem} getStars={calculateStarRating}/>
+      <Product
+        currentItem={currentItem}
+        scrollToReviews={scrollToReviews}
+        averageRating={averageRating}
+        reviewCount={reviewCount}
+        averageStarRating={averageStarRating}
+      />
+      <Related
+        currentItem={currentItem}
+        setCurrentItem={setCurrentItem}
+        getStars={calculateStarRating}
+      />
       <div ref={ref}>
-        <Reviews currentItem={currentItem} data={metaData} count={reviewCount} averageRating={averageRating} allReviews={allReviews} reviews={reviews}
-        setAllReviews={setAllReviews} setReviews={setReviews} averageStarRating={averageStarRating} />
+        <Reviews
+          currentItem={currentItem}
+          data={metaData}
+          count={reviewCount}
+          averageRating={averageRating}
+          allReviews={allReviews}
+          reviews={reviews}
+          setAllReviews={setAllReviews}
+          setReviews={setReviews}
+          averageStarRating={averageStarRating}
+        />
       </div>
     </div>
   );
