@@ -670,18 +670,142 @@ button {
   color: #334250;
 }
 
+.review-img-list {
+  padding-left: 5px;
+}
+
+.review-img {
+  margin: 0 5px;
+  border-radius: 5px;
+}
+
 /********************************************/
 
 #new-review {
+  background-color: #fff;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  color: #334250;
   display: none;
-  position: fixed;
-  z-index: 1;
+  height: 75%;
   left: 25%;
+  overflow: auto;
+  padding: 5px;
+  position: fixed;
   top: 12.5%;
   width: 50%;
-  height: 75%;
-  overflow: auto;
-  background-color: white;
+  z-index: 1;
+}
+
+.exit-btn {
+  border: none;
+  background: none;
+  color: #8F9AA5;
+  display: sticky;
+  float: right;
+  cursor: pointer;
+}
+
+.exit-btn:hover {
+  color: #334250;
+}
+
+.review-section {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.review-section:first-of-type {
+  padding-top: 0;
+}
+
+.select-star-rating {
+  padding-left: 16px;
+}
+
+.star-btn {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.review-radio-select {
+  border: none;
+}
+
+.review-radio-select-bordered {
+  border: 2px solid #ddd;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.review-radio-select-bordered:last-of-type {
+  margin-bottom: 0;
+}
+
+.char-desc {
+  font-size: 12px;
+  margin: 5px;
+}
+
+.summary,
+.body {
+  display: block;
+}
+
+.photo-list {
+  display: flex;
+  justify-content: baseline;
+}
+
+.add-img-btn {
+  background: none;
+  border: 2px dashed #ddd;
+  border-radius: 10px;
+  font-size: 50px;
+  color: #ddd;
+  height: 150px;
+  margin-left: 5px;
+  padding: 0;
+  width: 150px;
+}
+
+.img-thumbnail {
+  height: 150px;
+  margin: 0 5px;
+  width: 150px;
+}
+
+.cropped-img {
+  border-radius: 10px;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.remove-img {
+  background: none;
+  border: none;
+  color: #ddd;
+  font-size: 14px;
+  left: 122px;
+  position: relative;
+  top: -155px;
+  z-index: 1;
+}
+
+.remove-img:hover {
+  color: #fff;
+}
+
+.privacy-warning,
+.text-input {
+  display: block;
+}
+
+.submit-review {
+  height: 25px;
 }
 
 /******************************************/

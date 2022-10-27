@@ -21,7 +21,7 @@ const OverallRatings = ({
     <div className="overall-ratings">
       <div className="average-rating-header">
         <h1 className="average-rating-num">{averageRating}</h1>
-        {averageStarRating}
+        <span className="average-star-rating">{averageStarRating}</span>
       </div>
       <h3 className="recommend-percentage">
         {recommendPercent}
