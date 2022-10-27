@@ -3,7 +3,7 @@ import axios from 'axios';
 import _ from 'underscore';
 import styled from 'styled-components';
 
-const OutfitItem = ({ detailItem, setCurrentItem, currentID, setOutfitItemIDs, getStars }) => {
+const OutfitItem = ({ detailItem, setCurrentItemID, currentID, setOutfitItemIDs, getStars }) => {
   const [outfitItem, setOutfitItem] = useState({});
   const [itemStyle, setItemStyle] = useState([]);
   const [avgRating, setAvgRating] = useState(0);
@@ -38,7 +38,7 @@ const OutfitItem = ({ detailItem, setCurrentItem, currentID, setOutfitItemIDs, g
 
   const updateDetail = () => {
     event.preventDefault();
-    setCurrentItem(outfitItem);
+    setCurrentItemID(outfitItem);
     window.scrollTo({top: 0, behavior: 'smooth'})
   };
 

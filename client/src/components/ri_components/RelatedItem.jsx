@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import _ from 'underscore';
 import ItemComparison from './ItemComparison.jsx';
 
-const RelatedItem = ({ currentID, setCurrentItem, detailItem, getStars }) => {
+const RelatedItem = ({ currentID, setCurrentItemID, detailItem, getStars }) => {
   const [listItem, setListItem] = useState({});
   const [itemStyle, setItemStyle] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -23,7 +23,7 @@ const RelatedItem = ({ currentID, setCurrentItem, detailItem, getStars }) => {
       .catch((err) => console.log(err));
     axios.get('/reviewdata', { params: { product_id: currentID } })
       .then((data) => {
-        const count = parseInt(data.data.recommended.false, 10) + parseInt(data.data.recommended.true, 10);
+        const count = (parseInt(data.data.recommended.false, 10) || 0) + (parseInt(data.data.recommended.true, 10) || 0);
         let allRatings = 0;
         _.each(data.data.ratings, (rating, i) => {
           allRatings += rating * i;
@@ -35,7 +35,7 @@ const RelatedItem = ({ currentID, setCurrentItem, detailItem, getStars }) => {
 
   const updateDetail = () => {
     event.preventDefault();
-    setCurrentItem(listItem);
+    setCurrentItemID(listItem);
     window.scrollTo({top: 0, behavior: 'smooth'})
   };
 

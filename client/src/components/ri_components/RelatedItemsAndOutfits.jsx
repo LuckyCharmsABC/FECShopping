@@ -3,13 +3,13 @@ import axios from 'axios';
 import RelatedList from './RelatedList.jsx';
 import Outfits from './OutfitList.jsx';
 
-const RelatedItemsAndOutfits = ({ currentItem, setCurrentItem, getStars }) => (
+const RelatedItemsAndOutfits = ({ currentItem, setCurrentItemID, getStars }) => (
   <div>
     <div>
-      <RelatedList currentItem={currentItem} setCurrentItem={setCurrentItem} getStars={getStars} />
+      <RelatedList currentItem={currentItem} setCurrentItemID={setCurrentItemID} getStars={getStars} />
     </div>
     <div>
-      <Outfits currentItem={currentItem} setCurrentItem={setCurrentItem} getStars={getStars} />
+      <Outfits currentItem={currentItem} setCurrentItemID={setCurrentItemID} getStars={getStars} />
     </div>
   </div>
 );
