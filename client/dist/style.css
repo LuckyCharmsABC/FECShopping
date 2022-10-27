@@ -742,23 +742,23 @@ button {
 .scroll-outfit-items {
   display: grid;
   position: relative;
-  gap: 1em;
+  gap: 1vw;
   grid-auto-flow: column;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
   scroll-behavior: smooth;
-  max-width: 1068px;
+  max-width: 80vw;
 }
 
 .scroll-related-items {
   display: grid;
   position: relative;
-  gap: 1em;
+  gap: 1vw;
   grid-auto-flow: column;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
   scroll-behavior: smooth;
-  max-width: 1068px;
+  max-width: 80vw;
 }
 
 .add-outfit {
@@ -767,7 +767,7 @@ button {
   color: white;
   font-size: 4em;
   border: none;
-  width: 25vw;
+  width: 19vw;
   max-width: 255px;
   border-radius: 10px;
   aspect-ratio: 255/412.28;
@@ -780,5 +780,5 @@ button {
 
 .tempwrapper {
   position: relative;
-  max-width: 1068px;
+  max-width: 100vw;
 }

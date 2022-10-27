@@ -9,16 +9,13 @@ const OutfitItem = ({ detailItem, setCurrentItem, currentID, setOutfitItemIDs, g
   const [avgRating, setAvgRating] = useState(0);
 
   useEffect(() => {
-    console.log(currentID);
     axios.get(`./product?id=${currentID}`)
       .then((res) => {
-        // console.log('OUTFIT GET', res.data);
         setOutfitItem(res.data);
       })
       .catch((err) => console.log(err));
     axios.get('/productstyles', { params: { id: currentID } })
       .then((res) => {
-        // console.log('STYLES', res.data.results);
         setItemStyle(res.data.results);
       })
       .catch((err) => console.log(err));
@@ -35,15 +32,14 @@ const OutfitItem = ({ detailItem, setCurrentItem, currentID, setOutfitItemIDs, g
   }, []);
 
   const removeItem = () => {
-    console.log('REMOVE', outfitItem);
     localStorage.removeItem(outfitItem.id);
     setOutfitItemIDs(Object.keys(localStorage))
   }
 
   const updateDetail = () => {
     event.preventDefault();
-    console.log(outfitItem);
     setCurrentItem(outfitItem);
+    window.scrollTo({top: 0, behavior: 'smooth'})
   };
 
   return (
@@ -66,7 +62,7 @@ export default OutfitItem;
 
 const CardContainer = styled.div`
   position: relative;
-  width: 25vw;
+  width: 19vw;
   max-width: 255px;
 `
 
