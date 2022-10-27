@@ -44,6 +44,7 @@ const OutfitItem = ({ detailItem, setCurrentItem, currentID, setOutfitItemIDs, g
     event.preventDefault();
     console.log(outfitItem);
     setCurrentItem(outfitItem);
+    window.scrollTo({top: 0, behavior: 'smooth'})
   };
 
   return (

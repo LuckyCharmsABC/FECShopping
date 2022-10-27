@@ -39,6 +39,7 @@ const RelatedItem = ({ currentID, setCurrentItem, detailItem, getStars }) => {
     event.preventDefault();
     console.log(listItem);
     setCurrentItem(listItem);
+    window.scrollTo({top: 0, behavior: 'smooth'})
   };
 
   const toggleModal = () => {
