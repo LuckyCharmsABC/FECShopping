@@ -6,7 +6,6 @@ const outfitList = ({ currentItem, setCurrentItem, getStars }) => {
 
   useEffect(() => {
     const keys = Object.keys(localStorage);
-    console.log('LocalStorage KEYS', keys, localStorage);
     setOutfitItemIDs(keys);
   }, []);
 
@@ -19,13 +18,11 @@ const outfitList = ({ currentItem, setCurrentItem, getStars }) => {
     right.scrollBy(200, 0);
   };
   const addToOutfit = () => {
-    console.log(localStorage.getItem(currentItem.id));
     if (!!localStorage.getItem(currentItem.id)) {
       alert('Cannot add to outfit twice!');
     } else {
       localStorage.setItem(currentItem.id, currentItem.name);
       setOutfitItemIDs(Object.keys(localStorage));
-      console.log(localStorage);
     }
   };
 

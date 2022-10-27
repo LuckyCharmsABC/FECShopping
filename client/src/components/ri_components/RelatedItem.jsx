@@ -13,13 +13,11 @@ const RelatedItem = ({ currentID, setCurrentItem, detailItem, getStars }) => {
   useEffect(() => {
     axios.get(`./product?id=${currentID}`)
       .then((res) => {
-        // console.log('INDIVIDUAL GET', res.data);
         setListItem(res.data);
       })
       .catch((err) => console.log(err));
     axios.get('/productstyles', { params: { id: currentID } })
       .then((res) => {
-        // console.log('GET STYLES', res.data);
         setItemStyle(res.data.results);
       })
       .catch((err) => console.log(err));
@@ -37,7 +35,6 @@ const RelatedItem = ({ currentID, setCurrentItem, detailItem, getStars }) => {
 
   const updateDetail = () => {
     event.preventDefault();
-    console.log(listItem);
     setCurrentItem(listItem);
     window.scrollTo({top: 0, behavior: 'smooth'})
   };
@@ -49,8 +46,6 @@ const RelatedItem = ({ currentID, setCurrentItem, detailItem, getStars }) => {
   const logComparison = (e) => {
     e.stopPropagation();
     toggleModal();
-    // console.log('PRODUCT DETAIL ITEM', detailItem);
-    // console.log('ITEM TO COMPARE', listItem);
   }
 
   return (
