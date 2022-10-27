@@ -74,7 +74,7 @@ export default RelatedItem;
 
 const CardContainer = styled.div`
   position: relative;
-  width: 25vw;
+  width: 19vw;
   max-width: 255px;
 `
 
