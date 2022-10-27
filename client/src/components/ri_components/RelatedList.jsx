@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
+import _ from 'underscore';
 import RelatedItem from './RelatedItem.jsx';
 
 const RelatedList = ({ currentItem, setCurrentItem, getStars }) => {
@@ -9,8 +9,7 @@ const RelatedList = ({ currentItem, setCurrentItem, getStars }) => {
   useEffect(() => {
     axios.get(`/products/${currentItem.id}/related`)
       .then((results) => {
-        console.log('RELATED ITEMS', results.data);
-        setRelatedItemsIDs(results.data);
+        setRelatedItemsIDs(_.uniq(results.data));
       })
       .catch((err) => console.log(err));
   }, [currentItem]);

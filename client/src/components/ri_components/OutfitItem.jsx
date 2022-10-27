@@ -9,16 +9,13 @@ const OutfitItem = ({ detailItem, setCurrentItem, currentID, setOutfitItemIDs, g
   const [avgRating, setAvgRating] = useState(0);
 
   useEffect(() => {
-    console.log(currentID);
     axios.get(`./product?id=${currentID}`)
       .then((res) => {
-        // console.log('OUTFIT GET', res.data);
         setOutfitItem(res.data);
       })
       .catch((err) => console.log(err));
     axios.get('/productstyles', { params: { id: currentID } })
       .then((res) => {
-        // console.log('STYLES', res.data.results);
         setItemStyle(res.data.results);
       })
       .catch((err) => console.log(err));
@@ -29,21 +26,25 @@ const OutfitItem = ({ detailItem, setCurrentItem, currentID, setOutfitItemIDs, g
         _.each(data.data.ratings, (rating, i) => {
           allRatings += rating * i;
         });
-        console.log(Math.round((allRatings / count) * 10) / 10)
         setAvgRating(Math.round((allRatings / count) * 10) / 10);
       })
       .catch((err) => console.log(err));
   }, []);
 
   const removeItem = () => {
-    console.log('REMOVE', outfitItem);
     localStorage.removeItem(outfitItem.id);
     setOutfitItemIDs(Object.keys(localStorage))
   }
 
+  const updateDetail = () => {
+    event.preventDefault();
+    setCurrentItem(outfitItem);
+    window.scrollTo({top: 0, behavior: 'smooth'})
+  };
+
   return (
     <CardContainer>
-      <Card>
+      <Card onClick={updateDetail}>
         <ImageContainer>
           <ItemImg src={itemStyle[0]?.photos[0].thumbnail_url === null ? "https://www.fillmurray.com/140/200" : itemStyle[0]?.photos[0].thumbnail_url} alt="Placeholder" />
           <ActionButton type="button" onClick={removeItem}>&#x2612;</ActionButton>
@@ -61,7 +62,7 @@ export default OutfitItem;
 
 const CardContainer = styled.div`
   position: relative;
-  width: 25vw;
+  width: 19vw;
   max-width: 255px;
 `
 
