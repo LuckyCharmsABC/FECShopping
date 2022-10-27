@@ -311,12 +311,16 @@ const NewReview = ({ data, qualities }) => {
 
         <div className="review-section">
           Review Summary
-          <input className="summary" type="text" value={summary} onChange={handleSummary} maxLength="60" placeholder="Example: Best purchase ever!" size="60" />
+          <div className="text-input">
+            <input type="text" value={summary} onChange={handleSummary} maxLength="60" placeholder="Example: Best purchase ever!" size="60" />
+          </div>
         </div>
 
         <div className="review-section">
           Review body (mandatory)
-          <textarea className="body" value={body} onChange={handleBody} minLength="50" maxLength="1000" placeholder="Why did you like the product or not?" rows="10" cols="60" />
+          <div className="text-input">
+            <textarea value={body} onChange={handleBody} minLength="50" maxLength="1000" placeholder="Why did you like the product or not?" rows="10" cols="60" />
+          </div>
           {remainingChars}
           <div className="error" id="empty-body">
             <small>This field is required</small>
@@ -352,7 +356,9 @@ const NewReview = ({ data, qualities }) => {
         </div>
         <div className="review-section">
           What is your name (mandatory)
-          <input className="text-input" type="text" value={name} onChange={handleNameChange} maxLength="60" placeholder="Example: jackson11!" size="60" />
+          <div className="text-input">
+            <input type="text" value={name} onChange={handleNameChange} maxLength="60" placeholder="Example: jackson11!" size="60" />
+          </div>
           <small className="privacy-warning">For privacy reasons, do not use your full name or email address</small>
           <div className="error" id="empty-name">
             <small>This field is required</small>
@@ -361,7 +367,9 @@ const NewReview = ({ data, qualities }) => {
 
         <div className="review-section">
           Your email (mandatory)
-          <input className="text-input" type="text" value={email} onChange={handleEmailChange} maxLength="60" placeholder="Example: jackson11@email.com" size="60" />
+          <div className="text-input">
+            <input type="text" value={email} onChange={handleEmailChange} maxLength="60" placeholder="Example: jackson11@email.com" size="60" />
+          </div>
           <div className="error" id="empty-email">
             <small>This field is required</small>
           </div>

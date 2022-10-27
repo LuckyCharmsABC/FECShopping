@@ -720,7 +720,7 @@ button {
 }
 
 .select-star-rating {
-  padding-left: 16px;
+  padding-left: 12px;
 }
 
 .star-btn {
@@ -757,6 +757,7 @@ button {
 .photo-list {
   display: flex;
   justify-content: baseline;
+  padding-left: 10px;
 }
 
 .add-img-btn {
@@ -802,10 +803,16 @@ button {
 .privacy-warning,
 .text-input {
   display: block;
+  padding-left: 12px;
 }
 
 .submit-review {
   height: 25px;
+}
+
+.photo-list,
+.text-input {
+  margin-top: 6px;
 }
 
 /******************************************/
