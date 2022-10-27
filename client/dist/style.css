@@ -63,8 +63,31 @@ button {
 }
 
 .additional-info {
-  height: 250px;
+  height: 150px;
   margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.AddInfo2 {
+  display: flex;
+  flex-direction: row;
+}
+
+.slogan-section {
+  width: 25vw;
+  margin-right: 40px;
+}
+
+.features {
+  width: 25vw;
+}
+
+.divider-2 {
+  height: 90%;
+  width: 1px;
+  background-color: #334250;
 }
 
 #sideInfo {
