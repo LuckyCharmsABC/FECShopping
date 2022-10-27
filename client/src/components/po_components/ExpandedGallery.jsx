@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ExpandedViewButtons from './ExpandedViewButtons.jsx';
 
 const ExpandedGallery = ({
@@ -6,8 +6,11 @@ const ExpandedGallery = ({
 }) => {
   const [zoomedIn, setZoomedIn] = useState(false);
   const [mouseCoord, setMouseCoord] = useState({ x: 0, y: 0 });
+  const [prevCoord, setPrevCoord] = useState({ x: 0, y: 0 });
+
   const watchMouse = (xCoord, yCoord) => {
     const newCoord = { ...mouseCoord, x: xCoord, y: yCoord };
+    setPrevCoord(mouseCoord);
     setMouseCoord(newCoord);
   };
 
@@ -32,9 +35,13 @@ const ExpandedGallery = ({
             }
           }}
           onMouseMove={zoomedIn ? (event) => {
+            console.log('prev is ', prevCoord);
+            console.log('current is ', mouseCoord);
             const element = document.getElementById('container');
+            const deltaX = mouseCoord.x - prevCoord.x;
+            const deltaY = mouseCoord.y - prevCoord.y;
             watchMouse(event.clientX, event.clientY);
-            element.scrollBy(10, 0);
+            element.scrollBy(deltaX, deltaY);
           } : () => {}}
           onKeyPress={() => {}}
           tabIndex="0"
