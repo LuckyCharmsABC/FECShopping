@@ -18,6 +18,7 @@ const Product = ({
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [maxQuant, setMaxQuant] = useState(-1);
   const [expandedView, setExpandedView] = useState(false);
+  const [selectedCombo, setSelectedCombo] = useState({ sku_id: '', count: 1 });
   const product = currentItem;
   const changeSelectedImgInx = (value) => {
     setSelectedImageIndex(value);
@@ -31,12 +32,13 @@ const Product = ({
   useEffect(() => {
     axios.get('/productstyles', { params: { id: product.id } })
       .then((response) => {
-        console.log(response.data.results);
+        // console.log(response.data.results);
         setProductStyles(response.data.results);
         setSelectedStyle(response.data.results[0]);
         setIsLoading(false);
         setMaxQuant(-1);
         changeSelectedImgInx(0);
+        setSelectedCombo({ sku_id: '', count: 1 });
       })
       .catch((err) => {
         console.log(err);
@@ -97,11 +99,14 @@ const Product = ({
               productStyles={productStyles}
               selectStyle={selectStyle}
               selectedStyle={selectedStyle}
+              setSelectedCombo={setSelectedCombo}
             />
             <Cart
               selectedStyle={selectedStyle}
               maxQuant={maxQuant}
               changeMaxQuant={changeMaxQuant}
+              selectedCombo={selectedCombo}
+              setSelectedCombo={setSelectedCombo}
             />
           </div>
         </div>

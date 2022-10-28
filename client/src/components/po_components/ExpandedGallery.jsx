@@ -16,7 +16,13 @@ const ExpandedGallery = ({
 
   return (
     <div id="expanded-gallery">
-      <div className="wrapper" onClick={() => { changeView(true) }}>
+      <div
+        className="wrapper"
+        role="button"
+        onClick={() => { changeView(true); }}
+        onKeyPress={() => {}}
+        tabIndex="0"
+      >
         <div
           className="zoomImage"
           id="container"
@@ -38,6 +44,7 @@ const ExpandedGallery = ({
             const element = document.getElementById('container');
             const deltaX = mouseCoord.x - prevCoord.x;
             const deltaY = mouseCoord.y - prevCoord.y;
+            setMouseCoord(event.clientX, event.clientY);
             watchMouse(event.clientX, event.clientY);
             element.scrollBy(deltaX, deltaY);
           } : () => {}}

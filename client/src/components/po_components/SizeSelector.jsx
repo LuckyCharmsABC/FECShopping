@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SizeSelector = ({
-  productSkus, setItemSku, setItemQuant, maxQuant, changeMaxQuant,
+  productSkus, setItemSku, setItemQuant, maxQuant, changeMaxQuant, setSelectedCombo,
 }) => {
   // console.log('product skus passed in is ', productSkus);
 
@@ -42,9 +42,9 @@ const SizeSelector = ({
         className="dropdown-list"
         id="size-selector"
         onChange={(event) => {
-          event.preventDefault();
           if (event.target.value === '-1') {
             changeMaxQuant(-1);
+            setSelectedCombo({ sku_id: '', count: 1 });
             return;
           }
           const quant = productSkus[event.target.value].quantity;
@@ -58,7 +58,7 @@ const SizeSelector = ({
         className="dropdown-list"
         id="num-selector"
         onChange={(event) => {
-          setItemQuant(event.target.value);
+          setItemQuant(parseInt(event.target.value, 10));
         }}
       >
         {renderQuantOpts(maxQuant)}

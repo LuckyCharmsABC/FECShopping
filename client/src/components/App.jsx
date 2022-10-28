@@ -4,6 +4,7 @@ import _ from 'underscore';
 import Product from './po_components/Product.jsx';
 import Related from './ri_components/RelatedItemsAndOutfits.jsx';
 import Reviews from './rr_components/Reviews.jsx';
+import calculateStarRating from '../starRating.js';
 
 const App = () => {
   const [currentItemID, setCurrentItemID] = useState(40344);
@@ -26,7 +27,7 @@ const App = () => {
       .catch((err) => { console.log(err); });
   }, [currentItemID]);
 
-  const calculateStarRating = (rating) => {
+/*   const calculateStarRating = (rating) => {
     const starFloor = Math.floor(rating);
     const starDec = rating - starFloor;
     const from25 = Math.abs(starDec - 0.25);
@@ -56,12 +57,14 @@ const App = () => {
         ))}
       </div>
     );
-  };
+  }; */
 
   useEffect(() => {
     axios.get('/reviewdata', { params: { product_id: currentItemID } })
       .then((data) => {
-        const count = (parseInt(data.data.recommended.false, 10) || 0) + (parseInt(data.data.recommended.true, 10) || 0);
+        const recommended = parseInt(data.data.recommended.true, 10) || 0;
+        const notRecommended = parseInt(data.data.recommended.false, 10) || 0;
+        const count = notRecommended + recommended;
         let allRatings = 0;
         if (Object.keys(data.data.ratings).length === 0) {
           setAverageRating(0);
@@ -102,9 +105,20 @@ const App = () => {
   return (
     <div>
       <div className="page-top">
-        <span className="title-text">Lucky & Charm</span>
+        <div className="title-text">Lucky & Charm</div>
+        <div className="categories">
+          <div>New Arrivals</div>
+          <div>Pants</div>
+          <div>Jackets</div>
+          <div>Kicks</div>
+          <div>Dress shoes</div>
+          <div>Accesories</div>
+        </div>
       </div>
-      <div id="merchandise-directory">New Arrivals</div>
+      <div id="merchandise-directory">
+        {' > '}
+        New Arrivals
+      </div>
       <Product
         currentItem={currentItem}
         scrollToReviews={scrollToReviews}
