@@ -4,11 +4,13 @@ import styled from 'styled-components';
 import _ from 'underscore';
 import ItemComparison from './ItemComparison.jsx';
 
-const RelatedItem = ({ currentID, setCurrentItem, detailItem, getStars }) => {
+const RelatedItem = ({ currentID, setCurrentItemID, detailItem, getStars }) => {
   const [listItem, setListItem] = useState({});
   const [itemStyle, setItemStyle] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [avgRating, setAvgRating] = useState(0);
+  const saleStyle = { color: '#CC3636' };
+  const saleOriginal = { textDecoration: 'line-through' };
 
   useEffect(() => {
     axios.get(`./product?id=${currentID}`)
@@ -23,30 +25,35 @@ const RelatedItem = ({ currentID, setCurrentItem, detailItem, getStars }) => {
       .catch((err) => console.log(err));
     axios.get('/reviewdata', { params: { product_id: currentID } })
       .then((data) => {
-        const count = parseInt(data.data.recommended.false, 10) + parseInt(data.data.recommended.true, 10);
+        const count = (parseInt(data.data.recommended.false, 10) || 0)
+        + (parseInt(data.data.recommended.true, 10) || 0);
         let allRatings = 0;
-        _.each(data.data.ratings, (rating, i) => {
-          allRatings += rating * i;
-        });
-        setAvgRating(Math.round((allRatings / count) * 10) / 10);
+        if (Object.keys(data.data.ratings).length === 0) {
+          setAvgRating(0);
+        } else {
+          _.each(data.data.ratings, (rating, i) => {
+            allRatings += rating * i;
+          });
+          setAvgRating(Math.round((allRatings / count) * 10) / 10);
+        }
       })
       .catch((err) => console.log(err));
   }, [detailItem]);
 
   const updateDetail = () => {
     event.preventDefault();
-    setCurrentItem(listItem);
-    window.scrollTo({top: 0, behavior: 'smooth'})
+    setCurrentItemID(listItem.id);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const toggleModal = () => {
     setShowModal(!showModal);
-  }
+  };
 
   const logComparison = (e) => {
     e.stopPropagation();
     toggleModal();
-  }
+  };
 
   return (
     <CardContainer>
@@ -58,12 +65,20 @@ const RelatedItem = ({ currentID, setCurrentItem, detailItem, getStars }) => {
       />
       <Card onClick={updateDetail}>
         <ImageContainer>
-          <ItemImg src={itemStyle[0]?.photos[0].thumbnail_url === null ? "https://www.fillmurray.com/140/200" : itemStyle[0]?.photos[0].thumbnail_url} alt="Placeholder" />
+          <ItemImg src={itemStyle[0]?.photos[0].thumbnail_url === null ? 'https://www.fillmurray.com/140/200' : itemStyle[0]?.photos[0].thumbnail_url} alt="Placeholder" />
           <ActionButton className="action-star" type="button" onClick={(e) => logComparison(e)}>&#9734;</ActionButton>
         </ImageContainer>
         <CardCategory>{listItem.category}</CardCategory>
         <CardName>{`${listItem.name} - ${itemStyle[0]?.name}`}</CardName>
-        <Price>{itemStyle[0]?.original_price}</Price>
+        <Price>
+          <div style={itemStyle[0]?.sale_price ? saleOriginal : { color: 'black' }}>
+            $
+            {itemStyle[0]?.original_price}
+          </div>
+          <div style={saleStyle}>
+            {itemStyle[0]?.sale_price ? `$${itemStyle[0].sale_price}` : ''}
+          </div>
+        </Price>
         {getStars(avgRating)}
       </Card>
     </CardContainer>
@@ -76,7 +91,7 @@ const CardContainer = styled.div`
   position: relative;
   width: 19vw;
   max-width: 255px;
-`
+`;
 
 const Card = styled.div`
   display: grid;
@@ -93,25 +108,27 @@ const ItemImg = styled.img`
   inline-size: 100%;
   aspect-ratio: 140 / 200;
   object-fit: cover;
-`
+`;
 const CardCategory = styled.p`
   font-variant: small-caps;
   font-size: small;
   margin: 0;
-`
+`;
 
 const CardName = styled.h4`
 margin: 0;
 font-size: small;
-`
+`;
 
 const Price = styled.div`
+display: flex;
+flex-direction: row;
 font-size: small;
-`
+`;
 
 const ImageContainer = styled.div`
 display: flex;
-`
+`;
 
 const ActionButton = styled.button`
   position: absolute;
@@ -125,4 +142,4 @@ const ActionButton = styled.button`
   &:hover {
     color: white;
   }
-`
+`;

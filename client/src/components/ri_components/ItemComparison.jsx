@@ -33,34 +33,41 @@ const itemComparison = ({ showModal, detailItem, relatedItem, toggleModal }) => 
 
   if (showModal) {
     return (
-      <Modal onClick={() => toggleModal()}>
-        <Table>
-          <TableHead>
-            <tr>
-              <Head>{detailItem.name}</Head>
-              <Head>Comparison</Head>
-              <Head>{relatedItem.name}</Head>
-            </tr>
-          </TableHead>
-          <TableBody>
-            {getFeatures(detailItem, relatedItem).map((feature) => (
+      <ModalContainer>
+        <Modal onClick={() => toggleModal()}>
+          <Table>
+            <TableHead>
               <tr>
-                <td>{findValueDetail(feature)}</td>
-                <td>{feature}</td>
-                <td>{findValueRelated(feature)}</td>
+                <Head>{detailItem.name}</Head>
+                <Head>Comparison</Head>
+                <Head>{relatedItem.name}</Head>
               </tr>
-            ))}
-          </TableBody>
-        </Table>
-      </Modal>
+            </TableHead>
+            <TableBody>
+              {getFeatures(detailItem, relatedItem).map((feature) => (
+                <tr>
+                  <td>{findValueDetail(feature)}</td>
+                  <td>{feature}</td>
+                  <td>{findValueRelated(feature)}</td>
+                </tr>
+              ))}
+            </TableBody>
+          </Table>
+        </Modal>
+      </ModalContainer>
     );
   }
 };
 
 export default itemComparison;
 
+const ModalContainer = styled.div`
+
+`;
+
 const Modal = styled.div`
   position: fixed;
+  padding: 10px 15px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -78,6 +85,7 @@ const Table = styled.table`
 
 const TableHead = styled.thead`
   text-align: left;
+  padding: 5px;
 `
 
 const TableBody = styled.tbody`

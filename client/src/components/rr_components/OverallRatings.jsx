@@ -29,7 +29,7 @@ const OverallRatings = ({
       </h3>
       <ul className="rating-list">
         {_.map(ratingPercents, (rating, i) => (
-          <div key={i}>
+          <div key={i} className="average-single-rating">
             {`${5 - i + 1} `}
             {'Star '}
             <div className="rating-percent">
