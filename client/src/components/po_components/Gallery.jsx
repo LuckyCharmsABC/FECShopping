@@ -6,23 +6,6 @@ const Gallery = ({
 }) => {
   const selectedCss = { border: 'solid black' };
   const { length } = selectedStyle.photos;
-/*   const fadeOutImage = () => {
-    console.log('fadeout invoked');
-    const newImage = document.getElementById('display');
-    const fadeHandler = () => {
-      newImage.removeEventListener('animationed', fadeHandler, false);
-      newImage.classList.remove('imageFadeOut');
-    };
-    newImage.addEventListener('animationed', fadeHandler, false);
-    newImage.classList.add('imageFadeOut');
-  }; */
-/*   const fadeOutImage = () => {
-    console.log('fadeout invoked');
-    const newImage = document.getElementById('display');
-    newImage.addClass('imageFadeOut').one('animationed', () => {
-      newImage.removeClass('imageFadeOut');
-    });
-  }; */
   return (
     <div id="imageGallery">
       <div id="side-gallery">

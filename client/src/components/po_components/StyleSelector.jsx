@@ -1,13 +1,13 @@
 import React from 'react';
 import image from '../../../dist/images/imageNotFound.png';
 
-const StyleSelector = ({ productStyles, selectedStyle, selectStyle }) => {
+const StyleSelector = ({ productStyles, selectedStyle, selectStyle, setSelectedCombo }) => {
   const selectedCss = { border: 'solid #0F3460' };
   return (
     <div>
       <div className="styleName">
         <b>STYLE</b>
-        {'>'}
+        {' > '}
         {selectedStyle.name}
       </div>
       <div className="styleList">
@@ -18,6 +18,7 @@ const StyleSelector = ({ productStyles, selectedStyle, selectStyle }) => {
             role="button"
             onClick={(event) => {
               event.preventDefault();
+              setSelectedCombo({ sku_id: '', count: 1 });
               selectStyle(style);
             }}
             onKeyPress={() => {}}

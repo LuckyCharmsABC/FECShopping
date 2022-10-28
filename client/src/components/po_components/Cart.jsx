@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import SizeSelector from './SizeSelector.jsx';
 import axios from 'axios';
 
-const Cart = ({ selectedStyle, maxQuant, changeMaxQuant }) => {
-  const [selectedCombo, setSelectedCombo] = useState({ sku_id: '', count: 0 });
+const Cart = ({
+  selectedStyle, maxQuant, changeMaxQuant, selectedCombo, setSelectedCombo,
+}) => {
   const productSkus = [];
   const skusKeys = Object.keys(selectedStyle.skus);
   // eslint-disable-next-line no-restricted-syntax
@@ -14,23 +15,31 @@ const Cart = ({ selectedStyle, maxQuant, changeMaxQuant }) => {
   }
 
   const setItemSku = (value) => {
-    const copy = { ...selectedCombo };
-    copy.sku_id = value;
+    console.log('setting item sku to ', value);
+    const copy = { ...selectedCombo, sku_id: value };
+    // copy.sku_id = value;
+    console.log('copy is ', copy);
     setSelectedCombo(copy);
   };
 
   const setItemQuant = (value) => {
-    const copy = { ...selectedCombo };
-    copy.count = value;
+    console.log('setting item quant to ', value);
+    const copy = { ...selectedCombo, count: value };
+    // copy.count = value;
+    console.log('copy is ', copy);
     setSelectedCombo(copy);
   };
 
   const addtoCart = (items) => {
     const itemsToAdd = items;
+    if (itemsToAdd.sku_id === '') {
+      alert('Please select size');
+      return;
+    }
     console.log('item to add to bag is ', itemsToAdd);
     axios.post('/cart', itemsToAdd)
       .then(() => {
-        console.log('items added');
+        alert('items added');
       })
       .catch((err) => {
         console.log(err);
@@ -45,6 +54,8 @@ const Cart = ({ selectedStyle, maxQuant, changeMaxQuant }) => {
         setItemQuant={setItemQuant}
         maxQuant={maxQuant}
         changeMaxQuant={changeMaxQuant}
+        selectedCombo={selectedCombo}
+        setSelectedCombo={setSelectedCombo}
       />
       <div>
         <button className="submit-button" id="add-to-cart" type="button" onClick={(event) => { event.preventDefault(); addtoCart(selectedCombo); }}>ADD TO BAG</button>

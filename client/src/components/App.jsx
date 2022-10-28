@@ -110,7 +110,10 @@ const App = () => {
           <div>Accesories</div>
         </div>
       </div>
-      <div id="merchandise-directory">{'>'} New Arrivals</div>
+      <div id="merchandise-directory">
+        {' > '}
+        New Arrivals
+      </div>
       <Product
         currentItem={currentItem}
         scrollToReviews={scrollToReviews}

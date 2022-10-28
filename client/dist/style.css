@@ -331,7 +331,7 @@ button {
 }
 
 .zoomImage {
-  height:85vh;
+  height: 85vh;
   width: auto;
   overflow: scroll;
 }
