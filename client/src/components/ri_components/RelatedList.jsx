@@ -3,7 +3,7 @@ import axios from 'axios';
 import _ from 'underscore';
 import RelatedItem from './RelatedItem.jsx';
 
-const RelatedList = ({ currentItem, setCurrentItem, getStars }) => {
+const RelatedList = ({ currentItem, setCurrentItemID, getStars }) => {
   const [relatedItemsIDs, setRelatedItemsIDs] = useState([]);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const RelatedList = ({ currentItem, setCurrentItem, getStars }) => {
                 <RelatedItem
                   currentID={currentID}
                   key={currentID}
-                  setCurrentItem={setCurrentItem}
+                  setCurrentItemID={setCurrentItemID}
                   detailItem={currentItem}
                   getStars={getStars}
                 />
