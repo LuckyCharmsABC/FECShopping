@@ -6,7 +6,9 @@ const StyleSelector = ({ productStyles, selectedStyle, selectStyle }) => {
   return (
     <div>
       <div className="styleName">
-        <b>STYLE</b> {'>'} {selectedStyle.name}
+        <b>STYLE</b>
+        {'>'}
+        {selectedStyle.name}
       </div>
       <div className="styleList">
         {productStyles.map((style) => (
