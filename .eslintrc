@@ -14,7 +14,11 @@
     "jsx-a11y/label-has-associated-control": "off",
     "react/jsx-props-no-spreading": "off",
     "react/no-array-index-key": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "no-alert": "off",
+    "no-extra-boolean-cast": "off",
+    "max-len": "off",
+    "no-restricted-globals": "off"
   },
   "parserOptions": {
     "ecmaVersion": 2020
