@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import _ from 'underscore';
 import styled from 'styled-components';
@@ -34,29 +34,31 @@ const OutfitItem = ({ detailItem, setCurrentItemID, currentID, setOutfitItemIDs,
       .catch((err) => console.log(err));
   }, []);
 
-  const removeItem = () => {
+  const removeItem = (e) => {
+    e.stopPropagation();
     localStorage.removeItem(outfitItem.id);
-    setOutfitItemIDs(Object.keys(localStorage))
-  }
+    setOutfitItemIDs(Object.keys(localStorage));
+  };
 
   const updateDetail = () => {
     event.preventDefault();
     setCurrentItemID(outfitItem.id);
-    window.scrollTo({top: 0, behavior: 'smooth'})
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <CardContainer>
       <Card onClick={updateDetail}>
         <ImageContainer>
-          <ItemImg src={itemStyle[0]?.photos[0].thumbnail_url === null ? "https://www.fillmurray.com/140/200" : itemStyle[0]?.photos[0].thumbnail_url} alt="Placeholder" />
+          <ItemImg src={itemStyle[0]?.photos[0].thumbnail_url === null ? 'https://www.fillmurray.com/140/200' : itemStyle[0]?.photos[0].thumbnail_url} alt="Placeholder" />
           <ActionButton type="button" onClick={removeItem}>&#x2612;</ActionButton>
         </ImageContainer>
         <CardCategory>{outfitItem.category}</CardCategory>
         <CardName>{`${outfitItem.name} - ${itemStyle[0]?.name}`}</CardName>
         <Price>
           <div style={itemStyle[0]?.sale_price ? saleOriginal : { color: 'black' }}>
-            ${itemStyle[0]?.original_price}
+            $
+            {itemStyle[0]?.original_price}
           </div>
           <div style={saleStyle}>
             {itemStyle[0]?.sale_price ? `$${itemStyle[0].sale_price}` : ''}
@@ -74,7 +76,7 @@ const CardContainer = styled.div`
   position: relative;
   width: 19vw;
   max-width: 255px;
-`
+`;
 
 const Card = styled.div`
   display: grid;
@@ -91,28 +93,28 @@ const ItemImg = styled.img`
   inline-size: 100%;
   aspect-ratio: 140 / 200;
   object-fit: cover;
-`
+`;
 
 const CardCategory = styled.p`
   font-variant: small-caps;
   font-size: small;
   margin: 0;
-`
+`;
 
 const CardName = styled.h4`
 margin: 0;
 font-size: small;
-`
+`;
 
 const Price = styled.div`
 display: flex;
 flex-direction: row;
 font-size: small;
-`
+`;
 
 const ImageContainer = styled.div`
 display: flex;
-`
+`;
 
 const ActionButton = styled.button`
   position: absolute;
@@ -126,4 +128,4 @@ const ActionButton = styled.button`
   &:hover {
     color: white;
   }
-`
+`;

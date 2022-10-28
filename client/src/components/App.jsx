@@ -92,7 +92,7 @@ const App = () => {
       setReviews(results.data.results.slice(0, 2));
       setReviewCount(results.data.results.length);
     })
-    .catch((err) => { console.log(err) });
+      .catch((err) => { console.log(err); });
   }, [currentItem]);
 
   const scrollToReviews = () => {
