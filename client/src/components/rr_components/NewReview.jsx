@@ -30,7 +30,7 @@ const NewReview = ({ data, qualities }) => {
     {
       cloudName: 'dr31wlnyj',
       uploadPreset: 'front-end-capstone',
-      maxFiles: 5,
+      maxFiles: 1,
     },
     (err, res) => {
       if (!err && res && res.event === 'success') {
