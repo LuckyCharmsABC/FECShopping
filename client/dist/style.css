@@ -478,6 +478,7 @@ button {
   height: 10px;
   border: 1px solid #334250;
   border-radius: 5px;
+  margin-top: 6px;
 }
 
 .percent-bar {
@@ -566,6 +567,14 @@ button {
 .average-rating-num {
   font-weight: normal;
 }
+
+.average-single-rating {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/********************************************/
 
 .review-btn {
   border: none;
@@ -668,7 +677,7 @@ button {
   height: 75%;
   left: 25%;
   overflow: auto;
-  padding: 5px;
+  padding: 25px;
   position: fixed;
   top: 12.5%;
   width: 50%;
