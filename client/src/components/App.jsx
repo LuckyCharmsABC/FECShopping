@@ -10,6 +10,7 @@ import Reviews from './rr_components/Reviews.jsx';
 // which will be a child to App. you guys can rename the components and folder if you guys want.
 
 const App = () => {
+  const [currentItemID, setCurrentItemID] = useState(40355);
   const [currentItem, setCurrentItem] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [metaData, setMetaData] = useState({});
@@ -21,13 +22,13 @@ const App = () => {
   const ref = useRef(null);
 
   useEffect(() => {
-    axios.get('product/?id=40344')
+    axios.get(`product/?id=${currentItemID}`)
       .then((results) => {
         setCurrentItem(results.data);
         setIsLoading(false);
       })
       .catch((err) => { console.log(err); });
-  }, []);
+  }, [currentItemID]);
 
   const calculateStarRating = (rating) => {
     const starFloor = Math.floor(rating);
@@ -62,14 +63,18 @@ const App = () => {
   };
 
   useEffect(() => {
-    axios.get('/reviewdata', { params: { product_id: currentItem.id || 40344 } })
+    axios.get('/reviewdata', { params: { product_id: currentItemID } })
       .then((data) => {
-        const count = parseInt(data.data.recommended.false, 10)
-        + parseInt(data.data.recommended.true, 10);
+        const count = (parseInt(data.data.recommended.false, 10) || 0) + (parseInt(data.data.recommended.true, 10) || 0);
         let allRatings = 0;
-        _.each(data.data.ratings, (rating, i) => {
-          allRatings += rating * i;
-        });
+        if (Object.keys(data.data.ratings).length === 0) {
+          setAvgRating(0);
+        } else {
+          _.each(data.data.ratings, (rating, i) => {
+            allRatings += rating * i;
+          });
+          setAvgRating(Math.round((allRatings / count) * 10) / 10);
+        }
         setMetaData(data.data);
         setAverageRating(Math.round((allRatings / count) * 10) / 10);
         setAverageStarRating(calculateStarRating(Math.round((allRatings / count) * 10) / 10));
@@ -78,7 +83,7 @@ const App = () => {
 
     axios.get('/reviews', {
       params: {
-        product_id: currentItem.id || 40344,
+        product_id: currentItemID,
         sort: 'relevance',
         count: 999999,
       },
@@ -86,7 +91,8 @@ const App = () => {
       setAllReviews(results.data);
       setReviews(results.data.results.slice(0, 2));
       setReviewCount(results.data.results.length);
-    }, [currentItem]);
+    })
+    .catch((err) => { console.log(err) });
   }, [currentItem]);
 
   const scrollToReviews = () => {

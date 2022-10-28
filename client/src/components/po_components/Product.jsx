@@ -59,7 +59,7 @@ const Product = ({
 
   const changeView = (value) => {
     setExpandedView(value);
-  }
+  };
 
   const renderPO = (expanded) => {
     if (expanded) {
