@@ -1,4 +1,5 @@
 import React from 'react';
+import image from '../../../dist/images/imageNotFound.png';
 
 const StyleSelector = ({ productStyles, selectedStyle, selectStyle }) => {
   const selectedCss = { border: 'solid #0F3460' };
@@ -21,7 +22,7 @@ const StyleSelector = ({ productStyles, selectedStyle, selectStyle }) => {
             tabIndex={0}
             style={style.style_id === selectedStyle.style_id ? selectedCss : { border: 'solid white' }}
           >
-            <img className="styleThumbnail" alt="x" src={style.photos[0].thumbnail_url} />
+            <img className="styleThumbnail" alt="x" src={style.photos[0].thumbnail_url ? style.photos[0].thumbnail_url : image} />
           </div>
         ))}
       </div>

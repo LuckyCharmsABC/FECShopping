@@ -1,4 +1,5 @@
 import React from 'react';
+import image from '../../../dist/images/imageNotFound.png';
 
 const Gallery = ({
   selectedStyle, selectedImageIndex, changeSelectedImgInx, changeView,
@@ -45,7 +46,7 @@ const Gallery = ({
               tabIndex={0}
               style={index === selectedImageIndex ? selectedCss : { border: 'solid white' }}
             >
-              <img className="thumbnail-image" alt="x" src={photo.thumbnail_url} />
+              <img className="thumbnail-image" alt="x" src={photo.thumbnail_url ? photo.thumbnail_url : image} />
             </div>
           ))}
         </div>
@@ -74,7 +75,7 @@ const Gallery = ({
         <i className={selectedImageIndex === 0 ? 'fa-solid fa-chevron-left fa-xl disabled-nav-button' : 'fa-solid fa-chevron-left fa-xl'} />
       </div>
       <div onClick={() => {changeView(true)}}>
-        <img id="display" className="displayed-image" src={selectedStyle.photos[selectedImageIndex].url} alt="x" />
+        <img id="display" className="displayed-image" src={selectedStyle.photos[selectedImageIndex].url ? selectedStyle.photos[selectedImageIndex].url : image} alt="x" />
       </div>
       <button
         className="nav-button"

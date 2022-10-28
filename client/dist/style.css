@@ -221,11 +221,6 @@ button {
   cursor:pointer;
 }
 
-.thumbnail:hover {
-  border-color: black;
-  border-style: dashed;
-  border-width: 2px;
-}
 
 .thumbnail-image {
   margin: auto;
@@ -235,6 +230,11 @@ button {
   object-fit: contain;
 }
 
+.thumbnail-image:hover {
+  border-color: black;
+  border-style: dashed;
+  border-width: 2px;
+}
 
 
 /* .slider div {
