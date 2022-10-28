@@ -23,6 +23,11 @@ const RelatedList = ({ currentItem, setCurrentItemID, getStars }) => {
     right.scrollBy(200, 0);
   };
 
+  if (relatedItemsIDs.length === 0) {
+    return (
+      <div />
+    );
+  }
   return (
     <div>
       <div>

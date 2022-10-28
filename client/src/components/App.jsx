@@ -10,7 +10,7 @@ import Reviews from './rr_components/Reviews.jsx';
 // which will be a child to App. you guys can rename the components and folder if you guys want.
 
 const App = () => {
-  const [currentItemID, setCurrentItemID] = useState(40355);
+  const [currentItemID, setCurrentItemID] = useState(40344);
   const [currentItem, setCurrentItem] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [metaData, setMetaData] = useState({});
@@ -68,12 +68,12 @@ const App = () => {
         const count = (parseInt(data.data.recommended.false, 10) || 0) + (parseInt(data.data.recommended.true, 10) || 0);
         let allRatings = 0;
         if (Object.keys(data.data.ratings).length === 0) {
-          setAvgRating(0);
+          setAverageRating(0);
         } else {
           _.each(data.data.ratings, (rating, i) => {
             allRatings += rating * i;
           });
-          setAvgRating(Math.round((allRatings / count) * 10) / 10);
+          setAverageRating(Math.round((allRatings / count) * 10) / 10);
         }
         setMetaData(data.data);
         setAverageRating(Math.round((allRatings / count) * 10) / 10);
@@ -118,7 +118,7 @@ const App = () => {
       />
       <Related
         currentItem={currentItem}
-        setCurrentItem={setCurrentItem}
+        setCurrentItemID={setCurrentItemID}
         getStars={calculateStarRating}
       />
       <div ref={ref}>
