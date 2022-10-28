@@ -18,7 +18,6 @@ const OutfitItem = ({ detailItem, setCurrentItemID, currentID, setOutfitItemIDs,
       .catch((err) => console.log(err));
     axios.get('/productstyles', { params: { id: currentID } })
       .then((res) => {
-        console.log('OUTFIT STYLES', res.data.results);
         setItemStyle(res.data.results);
       })
       .catch((err) => console.log(err));
