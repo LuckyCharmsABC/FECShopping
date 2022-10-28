@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import SizeSelector from './SizeSelector.jsx';
+import React from 'react';
 import axios from 'axios';
+import SizeSelector from './SizeSelector.jsx';
 
 const Cart = ({
   selectedStyle, maxQuant, changeMaxQuant, selectedCombo, setSelectedCombo,

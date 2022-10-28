@@ -57,7 +57,12 @@ const Gallery = ({
       >
         <i className={selectedImageIndex === 0 ? 'fa-solid fa-chevron-left fa-xl disabled-nav-button' : 'fa-solid fa-chevron-left fa-xl'} />
       </div>
-      <div onClick={() => {changeView(true)}}>
+      <div
+        role="button"
+        onClick={() => { changeView(true); }}
+        tabIndex={0}
+        onKeyPress={() => {}}
+      >
         <img id="display" className="displayed-image" src={selectedStyle.photos[selectedImageIndex].url ? selectedStyle.photos[selectedImageIndex].url : image} alt="x" />
       </div>
       <button

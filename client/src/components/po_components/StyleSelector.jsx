@@ -1,7 +1,9 @@
 import React from 'react';
 import image from '../../../dist/images/imageNotFound.png';
 
-const StyleSelector = ({ productStyles, selectedStyle, selectStyle, setSelectedCombo }) => {
+const StyleSelector = ({
+  productStyles, selectedStyle, selectStyle, setSelectedCombo,
+}) => {
   const selectedCss = { border: 'solid #0F3460' };
   return (
     <div>

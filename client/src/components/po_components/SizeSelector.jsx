@@ -42,7 +42,6 @@ const SizeSelector = ({
         className="dropdown-list"
         id="size-selector"
         onChange={(event) => {
-         // event.preventDefault();
           if (event.target.value === '-1') {
             console.log('now selection value is ', event.target.value);
             changeMaxQuant(-1);
@@ -60,7 +59,7 @@ const SizeSelector = ({
         className="dropdown-list"
         id="num-selector"
         onChange={(event) => {
-          setItemQuant(parseInt(event.target.value));
+          setItemQuant(parseInt(event.target.value, 10));
         }}
       >
         {renderQuantOpts(maxQuant)}
