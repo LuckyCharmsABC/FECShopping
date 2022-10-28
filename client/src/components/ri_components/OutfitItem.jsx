@@ -7,6 +7,8 @@ const OutfitItem = ({ detailItem, setCurrentItemID, currentID, setOutfitItemIDs,
   const [outfitItem, setOutfitItem] = useState({});
   const [itemStyle, setItemStyle] = useState([]);
   const [avgRating, setAvgRating] = useState(0);
+  const saleStyle = { color: '#CC3636' };
+  const saleOriginal = { textDecoration: 'line-through' };
 
   useEffect(() => {
     axios.get(`./product?id=${currentID}`)
@@ -16,6 +18,7 @@ const OutfitItem = ({ detailItem, setCurrentItemID, currentID, setOutfitItemIDs,
       .catch((err) => console.log(err));
     axios.get('/productstyles', { params: { id: currentID } })
       .then((res) => {
+        console.log('OUTFIT STYLES', res.data.results);
         setItemStyle(res.data.results);
       })
       .catch((err) => console.log(err));
@@ -38,7 +41,7 @@ const OutfitItem = ({ detailItem, setCurrentItemID, currentID, setOutfitItemIDs,
 
   const updateDetail = () => {
     event.preventDefault();
-    setCurrentItemID(outfitItem);
+    setCurrentItemID(outfitItem.id);
     window.scrollTo({top: 0, behavior: 'smooth'})
   };
 
@@ -51,7 +54,14 @@ const OutfitItem = ({ detailItem, setCurrentItemID, currentID, setOutfitItemIDs,
         </ImageContainer>
         <CardCategory>{outfitItem.category}</CardCategory>
         <CardName>{`${outfitItem.name} - ${itemStyle[0]?.name}`}</CardName>
-        <Price>{itemStyle[0]?.original_price}</Price>
+        <Price>
+          <div style={itemStyle[0]?.sale_price ? saleOriginal : { color: 'black' }}>
+            ${itemStyle[0]?.original_price}
+          </div>
+          <div style={saleStyle}>
+            {itemStyle[0]?.sale_price ? `$${itemStyle[0].sale_price}` : ''}
+          </div>
+        </Price>
         {getStars(avgRating)}
       </Card>
     </CardContainer>
@@ -95,6 +105,8 @@ font-size: small;
 `
 
 const Price = styled.div`
+display: flex;
+flex-direction: row;
 font-size: small;
 `
 

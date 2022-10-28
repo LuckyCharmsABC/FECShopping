@@ -9,6 +9,8 @@ const RelatedItem = ({ currentID, setCurrentItemID, detailItem, getStars }) => {
   const [itemStyle, setItemStyle] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [avgRating, setAvgRating] = useState(0);
+  const saleStyle = { color: '#CC3636' };
+  const saleOriginal = { textDecoration: 'line-through' };
 
   useEffect(() => {
     axios.get(`./product?id=${currentID}`)
@@ -23,19 +25,24 @@ const RelatedItem = ({ currentID, setCurrentItemID, detailItem, getStars }) => {
       .catch((err) => console.log(err));
     axios.get('/reviewdata', { params: { product_id: currentID } })
       .then((data) => {
+        console.log('REVIEW DATA', data.data)
         const count = (parseInt(data.data.recommended.false, 10) || 0) + (parseInt(data.data.recommended.true, 10) || 0);
         let allRatings = 0;
-        _.each(data.data.ratings, (rating, i) => {
-          allRatings += rating * i;
-        });
-        setAvgRating(Math.round((allRatings / count) * 10) / 10);
+        if (Object.keys(data.data.ratings).length === 0) {
+          setAvgRating(0);
+        } else {
+          _.each(data.data.ratings, (rating, i) => {
+            allRatings += rating * i;
+          });
+          setAvgRating(Math.round((allRatings / count) * 10) / 10);
+        }
       })
       .catch((err) => console.log(err));
   }, [detailItem]);
 
   const updateDetail = () => {
     event.preventDefault();
-    setCurrentItemID(listItem);
+    setCurrentItemID(listItem.id);
     window.scrollTo({top: 0, behavior: 'smooth'})
   };
 
@@ -63,7 +70,14 @@ const RelatedItem = ({ currentID, setCurrentItemID, detailItem, getStars }) => {
         </ImageContainer>
         <CardCategory>{listItem.category}</CardCategory>
         <CardName>{`${listItem.name} - ${itemStyle[0]?.name}`}</CardName>
-        <Price>{itemStyle[0]?.original_price}</Price>
+        <Price>
+          <div style={itemStyle[0]?.sale_price ? saleOriginal : { color: 'black' }}>
+            ${itemStyle[0]?.original_price}
+          </div>
+          <div style={saleStyle}>
+            {itemStyle[0]?.sale_price ? `$${itemStyle[0].sale_price}` : ''}
+          </div>
+        </Price>
         {getStars(avgRating)}
       </Card>
     </CardContainer>
@@ -106,6 +120,8 @@ font-size: small;
 `
 
 const Price = styled.div`
+display: flex;
+flex-direction: row;
 font-size: small;
 `
 
