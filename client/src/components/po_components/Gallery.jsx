@@ -24,20 +24,40 @@ const Gallery = ({
   }; */
   return (
     <div id="imageGallery">
-      <div id="gallery">
-        {selectedStyle.photos.map((photo, index) => (
-          <div
-            className="thumbnail"
-            key={photo.url}
-            role="button"
-            onClick={() => { changeSelectedImgInx(index); }}
-            onKeyPress={() => {}}
-            tabIndex={0}
-            style={index === selectedImageIndex ? selectedCss : { border: 'solid white' }}
-          >
-            <img className="thumbnail-image" alt="x" src={photo.thumbnail_url} />
-          </div>
-        ))}
+      <div id="side-gallery">
+        <button
+          className="nav-button"
+          type="submit"
+          onClick={() => {
+            document.getElementById('gallery').scrollBy({ left: 0, top: -95, behavior: 'smooth' });
+          }}
+        >
+          <i className="fa-solid fa-chevron-up fa-xl" />
+        </button>
+        <div id="gallery">
+          {selectedStyle.photos.map((photo, index) => (
+            <div
+              className="thumbnail"
+              key={photo.url}
+              role="button"
+              onClick={() => { changeSelectedImgInx(index); }}
+              onKeyPress={() => {}}
+              tabIndex={0}
+              style={index === selectedImageIndex ? selectedCss : { border: 'solid white' }}
+            >
+              <img className="thumbnail-image" alt="x" src={photo.thumbnail_url} />
+            </div>
+          ))}
+        </div>
+        <button
+          className="nav-button"
+          type="submit"
+          onClick={() => {
+            document.getElementById('gallery').scrollBy({ left: 0, top: 95, behavior: 'smooth' });
+          }}
+        >
+          <i className="fa-solid fa-chevron-down fa-xl" />
+        </button>
       </div>
       <div
         className="nav-button"
