@@ -35,8 +35,6 @@ const ExpandedGallery = ({
             }
           }}
           onMouseMove={zoomedIn ? (event) => {
-            console.log('prev is ', prevCoord);
-            console.log('current is ', mouseCoord);
             const element = document.getElementById('container');
             const deltaX = mouseCoord.x - prevCoord.x;
             const deltaY = mouseCoord.y - prevCoord.y;
