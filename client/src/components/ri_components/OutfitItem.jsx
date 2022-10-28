@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import _ from 'underscore';
 import styled from 'styled-components';
+import image from '../../../dist/images/imageNotFound.png';
 
 const OutfitItem = ({ detailItem, setCurrentItemID, currentID, setOutfitItemIDs, getStars }) => {
   const [outfitItem, setOutfitItem] = useState({});
@@ -49,7 +50,7 @@ const OutfitItem = ({ detailItem, setCurrentItemID, currentID, setOutfitItemIDs,
     <CardContainer>
       <Card onClick={updateDetail}>
         <ImageContainer>
-          <ItemImg src={itemStyle[0]?.photos[0].thumbnail_url === null ? 'https://www.fillmurray.com/140/200' : itemStyle[0]?.photos[0].thumbnail_url} alt="Placeholder" />
+          <ItemImg src={itemStyle[0]?.photos[0].thumbnail_url === null ? image : itemStyle[0]?.photos[0].thumbnail_url} alt="Placeholder" />
           <ActionButton type="button" onClick={removeItem}>&#x2612;</ActionButton>
         </ImageContainer>
         <CardCategory>{outfitItem.category}</CardCategory>
