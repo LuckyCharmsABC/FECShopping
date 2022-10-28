@@ -25,15 +25,7 @@ const AdditionalInfo = ({ product }) => {
         <b>{product.slogan}</b>
         <p>{product.description}</p>
       </div>
-      {/* <div className="divider-2" />
-      <div className="features">
-        <ul>
-          {product.features.map((feature) => (
-            <li>{`${feature.feature}: ${feature.value}`}</li>
-          ))}
-        </ul>
-      </div> */}
-      {renderFeatures()}
+      { renderFeatures() }
     </div>
   );
 };
