@@ -10,7 +10,7 @@ import Reviews from './rr_components/Reviews.jsx';
 // which will be a child to App. you guys can rename the components and folder if you guys want.
 
 const App = () => {
-  const [currentItemID, setCurrentItemID] = useState(40355);
+  const [currentItemID, setCurrentItemID] = useState(40344);
   const [currentItem, setCurrentItem] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [metaData, setMetaData] = useState({});
@@ -118,7 +118,7 @@ const App = () => {
       />
       <Related
         currentItem={currentItem}
-        setCurrentItem={setCurrentItem}
+        setCurrentItemID={setCurrentItemID}
         getStars={calculateStarRating}
       />
       <div ref={ref}>
