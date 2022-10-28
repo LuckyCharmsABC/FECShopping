@@ -100,9 +100,17 @@ const App = () => {
   return (
     <div>
       <div className="page-top">
-        <span className="title-text">Lucky & Charm</span>
+        <div className="title-text">Lucky & Charm</div>
+        <div className="categories">
+          <div>New Arrivals</div>
+          <div>Pants</div>
+          <div>Jackets</div>
+          <div>Kicks</div>
+          <div>Dress shoes</div>
+          <div>Accesories</div>
+        </div>
       </div>
-      <div id="merchandise-directory">New Arrivals</div>
+      <div id="merchandise-directory">{'>'} New Arrivals</div>
       <Product
         currentItem={currentItem}
         scrollToReviews={scrollToReviews}
