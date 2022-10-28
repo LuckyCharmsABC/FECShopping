@@ -17,7 +17,6 @@
     "no-param-reassign": "off",
     "no-alert": "off",
     "no-extra-boolean-cast": "off",
-    "max-len": "off",
     "no-restricted-globals": "off"
   },
   "parserOptions": {
