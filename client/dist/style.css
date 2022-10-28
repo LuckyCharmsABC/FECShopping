@@ -189,7 +189,7 @@ button {
 #gallery {
   margin: 10px;
   margin-right: 20px;
-  height: 650px;
+  height: 680px;
   width:105px;
   min-width: 105px;
   min-height: 300px;
@@ -202,9 +202,22 @@ button {
 }
 
 .thumbnail {
-  padding: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1;
+  padding: 1px;
   cursor:pointer;
 }
+
+.thumbnail-image {
+  margin: auto;
+  aspect-ratio: 1;
+  height:85px;
+  width: auto;
+  object-fit: contain;
+}
+
 
 
 /* .slider div {

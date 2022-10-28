@@ -35,7 +35,7 @@ const Gallery = ({
             tabIndex={0}
             style={index === selectedImageIndex ? selectedCss : { border: 'solid white' }}
           >
-            <img width="85" height="auto" alt="x" src={photo.thumbnail_url} />
+            <img className="thumbnail-image" alt="x" src={photo.thumbnail_url} />
           </div>
         ))}
       </div>
@@ -62,7 +62,6 @@ const Gallery = ({
         onClick={() => {
           if (selectedImageIndex !== length - 1) {
             changeSelectedImgInx(selectedImageIndex + 1);
-/*             fadeOutImage(); */
           }
         }}
       >
