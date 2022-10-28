@@ -81,7 +81,7 @@ const App = () => {
       params: {
         product_id: currentItemID,
         sort: 'relevance',
-        count: 999999,
+        count: 999,
       },
     }).then((results) => {
       setAllReviews(results.data);
