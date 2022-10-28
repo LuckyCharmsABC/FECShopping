@@ -46,9 +46,11 @@ const Review = ({ review }) => {
       <h3 className="review-summary">{review.summary}</h3>
       <p className="review-body">{review.body}</p>
       {recommended}
-      <ul>
+      <ul className="review-img-list">
         {review.photos.map((photo) => (
-          <img src={photo.url} key={photo.id} alt={photo.id} width="200px" />
+          <a href={photo.url} rel="noreferrer" target="_blank" key={photo.id}>
+            <img className="review-img" src={photo.url} alt={photo.id} height="150px" />
+          </a>
         ))}
       </ul>
       <small><i>{`Submitted by ${review.reviewer_name} on ${format(date, 'PPP')}`}</i></small>

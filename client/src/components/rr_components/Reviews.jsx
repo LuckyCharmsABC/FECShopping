@@ -42,7 +42,7 @@ const Reviews = ({
 
   return _.size(data) && _.size(allReviews) && _.size(reviews) ? (
     <div>
-      <h3 className="rnr-header">—————————————————————— Ratings and Reviews ——————————————————————</h3>
+      <h3 className="rnr-header">Ratings and Reviews</h3>
       <div className="ratings-and-reviews">
         <OverallRatings
           data={data}

@@ -4,18 +4,12 @@ import axios from 'axios';
 import Characteristic from './Characteristic.jsx';
 
 const NewReview = ({ data, qualities }) => {
-  const [firstStar, setFirstStar] = useState('⭐');
-  const [secondStar, setSecondStar] = useState('⭐');
-  const [thirdStar, setThirdStar] = useState('⭐');
-  const [fourthStar, setFourthStar] = useState('⭐');
-  const [fifthStar, setFifthStar] = useState('⭐');
   const [rating, setRating] = useState(null);
   const [recommend, setRecommend] = useState(true);
   const [characteristics, setCharacteristics] = useState({});
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
   const [remainingChars, setRemainingChars] = useState('Minimum required characters left: 50');
-  // eslint-disable-next-line no-array-constructor
   const [photos, setPhotos] = useState([]);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -40,62 +34,60 @@ const NewReview = ({ data, qualities }) => {
     },
     (err, res) => {
       if (!err && res && res.event === 'success') {
-        console.log('Done! Here is the image info: ', res.info);
         const photo = res.info.secure_url;
         setPhotos([...photos, photo]);
-        console.log(photos);
       }
     },
   );
 
   const oneStar = () => {
-    setFirstStar('🌟');
-    setSecondStar('⭐');
-    setThirdStar('⭐');
-    setFourthStar('⭐');
-    setFifthStar('⭐');
-    setRating(1);
+    document.getElementById('one-star').classList.add('full-star');
+    document.getElementById('two-star').classList.remove('full-star');
+    document.getElementById('three-star').classList.remove('full-star');
+    document.getElementById('four-star').classList.remove('full-star');
+    document.getElementById('five-star').classList.remove('full-star');
     document.getElementById('empty-review').style.display = 'none';
+    setRating(1);
   };
 
   const twoStar = () => {
-    setFirstStar('🌟');
-    setSecondStar('🌟');
-    setThirdStar('⭐');
-    setFourthStar('⭐');
-    setFifthStar('⭐');
-    setRating(2);
+    document.getElementById('one-star').classList.add('full-star');
+    document.getElementById('two-star').classList.add('full-star');
+    document.getElementById('three-star').classList.remove('full-star');
+    document.getElementById('four-star').classList.remove('full-star');
+    document.getElementById('five-star').classList.remove('full-star');
     document.getElementById('empty-review').style.display = 'none';
+    setRating(2);
   };
 
   const threeStar = () => {
-    setFirstStar('🌟');
-    setSecondStar('🌟');
-    setThirdStar('🌟');
-    setFourthStar('⭐');
-    setFifthStar('⭐');
-    setRating(3);
+    document.getElementById('one-star').classList.add('full-star');
+    document.getElementById('two-star').classList.add('full-star');
+    document.getElementById('three-star').classList.add('full-star');
+    document.getElementById('four-star').classList.remove('full-star');
+    document.getElementById('five-star').classList.remove('full-star');
     document.getElementById('empty-review').style.display = 'none';
+    setRating(3);
   };
 
   const fourStar = () => {
-    setFirstStar('🌟');
-    setSecondStar('🌟');
-    setThirdStar('🌟');
-    setFourthStar('🌟');
-    setFifthStar('⭐');
-    setRating(4);
+    document.getElementById('one-star').classList.add('full-star');
+    document.getElementById('two-star').classList.add('full-star');
+    document.getElementById('three-star').classList.add('full-star');
+    document.getElementById('four-star').classList.add('full-star');
+    document.getElementById('five-star').classList.remove('full-star');
     document.getElementById('empty-review').style.display = 'none';
+    setRating(4);
   };
 
   const fiveStar = () => {
-    setFirstStar('🌟');
-    setSecondStar('🌟');
-    setThirdStar('🌟');
-    setFourthStar('🌟');
-    setFifthStar('🌟');
-    setRating(5);
+    document.getElementById('one-star').classList.add('full-star');
+    document.getElementById('two-star').classList.add('full-star');
+    document.getElementById('three-star').classList.add('full-star');
+    document.getElementById('four-star').classList.add('full-star');
+    document.getElementById('five-star').classList.add('full-star');
     document.getElementById('empty-review').style.display = 'none';
+    setRating(5);
   };
 
   const handleRecommend = () => {
@@ -215,11 +207,6 @@ const NewReview = ({ data, qualities }) => {
   const exitNewReview = () => {
     document.getElementById('new-review').style.display = 'none';
 
-    setFirstStar('⭐');
-    setSecondStar('⭐');
-    setThirdStar('⭐');
-    setFourthStar('⭐');
-    setFifthStar('⭐');
     setRating(null);
 
     document.getElementById('recommend').checked = true;
@@ -257,40 +244,38 @@ const NewReview = ({ data, qualities }) => {
     }
   };
 
+  const addImgBtn = photos.length < 5 ? (
+    /* eslint-disable-next-line jsx-a11y/control-has-associated-label */
+    <button className="fa fa-circle-plus add-img-btn" type="button" onClick={handleAddImage} />
+  ) : <div />;
+
   return (
     <div id="new-review">
-      <button type="button" onClick={exitNewReview}>x</button>
+      {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+      <button type="button" className="exit-btn fa fa-xmark" onClick={exitNewReview} />
       <form>
-        <div>
+        <div className="review-section">
           Overall rating (mandatory)
+          <div className="select-star-rating">
+            {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+            <button type="button" className="star-btn fa fa-star star" id="one-star" onClick={oneStar} />
+            {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+            <button type="button" className="star-btn fa fa-star star" id="two-star" onClick={twoStar} />
+            {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+            <button type="button" className="star-btn fa fa-star star" id="three-star" onClick={threeStar} />
+            {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+            <button type="button" className="star-btn fa fa-star star" id="four-star" onClick={fourStar} />
+            {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+            <button type="button" className="star-btn fa fa-star star" id="five-star" onClick={fiveStar} />
+            {ratings[rating]}
+          </div>
+          <div className="error" id="empty-review">
+            <small>This field is required</small>
+          </div>
         </div>
-
-        <div>
-          <button type="button" onClick={oneStar}>
-            {firstStar}
-          </button>
-          <button type="button" onClick={twoStar}>
-            {secondStar}
-          </button>
-          <button type="button" onClick={threeStar}>
-            {thirdStar}
-          </button>
-          <button type="button" onClick={fourStar}>
-            {fourthStar}
-          </button>
-          <button type="button" onClick={fiveStar}>
-            {fifthStar}
-          </button>
-          {ratings[rating]}
-        </div>
-
-        <div className="error" id="empty-review">
-          <small>This field is required</small>
-        </div>
-
-        <div>
+        <div className="review-section">
           Do you recommend this product? (mandatory)
-          <fieldset>
+          <fieldset className="review-radio-select">
             <div>
               <input type="radio" value="yes" id="recommend" name="rec" onChange={handleRecommend} defaultChecked />
               <label htmlFor="recommend">Yes</label>
@@ -303,9 +288,9 @@ const NewReview = ({ data, qualities }) => {
           </fieldset>
         </div>
 
-        <div>
+        <div className="review-section">
           Characteristics (mandatory)
-          <fieldset>
+          <fieldset className="review-radio-select">
             {_.map(data.characteristics, (char, i) => (
               <Characteristic
                 key={char.id}
@@ -324,79 +309,75 @@ const NewReview = ({ data, qualities }) => {
           <small>This field is required</small>
         </div>
 
-        <div>
+        <div className="review-section">
           Review Summary
+          <div className="text-input">
+            <input type="text" value={summary} onChange={handleSummary} maxLength="60" placeholder="Example: Best purchase ever!" size="60" />
+          </div>
         </div>
 
-        <div>
-          <input type="text" value={summary} onChange={handleSummary} maxLength="60" placeholder="Example: Best purchase ever!" size="60" />
-        </div>
-
-        <div>
+        <div className="review-section">
           Review body (mandatory)
-        </div>
-
-        <div>
-          <textarea value={body} onChange={handleBody} minLength="50" maxLength="1000" placeholder="Why did you like the product or not?" rows="10" cols="60" />
-        </div>
-
-        <div>
+          <div className="text-input">
+            <textarea value={body} onChange={handleBody} minLength="50" maxLength="1000" placeholder="Why did you like the product or not?" rows="10" cols="60" />
+          </div>
           {remainingChars}
+          <div className="error" id="empty-body">
+            <small>This field is required</small>
+          </div>
+          <div className="error" id="short-body">
+            <small>Body must be at least 50 characters long</small>
+          </div>
         </div>
 
-        <div className="error" id="empty-body">
-          <small>This field is required</small>
-        </div>
-        <div className="error" id="short-body">
-          <small>Body must be at least 50 characters long</small>
-        </div>
-
-        <div>
+        <div className="review-section">
           Upload your photos
+          <div className="photo-list">
+            {_.map(photos, (url) => (
+              // eslint-disable-next-line jsx-a11y/control-has-associated-label
+              <div className="img-thumbnail" key={url}>
+                <a href={url} rel="noreferrer" target="_blank">
+                  <img id={url} className="cropped-img" src={url} alt="" />
+                </a>
+                {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+                <button
+                  type="button"
+                  className="fa fa-circle-xmark remove-img"
+                  onClick={() => {
+                    setPhotos(_.filter(photos, (photo) => (
+                      photo !== url
+                    )));
+                  }}
+                />
+              </div>
+            ))}
+            {addImgBtn}
+          </div>
         </div>
-
-        <div>
-          <button type="button" onClick={handleAddImage}>
-            Upload files
-          </button>
-        </div>
-
-        <div>
-          {_.map(photos, (url) => (
-            <img src={url} alt="" key={url} width="200px" />
-          ))}
-        </div>
-
-        <div>
+        <div className="review-section">
           What is your name (mandatory)
+          <div className="text-input">
+            <input type="text" value={name} onChange={handleNameChange} maxLength="60" placeholder="Example: jackson11!" size="60" />
+          </div>
+          <small className="privacy-warning">For privacy reasons, do not use your full name or email address</small>
+          <div className="error" id="empty-name">
+            <small>This field is required</small>
+          </div>
         </div>
 
-        <div>
-          <input type="text" value={name} onChange={handleNameChange} maxLength="60" placeholder="Example: jackson11!" size="60" />
-        </div>
-
-        <small>For privacy reasons, do not use your full name or email address</small>
-
-        <div className="error" id="empty-name">
-          <small>This field is required</small>
-        </div>
-
-        <div>
+        <div className="review-section">
           Your email (mandatory)
+          <div className="text-input">
+            <input type="text" value={email} onChange={handleEmailChange} maxLength="60" placeholder="Example: jackson11@email.com" size="60" />
+          </div>
+          <div className="error" id="empty-email">
+            <small>This field is required</small>
+          </div>
+          <div className="error" id="invalid-email">
+            <small>Invalid email</small>
+          </div>
         </div>
-
-        <div>
-          <input type="text" value={email} onChange={handleEmailChange} maxLength="60" placeholder="Example: jackson11@email.com" size="60" />
-        </div>
-
-        <div className="error" id="empty-email">
-          <small>This field is required</small>
-        </div>
-        <div className="error" id="invalid-email">
-          <small>Invalid email</small>
-        </div>
-
-        <button type="button" onClick={handleSubmit}>Submit</button>
+        <button className="submit-button submit-review" type="button" onClick={handleSubmit}>Submit</button>
       </form>
     </div>
   );
