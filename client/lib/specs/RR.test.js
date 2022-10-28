@@ -5,7 +5,10 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import reviews from '../data/ExampleReviews.json';
 import metaData from '../data/ExampleReviewMetaData.json';
-import OverallRatings from '../../src/components/rr_components/OverallRatings.jsx';
+import Reviews from '../../src/components/rr_components/Reviews.jsx';
 
-describe('Overall Ratings', () => {
+describe('Ratings and Reviews', () => {
+  it('should load the widget', () => {
+    waitFor(render())
+  })
 });
