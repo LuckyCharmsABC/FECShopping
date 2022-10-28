@@ -15,18 +15,12 @@ const Cart = ({
   }
 
   const setItemSku = (value) => {
-    console.log('setting item sku to ', value);
     const copy = { ...selectedCombo, sku_id: value };
-    // copy.sku_id = value;
-    console.log('copy is ', copy);
     setSelectedCombo(copy);
   };
 
   const setItemQuant = (value) => {
-    console.log('setting item quant to ', value);
     const copy = { ...selectedCombo, count: value };
-    // copy.count = value;
-    console.log('copy is ', copy);
     setSelectedCombo(copy);
   };
 

@@ -43,7 +43,6 @@ const SizeSelector = ({
         id="size-selector"
         onChange={(event) => {
           if (event.target.value === '-1') {
-            console.log('now selection value is ', event.target.value);
             changeMaxQuant(-1);
             setSelectedCombo({ sku_id: '', count: 1 });
             return;

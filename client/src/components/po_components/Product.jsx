@@ -32,7 +32,7 @@ const Product = ({
   useEffect(() => {
     axios.get('/productstyles', { params: { id: product.id } })
       .then((response) => {
-        console.log(response.data.results);
+        // console.log(response.data.results);
         setProductStyles(response.data.results);
         setSelectedStyle(response.data.results[0]);
         setIsLoading(false);
