@@ -33,7 +33,7 @@ const itemComparison = ({ showModal, detailItem, relatedItem, toggleModal }) => 
 
   if (showModal) {
     return (
-      <ModalContainer>
+      <ModalContainer class="MConn" onClick={toggleModal}>
         <Modal onClick={() => toggleModal()}>
           <Table>
             <TableHead>
@@ -62,7 +62,10 @@ const itemComparison = ({ showModal, detailItem, relatedItem, toggleModal }) => 
 export default itemComparison;
 
 const ModalContainer = styled.div`
-
+  // position: absolute;
+  // width: 2000px;
+  // height: 2000px;
+  // background: black;
 `;
 
 const Modal = styled.div`
