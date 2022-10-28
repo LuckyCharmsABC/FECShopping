@@ -1,0 +1,116 @@
+/**************************************
+
+Overall Ratings
+
+**************************************/
+
+.overall-ratings {
+  margin: 25px;
+  width: 255px;
+}
+
+/* Average Rating */
+
+.average-rating-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+
+.average-rating-num {
+  margin: 0;
+  font-size: 60px;
+}
+
+.average-star-rating {
+  margin: 20px 0 0 10px;
+}
+
+.recommend-percentage,
+.average-rating-num {
+  font-weight: normal;
+}
+
+/* Recommend Percentage */
+
+.recommend-percentage {
+  font-size: 14.5px;
+}
+
+/* Rating Percents */
+
+.char-list,
+.rating-list {
+  padding-left: 0;
+}
+
+.average-single-rating {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.rating-percent {
+  border: 1px solid #334250;
+  border-radius: 5px;
+  display: inline-block;
+  height: 10px;
+  margin-top: 6px;
+  width: 200px;
+}
+
+.percent-bar {
+  background: linear-gradient(#0F3460, #164782, #0F3460);
+  border-radius: 2px;
+  display: block;
+  height: 100%;
+}
+
+/* Characteristics */
+
+.char-name {
+  display: block;
+}
+
+.characteristics-scale {
+  width: 250px;
+}
+
+.char-bar {
+  background-color: #ddd;
+  display: inline-block;
+  height: 10px;
+  position: relative;
+  top: -17px;
+  width: 100%;
+}
+
+.caret-down {
+  color: #0F3460;
+  display: block;
+  font-size: 25;
+  margin-left: -4px;
+  position: relative;
+  z-index: 1;
+}
+
+.attributes {
+  font-size: 12px;
+  position: relative;
+  top: -17px;
+}
+
+.left-option,
+.right-option {
+  position: relative;
+  top: -16px;
+}
+
+.mid-option {
+  display: flex;
+  justify-content: center;
+}
+
+.right-option {
+  float: right;
+}
