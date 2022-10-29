@@ -141,11 +141,10 @@ module.exports = {
     const { count } = req.body;
     const skuObj = { sku_id: req.body.sku_id };
     const promises = [];
-    console.log(`count is ${count}`);
     for (let i = 1; i <= count; i += 1) {
-      console.log(`iteration ${i}`);
       promises.push(
-        axios.post(requestURL, skuObj, options));
+        axios.post(requestURL, skuObj, options),
+      );
     }
     Promise.all(promises)
       .then(() => {
