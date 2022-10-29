@@ -3,6 +3,7 @@ import axios from 'axios';
 import _ from 'underscore';
 import styled from 'styled-components';
 import { updateDetail, removeFromOutfit } from '../../helperFunctions/relatedHelperFunctions.js';
+import { calAverageRating, renderStarRating } from '../../helperFunctions/app_helpers.js';
 import image from '../../../dist/images/imageNotFound.png';
 
 const OutfitItem = ({ setCurrentItemID, currentID, setOutfitItemIDs, getStars }) => {
@@ -24,13 +25,9 @@ const OutfitItem = ({ setCurrentItemID, currentID, setOutfitItemIDs, getStars })
       })
       .catch((err) => console.log(err));
     axios.get('/reviewdata', { params: { product_id: currentID } })
-      .then((data) => {
-        const count = parseInt(data.data.recommended.false, 10 || 0) + parseInt(data.data.recommended.true, 10 || 0);
-        let allRatings = 0;
-        _.each(data.data.ratings, (rating, i) => {
-          allRatings += rating * i;
-        });
-        setAvgRating(Math.round((allRatings / count) * 10) / 10);
+      .then(({ data }) => {
+        const averageRating = calAverageRating(data);
+        setAvgRating(averageRating);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -53,7 +50,7 @@ const OutfitItem = ({ setCurrentItemID, currentID, setOutfitItemIDs, getStars })
             {itemStyle[0]?.sale_price ? `$${itemStyle[0].sale_price}` : ''}
           </div>
         </Price>
-        {getStars(avgRating)}
+        {renderStarRating(avgRating)}
       </Card>
     </CardContainer>
   );
