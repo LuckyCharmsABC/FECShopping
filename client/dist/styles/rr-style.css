@@ -163,7 +163,6 @@ Review List
   border: 2px solid #ddd;
   border-radius: 10px;
   color: #334250;
-  display: none;
   height: 75%;
   left: 25%;
   overflow: auto;
@@ -240,6 +239,10 @@ Individual Review
 New Review
 
 **************************************/
+
+.hidden {
+  display: none;
+}
 
 .exit-btn {
   border: none;

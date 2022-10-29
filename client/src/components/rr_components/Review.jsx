@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { format, parseISO } from 'date-fns';
 import axios from 'axios';
 import _ from 'underscore';
 
 const Review = ({ review }) => {
   const [helpfulness, setHelpfulness] = useState(review.helpfulness);
+  const reportPopup = useRef(null);
   const recommended = review.recommend ? (
     <h5 className="recommend">
       <span className="fa fa-solid fa-check" />
@@ -25,7 +26,7 @@ const Review = ({ review }) => {
 
   const report = () => {
     axios.put(`reviews/${review.review_id}/report`);
-    document.getElementById(`${review.review_id}-reported`).style.display = 'block';
+    reportPopup.current.style.display = 'block';
   };
 
   const starRating = (
@@ -62,7 +63,7 @@ const Review = ({ review }) => {
         </button>
         {' | '}
         <button type="button" className="review-btn" onClick={report}>Report</button>
-        <div className="reported" id={`${review.review_id}-reported`}>
+        <div ref={reportPopup} className="reported" id={`${review.review_id}-reported`}>
           <small><i>Reported! You won&apos;t see this review again</i></small>
         </div>
       </div>

@@ -84,7 +84,7 @@ const App = () => {
         count: 999,
       },
     }).then((results) => {
-      setAllReviews(results.data);
+      setAllReviews(results.data.results);
       setReviews(results.data.results.slice(0, 2));
       setReviewCount(results.data.results.length);
     })

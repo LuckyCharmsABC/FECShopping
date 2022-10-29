@@ -15,7 +15,7 @@ const Reviews = ({
   averageStarRating,
 }) => {
   const showMore = (limit) => {
-    setReviews(allReviews.results.slice(0, limit + 2));
+    setReviews(allReviews.slice(0, limit + 2));
   };
 
   const qualities = {
@@ -35,7 +35,7 @@ const Reviews = ({
         count: 999999,
       },
     }).then((results) => {
-      setAllReviews(results.data);
+      setAllReviews(results.data.results);
       setReviews(results.data.results.slice(0, 2));
     });
   };

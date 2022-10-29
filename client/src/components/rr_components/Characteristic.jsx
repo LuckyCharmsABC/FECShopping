@@ -8,6 +8,8 @@ const Characteristic = ({
   qualities,
   data,
   char,
+  emptyCharacteristics,
+  charBtns,
 }) => {
   const [selected, setSelected] = useState('None Selected');
   return (
@@ -28,9 +30,10 @@ const Characteristic = ({
                 setCharacteristics(_.extend(characteristics, characteristic));
                 setSelected(qualities[i][num - 1]);
                 if (_.size(characteristics) === _.size(data.characteristics)) {
-                  document.getElementById('empty-characteristics').style.display = 'none';
+                  emptyCharacteristics.current.style.display = 'none';
                 }
               }}
+              ref={(element) => { charBtns.current.push(element); }}
             />
             <label htmlFor={num}>{num}</label>
           </div>

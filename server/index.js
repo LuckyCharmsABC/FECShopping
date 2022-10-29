@@ -17,8 +17,6 @@ app.use(express.json());
 // serve up client files
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-// routes/controllers will utilize client requests and communicate with the API here.
-
 // Product Overview
 app.get('/products', controllers.getAll);
 app.get('/product', controllers.getProduct);
