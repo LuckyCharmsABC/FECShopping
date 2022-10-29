@@ -11,6 +11,7 @@ import Cart from './Cart.jsx';
 const Product = ({
   currentItem, scrollToReviews, averageRating, reviewCount, averageStarRating,
 }) => {
+  console.log('average rating passed in product is ', averageRating);
   const [isLoading, setIsLoading] = useState(true);
   const [productStyles, setProductStyles] = useState({});
   const [selectedStyle, setSelectedStyle] = useState({});

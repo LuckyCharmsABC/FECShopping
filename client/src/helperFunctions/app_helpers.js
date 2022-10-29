@@ -1,6 +1,23 @@
 import React from 'react';
 import _ from 'underscore';
 
+const calAverageRating = (data) => {
+  const recommended = parseInt(data.recommended.true, 10) || 0;
+  const notRecommended = parseInt(data.recommended.false, 10) || 0;
+  const count = notRecommended + recommended;
+  let allRatings = 0;
+  let aveRating = 0;
+  if (Object.keys(data.ratings).length === 0) {
+    aveRating = 0;
+  } else {
+    _.each(data.ratings, (rating, i) => {
+      allRatings += rating * i;
+      aveRating = Math.round((allRatings / count) * 10) / 10;
+    });
+  }
+  return aveRating;
+};
+
 const calculateStarRating = (rating) => {
   const starFloor = Math.floor(rating);
   const starDec = rating - starFloor;
@@ -33,4 +50,4 @@ const calculateStarRating = (rating) => {
   );
 };
 
-export default calculateStarRating;
+export { calAverageRating, calculateStarRating };
