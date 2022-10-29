@@ -2,7 +2,7 @@ import React from 'react';
 import { renderQuantOpts, renderSizeOpts } from '../../helperFunctions/po_helpers.js';
 
 const SizeSelector = ({
-  productSkus, setItemSku, setItemQuant, maxQuant, changeMaxQuant, setSelectedCombo,
+  productSkus, maxQuant, changeMaxQuant, selectedCombo, setSelectedCombo,
 }) => (
   <div className="selectors">
     <select
@@ -16,7 +16,7 @@ const SizeSelector = ({
         }
         const quant = productSkus[event.target.value].quantity;
         changeMaxQuant(quant < 15 ? quant : 15);
-        setItemSku(productSkus[event.target.value].skus);
+        setSelectedCombo({ ...selectedCombo, sku_id: productSkus[event.target.value].skus });
       }}
     >
       {renderSizeOpts(productSkus)}
@@ -25,7 +25,7 @@ const SizeSelector = ({
       className="dropdown-list"
       id="num-selector"
       onChange={(event) => {
-        setItemQuant(parseInt(event.target.value, 10));
+        setSelectedCombo({ ...selectedCombo, count: parseInt(event.target.value, 10) });
       }}
     >
       {renderQuantOpts(maxQuant)}

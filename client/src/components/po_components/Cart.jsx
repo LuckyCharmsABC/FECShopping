@@ -7,15 +7,6 @@ const Cart = ({
   selectedStyle, maxQuant, changeMaxQuant, selectedCombo, setSelectedCombo,
 }) => {
   const productSkus = makeSkusArray(selectedStyle.skus);
-  const setItemSku = (value) => {
-    const copy = { ...selectedCombo, sku_id: value };
-    setSelectedCombo(copy);
-  };
-
-  const setItemQuant = (value) => {
-    const copy = { ...selectedCombo, count: value };
-    setSelectedCombo(copy);
-  };
 
   const addtoCart = (items) => {
     const itemsToAdd = items;
@@ -37,8 +28,6 @@ const Cart = ({
     <div id="cartSection">
       <SizeSelector
         productSkus={productSkus}
-        setItemSku={setItemSku}
-        setItemQuant={setItemQuant}
         maxQuant={maxQuant}
         changeMaxQuant={changeMaxQuant}
         selectedCombo={selectedCombo}
