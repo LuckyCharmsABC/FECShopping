@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { toggleModal, getFeatures, findValues } from './relatedHelperFunctions.js';
+import { toggleModal, getFeatures, findValues } from '../../helperFunctions/relatedHelperFunctions.js';
 
 const itemComparison = ({ showModal, setShowModal, detailItem, relatedItem }) => {
   if (showModal) {

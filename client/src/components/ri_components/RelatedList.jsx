@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import _ from 'underscore';
 import RelatedItem from './RelatedItem.jsx';
-import { relLeftScroll, relRightScroll } from './relatedHelperFunctions.js';
+import { relLeftScroll, relRightScroll } from '../../helperFunctions/relatedHelperFunctions.js';
 
 const RelatedList = ({ currentItem, setCurrentItemID, getStars }) => {
   const [relatedItemsIDs, setRelatedItemsIDs] = useState([]);

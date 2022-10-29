@@ -3,7 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import _ from 'underscore';
 import ItemComparison from './ItemComparison.jsx';
-import { updateDetail, toggleModal } from './relatedHelperFunctions.js';
+import { updateDetail, toggleModal } from '../../helperFunctions/relatedHelperFunctions.js';
 import image from '../../../dist/images/imageNotFound.png';
 
 const RelatedItem = ({ currentID, setCurrentItemID, detailItem, getStars }) => {

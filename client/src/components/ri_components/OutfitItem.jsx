@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import _ from 'underscore';
 import styled from 'styled-components';
-import { updateDetail, removeFromOutfit } from './relatedHelperFunctions.js';
+import { updateDetail, removeFromOutfit } from '../../helperFunctions/relatedHelperFunctions.js';
 import image from '../../../dist/images/imageNotFound.png';
 
 const OutfitItem = ({ setCurrentItemID, currentID, setOutfitItemIDs, getStars }) => {
