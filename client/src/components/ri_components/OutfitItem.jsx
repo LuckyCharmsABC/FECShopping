@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import _ from 'underscore';
+import { updateDetail, removeFromOutfit } from './relatedHelperFunctions.js';
 import styled from 'styled-components';
 import image from '../../../dist/images/imageNotFound.png';
 
@@ -34,24 +35,18 @@ const OutfitItem = ({ detailItem, setCurrentItemID, currentID, setOutfitItemIDs,
       .catch((err) => console.log(err));
   }, []);
 
-  const removeItem = (e) => {
-    e.stopPropagation();
-    localStorage.removeItem(outfitItem.id);
-    setOutfitItemIDs(Object.keys(localStorage));
-  };
-
-  const updateDetail = () => {
-    event.preventDefault();
-    setCurrentItemID(outfitItem.id);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  // const removeFromOutfit = (e) => {
+  //   e.stopPropagation();
+  //   localStorage.removeItem(outfitItem.id);
+  //   setOutfitItemIDs(Object.keys(localStorage));
+  // };
 
   return (
     <CardContainer>
-      <Card onClick={updateDetail}>
+      <Card onClick={() => { updateDetail(outfitItem, setCurrentItemID); }}>
         <ImageContainer>
           <ItemImg src={itemStyle[0]?.photos[0].thumbnail_url === null ? image : itemStyle[0]?.photos[0].thumbnail_url} alt="Placeholder" />
-          <ActionButton type="button" onClick={removeItem}>&#x2612;</ActionButton>
+          <ActionButton type="button" onClick={(e) => { removeFromOutfit(e, outfitItem, setOutfitItemIDs); }}>&#x2612;</ActionButton>
         </ImageContainer>
         <CardCategory>{outfitItem.category}</CardCategory>
         <CardName>{`${outfitItem.name} - ${itemStyle[0]?.name}`}</CardName>

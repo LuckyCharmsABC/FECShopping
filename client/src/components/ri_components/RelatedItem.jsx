@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import _ from 'underscore';
 import ItemComparison from './ItemComparison.jsx';
+import { updateDetail, toggleModal } from './relatedHelperFunctions.js';
 import image from '../../../dist/images/imageNotFound.png';
 
 const RelatedItem = ({ currentID, setCurrentItemID, detailItem, getStars }) => {
@@ -41,33 +42,18 @@ const RelatedItem = ({ currentID, setCurrentItemID, detailItem, getStars }) => {
       .catch((err) => console.log(err));
   }, [detailItem]);
 
-  const updateDetail = () => {
-    event.preventDefault();
-    setCurrentItemID(listItem.id);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const toggleModal = () => {
-    setShowModal(!showModal);
-  };
-
-  const logComparison = (e) => {
-    e.stopPropagation();
-    toggleModal();
-  };
-
   return (
     <CardContainer>
       <ItemComparison
         showModal={showModal}
+        setShowModal={setShowModal}
         detailItem={detailItem}
         relatedItem={listItem}
-        toggleModal={toggleModal}
       />
-      <Card onClick={updateDetail}>
+      <Card onClick={() => { updateDetail(listItem, setCurrentItemID); }}>
         <ImageContainer>
           <ItemImg src={itemStyle[0]?.photos[0].thumbnail_url === null ? image : itemStyle[0]?.photos[0].thumbnail_url} alt="Placeholder" />
-          <ActionButton className="action-star" type="button" onClick={(e) => logComparison(e)}>&#9734;</ActionButton>
+          <ActionButton className="action-star" type="button" onClick={(e) => toggleModal(e, showModal, setShowModal)}>&#9734;</ActionButton>
         </ImageContainer>
         <CardCategory>{listItem.category}</CardCategory>
         <CardName>{`${listItem.name} - ${itemStyle[0]?.name}`}</CardName>

@@ -1,40 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import _ from 'underscore';
+import { toggleModal, getFeatures, findValues } from './relatedHelperFunctions.js';
 
-const itemComparison = ({ showModal, detailItem, relatedItem, toggleModal }) => {
-  const getFeatures = (item1, item2) => {
-    const array1 = item1.features?.map((item) => item.feature);
-    const array2 = item2.features?.map((item) => item.feature);
-
-    const featureArray = _.uniq(array1.concat(array2));
-    return featureArray;
-  };
-  const findValueDetail = (target) => {
-    for (let i = 0; i < detailItem.features.length; i += 1) {
-      if (detailItem.features[i].feature === target) {
-        return detailItem.features[i].value;
-      }
-    }
-    return '';
-  };
-
-  const findValueRelated = (target) => {
-    for (let i = 0; i < relatedItem.features.length; i += 1) {
-      if (relatedItem.features[i].feature === target) {
-        if (relatedItem.features[i].value === true) {
-          return '&#10004';
-        }
-        return relatedItem.features[i].value;
-      }
-    }
-    return '';
-  };
-
+const itemComparison = ({ showModal, setShowModal, detailItem, relatedItem }) => {
   if (showModal) {
     return (
-      <ModalContainer class="MConn" onClick={toggleModal}>
-        <Modal onClick={() => toggleModal()}>
+      <ModalContainer onClick={(e) => { toggleModal(e, showModal, setShowModal); }}>
+        <Modal onClick={(e) => { toggleModal(e, showModal, setShowModal); }}>
           <Table>
             <TableHead>
               <tr>
@@ -46,9 +19,9 @@ const itemComparison = ({ showModal, detailItem, relatedItem, toggleModal }) => 
             <TableBody>
               {getFeatures(detailItem, relatedItem).map((feature) => (
                 <tr>
-                  <td>{findValueDetail(feature)}</td>
+                  <td>{findValues(feature, detailItem)}</td>
                   <td>{feature}</td>
-                  <td>{findValueRelated(feature)}</td>
+                  <td>{findValues(feature, relatedItem)}</td>
                 </tr>
               ))}
             </TableBody>
@@ -57,6 +30,7 @@ const itemComparison = ({ showModal, detailItem, relatedItem, toggleModal }) => 
       </ModalContainer>
     );
   }
+  return <div />;
 };
 
 export default itemComparison;
