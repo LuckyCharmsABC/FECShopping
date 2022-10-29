@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import OutfitItem from './OutfitItem.jsx';
 import { fitLeftScroll, fitRightScroll, addToOutfit } from '../../helperFunctions/relatedHelperFunctions.js';
 
-const outfitList = ({ currentItem, setCurrentItemID, getStars }) => {
+const outfitList = ({ currentItem, setCurrentItemID }) => {
   const [outfitItemsIDs, setOutfitItemIDs] = useState([]);
 
   useEffect(() => {
@@ -26,7 +26,6 @@ const outfitList = ({ currentItem, setCurrentItemID, getStars }) => {
                   key={currentID}
                   currentID={currentID}
                   setOutfitItemIDs={setOutfitItemIDs}
-                  getStars={getStars}
                 />
               ))}
             </div>

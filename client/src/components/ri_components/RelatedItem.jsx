@@ -7,7 +7,7 @@ import { updateDetail, toggleModal } from '../../helperFunctions/relatedHelperFu
 import { calAverageRating, renderStarRating } from '../../helperFunctions/app_helpers.js';
 import image from '../../../dist/images/imageNotFound.png';
 
-const RelatedItem = ({ currentID, setCurrentItemID, detailItem, getStars }) => {
+const RelatedItem = ({ currentID, setCurrentItemID, detailItem }) => {
   const [listItem, setListItem] = useState({});
   const [itemStyle, setItemStyle] = useState([]);
   const [showModal, setShowModal] = useState(false);

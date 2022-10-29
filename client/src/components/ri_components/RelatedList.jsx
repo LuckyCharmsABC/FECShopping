@@ -4,7 +4,7 @@ import _ from 'underscore';
 import RelatedItem from './RelatedItem.jsx';
 import { relLeftScroll, relRightScroll } from '../../helperFunctions/relatedHelperFunctions.js';
 
-const RelatedList = ({ currentItem, setCurrentItemID, getStars }) => {
+const RelatedList = ({ currentItem, setCurrentItemID }) => {
   const [relatedItemsIDs, setRelatedItemsIDs] = useState([]);
 
   useEffect(() => {
@@ -35,7 +35,6 @@ const RelatedList = ({ currentItem, setCurrentItemID, getStars }) => {
                   key={currentID}
                   setCurrentItemID={setCurrentItemID}
                   detailItem={currentItem}
-                  getStars={getStars}
                 />
               ))}
             </div>

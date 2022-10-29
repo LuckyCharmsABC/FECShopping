@@ -6,7 +6,7 @@ import { updateDetail, removeFromOutfit } from '../../helperFunctions/relatedHel
 import { calAverageRating, renderStarRating } from '../../helperFunctions/app_helpers.js';
 import image from '../../../dist/images/imageNotFound.png';
 
-const OutfitItem = ({ setCurrentItemID, currentID, setOutfitItemIDs, getStars }) => {
+const OutfitItem = ({ setCurrentItemID, currentID, setOutfitItemIDs }) => {
   const [outfitItem, setOutfitItem] = useState({});
   const [itemStyle, setItemStyle] = useState([]);
   const [avgRating, setAvgRating] = useState(0);
