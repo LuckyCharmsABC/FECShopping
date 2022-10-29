@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import _ from 'underscore';
 import ItemComparison from './ItemComparison.jsx';
+import image from '../../../dist/images/imageNotFound.png';
 
 const RelatedItem = ({ currentID, setCurrentItemID, detailItem, getStars }) => {
   const [listItem, setListItem] = useState({});
@@ -65,7 +66,7 @@ const RelatedItem = ({ currentID, setCurrentItemID, detailItem, getStars }) => {
       />
       <Card onClick={updateDetail}>
         <ImageContainer>
-          <ItemImg src={itemStyle[0]?.photos[0].thumbnail_url === null ? 'https://www.fillmurray.com/140/200' : itemStyle[0]?.photos[0].thumbnail_url} alt="Placeholder" />
+          <ItemImg src={itemStyle[0]?.photos[0].thumbnail_url === null ? image : itemStyle[0]?.photos[0].thumbnail_url} alt="Placeholder" />
           <ActionButton className="action-star" type="button" onClick={(e) => logComparison(e)}>&#9734;</ActionButton>
         </ImageContainer>
         <CardCategory>{listItem.category}</CardCategory>
