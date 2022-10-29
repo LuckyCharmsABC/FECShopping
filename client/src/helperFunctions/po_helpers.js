@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import React from 'react';
+import axios from 'axios';
 
 const makeSkusArray = (obj) => {
   const newArray = [];
@@ -10,6 +11,22 @@ const makeSkusArray = (obj) => {
     newArray.push(skusObj);
   }
   return newArray;
+};
+
+const addToCart = (items) => {
+  const itemsToAdd = items;
+  if (itemsToAdd.sku_id === '') {
+    alert('Please select size');
+    return;
+  }
+  console.log('item to add to bag is ', itemsToAdd);
+  axios.post('/cart', itemsToAdd)
+    .then(() => {
+      alert('items added');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 const renderQuantOpts = (value) => {
@@ -43,4 +60,4 @@ const renderSizeOpts = (productSkus) => {
   return options;
 };
 
-export { makeSkusArray, renderQuantOpts, renderSizeOpts };
+export { makeSkusArray, addToCart, renderQuantOpts, renderSizeOpts };
