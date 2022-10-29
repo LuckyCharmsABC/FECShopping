@@ -18,7 +18,7 @@ const calAverageRating = (data) => {
   return aveRating;
 };
 
-// comment this out when adapted to ratings and review
+// delete when adapted to rr and ri
 const calculateStarRating = (rating) => {
   const starFloor = Math.floor(rating);
   const starDec = rating - starFloor;
