@@ -31,7 +31,6 @@ module.exports = {
     callback(Object.keys(localStorage));
   },
   updateDetail(item, callback) {
-    console.log('updating!!!');
     event.preventDefault();
     callback(item.id);
     window.scrollTo({ top: 0, behavior: 'smooth' });

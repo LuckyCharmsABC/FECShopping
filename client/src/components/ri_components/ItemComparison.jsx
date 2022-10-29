@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import _ from 'underscore';
 import { toggleModal, getFeatures, findValues } from './relatedHelperFunctions.js';
 
 const itemComparison = ({ showModal, setShowModal, detailItem, relatedItem }) => {
@@ -63,13 +62,10 @@ const Table = styled.table`
 const TableHead = styled.thead`
   text-align: left;
   padding: 5px;
-`
+`;
 
 const TableBody = styled.tbody`
-`
+`;
 
 const Head = styled.th`
-`
-
-const Data = styled.td`
-`
+`;

@@ -22,7 +22,6 @@ const outfitList = ({ currentItem, setCurrentItemID, getStars }) => {
               <button className="add-outfit" type="button" onClick={() => { addToOutfit(currentItem, setOutfitItemIDs); }}>&#43;</button>
               {outfitItemsIDs.map((currentID) => (
                 <OutfitItem
-                  detailItem={currentItem}
                   setCurrentItemID={setCurrentItemID}
                   key={currentID}
                   currentID={currentID}

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import _ from 'underscore';
-import { updateDetail, removeFromOutfit } from './relatedHelperFunctions.js';
 import styled from 'styled-components';
+import { updateDetail, removeFromOutfit } from './relatedHelperFunctions.js';
 import image from '../../../dist/images/imageNotFound.png';
 
-const OutfitItem = ({ detailItem, setCurrentItemID, currentID, setOutfitItemIDs, getStars }) => {
+const OutfitItem = ({ setCurrentItemID, currentID, setOutfitItemIDs, getStars }) => {
   const [outfitItem, setOutfitItem] = useState({});
   const [itemStyle, setItemStyle] = useState([]);
   const [avgRating, setAvgRating] = useState(0);
@@ -25,7 +25,7 @@ const OutfitItem = ({ detailItem, setCurrentItemID, currentID, setOutfitItemIDs,
       .catch((err) => console.log(err));
     axios.get('/reviewdata', { params: { product_id: currentID } })
       .then((data) => {
-        const count = parseInt(data.data.recommended.false, 10) + parseInt(data.data.recommended.true, 10);
+        const count = parseInt(data.data.recommended.false, 10 || 0) + parseInt(data.data.recommended.true, 10 || 0);
         let allRatings = 0;
         _.each(data.data.ratings, (rating, i) => {
           allRatings += rating * i;
@@ -34,12 +34,6 @@ const OutfitItem = ({ detailItem, setCurrentItemID, currentID, setOutfitItemIDs,
       })
       .catch((err) => console.log(err));
   }, []);
-
-  // const removeFromOutfit = (e) => {
-  //   e.stopPropagation();
-  //   localStorage.removeItem(outfitItem.id);
-  //   setOutfitItemIDs(Object.keys(localStorage));
-  // };
 
   return (
     <CardContainer>
