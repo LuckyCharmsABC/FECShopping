@@ -11,7 +11,6 @@ import Cart from './Cart.jsx';
 const Product = ({
   currentItem, scrollToReviews, averageRating, reviewCount, averageStarRating,
 }) => {
-//  Example data to use for now
   const [isLoading, setIsLoading] = useState(true);
   const [productStyles, setProductStyles] = useState({});
   const [selectedStyle, setSelectedStyle] = useState({});

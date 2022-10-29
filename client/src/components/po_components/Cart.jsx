@@ -1,19 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 import SizeSelector from './SizeSelector.jsx';
+import { makeSkusArray } from '../../helperFunctions/po_helpers.js';
 
 const Cart = ({
   selectedStyle, maxQuant, changeMaxQuant, selectedCombo, setSelectedCombo,
 }) => {
-  const productSkus = [];
-  const skusKeys = Object.keys(selectedStyle.skus);
-  // eslint-disable-next-line no-restricted-syntax
-  for (const key of skusKeys) {
-    const currentSku = selectedStyle.skus[key];
-    const skusObj = { skus: key, quantity: currentSku.quantity, size: currentSku.size };
-    productSkus.push(skusObj);
-  }
-
+  const productSkus = makeSkusArray(selectedStyle.skus);
   const setItemSku = (value) => {
     const copy = { ...selectedCombo, sku_id: value };
     setSelectedCombo(copy);

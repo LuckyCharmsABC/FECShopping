@@ -4,7 +4,7 @@ import _ from 'underscore';
 import Product from './po_components/Product.jsx';
 import Related from './ri_components/RelatedItemsAndOutfits.jsx';
 import Reviews from './rr_components/Reviews.jsx';
-import calculateStarRating from '../starRating.js';
+import calculateStarRating from '../helperFunctions/starRating.js';
 
 const App = () => {
   const [currentItemID, setCurrentItemID] = useState(40344);
