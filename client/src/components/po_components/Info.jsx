@@ -1,7 +1,8 @@
 import React from 'react';
+import { renderStarRating } from '../../helperFunctions/app_helpers.js';
 
 const Info = ({
-  product, selectedStyle, scrollToReviews, averageRating, reviewCount, averageStarRating,
+  product, selectedStyle, scrollToReviews, averageRating, reviewCount,
 }) => {
   const saleStyle = { color: '#CC3636' };
   const saleOriginal = { textDecoration: 'line-through' };
@@ -13,7 +14,7 @@ const Info = ({
     return (
       <div className="general-review">
         <div className="starRating">
-          {averageStarRating}
+          { renderStarRating(averageRating) }
           {averageRating}
           {` (${reviewCount}) `}
         </div>

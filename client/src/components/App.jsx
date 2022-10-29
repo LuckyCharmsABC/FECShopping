@@ -4,7 +4,7 @@ import _ from 'underscore';
 import Product from './po_components/Product.jsx';
 import Related from './ri_components/RelatedItemsAndOutfits.jsx';
 import Reviews from './rr_components/Reviews.jsx';
-import calculateStarRating from '../starRating.js';
+import { calAverageRating, calculateStarRating } from '../helperFunctions/app_helpers.js';
 
 const App = () => {
   const [currentItemID, setCurrentItemID] = useState(40344);
@@ -15,6 +15,7 @@ const App = () => {
   const [averageRating, setAverageRating] = useState(0);
   const [allReviews, setAllReviews] = useState({});
   const [reviews, setReviews] = useState({});
+  // delete average Start ratings state after adpating to rr and ri
   const [averageStarRating, setAverageStarRating] = useState(<div />);
   const ref = useRef(null);
 
@@ -29,22 +30,11 @@ const App = () => {
 
   useEffect(() => {
     axios.get('/reviewdata', { params: { product_id: currentItemID } })
-      .then((data) => {
-        const recommended = parseInt(data.data.recommended.true, 10) || 0;
-        const notRecommended = parseInt(data.data.recommended.false, 10) || 0;
-        const count = notRecommended + recommended;
-        let allRatings = 0;
-        if (Object.keys(data.data.ratings).length === 0) {
-          setAverageRating(0);
-        } else {
-          _.each(data.data.ratings, (rating, i) => {
-            allRatings += rating * i;
-          });
-          setAverageRating(Math.round((allRatings / count) * 10) / 10);
-        }
-        setMetaData(data.data);
-        setAverageRating(Math.round((allRatings / count) * 10) / 10);
-        setAverageStarRating(calculateStarRating(Math.round((allRatings / count) * 10) / 10));
+      .then(({ data }) => {
+        const aveRating = calAverageRating(data);
+        setAverageRating(aveRating);
+        setMetaData(data);
+        setAverageStarRating(calculateStarRating(aveRating));
       })
       .catch((err) => { console.log(err); });
 
@@ -92,7 +82,6 @@ const App = () => {
         scrollToReviews={scrollToReviews}
         averageRating={averageRating}
         reviewCount={reviewCount}
-        averageStarRating={averageStarRating}
       />
       <Related
         currentItem={currentItem}
