@@ -15,6 +15,7 @@ const App = () => {
   const [averageRating, setAverageRating] = useState(0);
   const [allReviews, setAllReviews] = useState({});
   const [reviews, setReviews] = useState({});
+  // delete average Start ratings state after adpating to rr and ri
   const [averageStarRating, setAverageStarRating] = useState(<div />);
   const ref = useRef(null);
 
@@ -113,7 +114,6 @@ const App = () => {
         scrollToReviews={scrollToReviews}
         averageRating={averageRating}
         reviewCount={reviewCount}
-        averageStarRating={averageStarRating}
       />
       <Related
         currentItem={currentItem}
