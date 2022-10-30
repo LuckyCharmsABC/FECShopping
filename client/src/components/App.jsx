@@ -82,7 +82,6 @@ const App = () => {
       <Related
         currentItem={currentItem}
         setCurrentItemID={setCurrentItemID}
-        getStars={calculateStarRating}
       />
       <div ref={ref}>
         <Reviews

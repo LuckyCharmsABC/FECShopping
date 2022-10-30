@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import _ from 'underscore';
 import styled from 'styled-components';
+import { updateDetail, removeFromOutfit } from '../../helperFunctions/relatedHelperFunctions.js';
+import { calAverageRating, renderStarRating } from '../../helperFunctions/app_helpers.js';
 import image from '../../../dist/images/imageNotFound.png';
 
-const OutfitItem = ({ detailItem, setCurrentItemID, currentID, setOutfitItemIDs, getStars }) => {
+const OutfitItem = ({ setCurrentItemID, currentID, setOutfitItemIDs }) => {
   const [outfitItem, setOutfitItem] = useState({});
   const [itemStyle, setItemStyle] = useState([]);
   const [avgRating, setAvgRating] = useState(0);
@@ -23,35 +25,19 @@ const OutfitItem = ({ detailItem, setCurrentItemID, currentID, setOutfitItemIDs,
       })
       .catch((err) => console.log(err));
     axios.get('/reviewdata', { params: { product_id: currentID } })
-      .then((data) => {
-        const count = parseInt(data.data.recommended.false, 10) + parseInt(data.data.recommended.true, 10);
-        let allRatings = 0;
-        _.each(data.data.ratings, (rating, i) => {
-          allRatings += rating * i;
-        });
-        setAvgRating(Math.round((allRatings / count) * 10) / 10);
+      .then(({ data }) => {
+        const averageRating = calAverageRating(data);
+        setAvgRating(averageRating);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  const removeItem = (e) => {
-    e.stopPropagation();
-    localStorage.removeItem(outfitItem.id);
-    setOutfitItemIDs(Object.keys(localStorage));
-  };
-
-  const updateDetail = () => {
-    event.preventDefault();
-    setCurrentItemID(outfitItem.id);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
     <CardContainer>
-      <Card onClick={updateDetail}>
+      <Card onClick={() => { updateDetail(outfitItem, setCurrentItemID); }}>
         <ImageContainer>
           <ItemImg src={itemStyle[0]?.photos[0].thumbnail_url === null ? image : itemStyle[0]?.photos[0].thumbnail_url} alt="Placeholder" />
-          <ActionButton type="button" onClick={removeItem}>&#x2612;</ActionButton>
+          <ActionButton type="button" onClick={(e) => { removeFromOutfit(e, outfitItem, setOutfitItemIDs); }}>&#x2612;</ActionButton>
         </ImageContainer>
         <CardCategory>{outfitItem.category}</CardCategory>
         <CardName>{`${outfitItem.name} - ${itemStyle[0]?.name}`}</CardName>
@@ -64,7 +50,7 @@ const OutfitItem = ({ detailItem, setCurrentItemID, currentID, setOutfitItemIDs,
             {itemStyle[0]?.sale_price ? `$${itemStyle[0].sale_price}` : ''}
           </div>
         </Price>
-        {getStars(avgRating)}
+        {renderStarRating(avgRating)}
       </Card>
     </CardContainer>
   );
