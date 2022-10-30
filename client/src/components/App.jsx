@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import _ from 'underscore';
 import Product from './po_components/Product.jsx';
 import Related from './ri_components/RelatedItemsAndOutfits.jsx';
 import Reviews from './rr_components/Reviews.jsx';
@@ -15,8 +14,6 @@ const App = () => {
   const [averageRating, setAverageRating] = useState(0);
   const [allReviews, setAllReviews] = useState({});
   const [reviews, setReviews] = useState({});
-  // delete average Start ratings state after adpating to rr and ri
-  const [averageStarRating, setAverageStarRating] = useState(<div />);
   const ref = useRef(null);
 
   useEffect(() => {
@@ -34,7 +31,6 @@ const App = () => {
         const aveRating = calAverageRating(data);
         setAverageRating(aveRating);
         setMetaData(data);
-        setAverageStarRating(calculateStarRating(aveRating));
       })
       .catch((err) => { console.log(err); });
 
@@ -42,10 +38,10 @@ const App = () => {
       params: {
         product_id: currentItemID,
         sort: 'relevance',
-        count: 999999,
+        count: 999,
       },
     }).then((results) => {
-      setAllReviews(results.data);
+      setAllReviews(results.data.results);
       setReviews(results.data.results.slice(0, 2));
       setReviewCount(results.data.results.length);
     })
@@ -97,7 +93,6 @@ const App = () => {
           reviews={reviews}
           setAllReviews={setAllReviews}
           setReviews={setReviews}
-          averageStarRating={averageStarRating}
         />
       </div>
     </div>

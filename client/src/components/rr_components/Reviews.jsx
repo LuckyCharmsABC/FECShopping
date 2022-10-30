@@ -12,10 +12,9 @@ const Reviews = ({
   allReviews,
   setReviews,
   setAllReviews,
-  averageStarRating,
 }) => {
   const showMore = (limit) => {
-    setReviews(allReviews.results.slice(0, limit + 2));
+    setReviews(allReviews.slice(0, limit + 2));
   };
 
   const qualities = {
@@ -35,7 +34,7 @@ const Reviews = ({
         count: 999999,
       },
     }).then((results) => {
-      setAllReviews(results.data);
+      setAllReviews(results.data.results);
       setReviews(results.data.results.slice(0, 2));
     });
   };
@@ -47,7 +46,7 @@ const Reviews = ({
         <OverallRatings
           data={data}
           averageRating={averageRating}
-          averageStarRating={averageStarRating}
+          // averageStarRating={averageStarRating}
           qualities={qualities}
         />
         <ReviewList

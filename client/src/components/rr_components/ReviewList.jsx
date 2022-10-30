@@ -1,28 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Review from './Review.jsx';
 import NewReview from './NewReview.jsx';
 
 const ReviewList = ({
   allReviews, data, reviews, showMore, sort, qualities,
 }) => {
+  const [newReviewStatus, setNewReviewStatus] = useState('hidden');
+
   const handleShowMore = () => {
     showMore(reviews.length);
   };
 
-  const handleSort = () => {
-    sort(document.getElementsByName('sort')[0].value);
+  const handleSort = (event) => {
+    sort(event.target.value);
   };
 
   const showNewReview = () => {
-    const newReview = document.getElementById('new-review');
-    newReview.style.display = 'block';
+    setNewReviewStatus('shown');
   };
 
-  const count = allReviews.results.length;
+  const count = allReviews.length;
   const showMoreBtn = count - reviews.length ? <button type="button" onClick={handleShowMore} className="submit-button rl-btns-bottom">Show More</button> : <div />;
   return (
     <div className="review-list">
-      <NewReview data={data} qualities={qualities} />
+      <NewReview status={newReviewStatus} setStatus={setNewReviewStatus} data={data} qualities={qualities} />
       <form className="sortby">
         <label htmlFor="sort">
           { `${count} ` }
@@ -30,7 +31,6 @@ const ReviewList = ({
         </label>
         <select
           className="review-btn sort-btn"
-          name="sort"
           onChange={handleSort}
         >
           <option value="relevance" defaultValue>Relevance</option>
