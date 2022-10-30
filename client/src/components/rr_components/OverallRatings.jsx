@@ -1,10 +1,10 @@
 import React from 'react';
 import _ from 'underscore';
+import { renderStarRating } from '../../helperFunctions/app_helpers.js';
 
 const OverallRatings = ({
   data,
   averageRating,
-  averageStarRating,
   qualities,
 }) => {
   const totalCount = parseInt(data.recommended.true, 10) + parseInt(data.recommended.false, 10);
@@ -21,7 +21,7 @@ const OverallRatings = ({
     <div className="overall-ratings">
       <div className="average-rating-header">
         <h1 className="average-rating-num">{averageRating}</h1>
-        <span className="average-star-rating">{averageStarRating}</span>
+        <span className="average-star-rating">{renderStarRating(averageRating)}</span>
       </div>
       <h3 className="recommend-percentage">
         {recommendPercent}

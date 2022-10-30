@@ -12,7 +12,6 @@ const Reviews = ({
   allReviews,
   setReviews,
   setAllReviews,
-  averageStarRating,
 }) => {
   const showMore = (limit) => {
     setReviews(allReviews.slice(0, limit + 2));
@@ -47,7 +46,7 @@ const Reviews = ({
         <OverallRatings
           data={data}
           averageRating={averageRating}
-          averageStarRating={averageStarRating}
+          // averageStarRating={averageStarRating}
           qualities={qualities}
         />
         <ReviewList
