@@ -34,6 +34,7 @@ const Characteristic = ({
                 }
               }}
               ref={(element) => { charBtns.current.push(element); }}
+              required
             />
             <label htmlFor={num}>{num}</label>
           </div>

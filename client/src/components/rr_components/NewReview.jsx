@@ -201,7 +201,6 @@ const NewReview = ({
     setRating(null);
     recommended.current.checked = true;
     setRecommend(true);
-    console.log(charBtns.current);
     _.each(charBtns.current, (btn) => {
       if (btn) btn.checked = false;
     });
@@ -214,23 +213,36 @@ const NewReview = ({
     setEmail('');
   };
 
-  const handleSubmit = () => {
-    if (hasNoErrors()) {
-      const completeReview = {
-        // eslint-disable-next-line camelcase
-        product_id,
-        rating,
-        summary,
-        body,
-        recommend,
-        name,
-        email,
-        photos,
-        characteristics,
-      };
-      console.log(completeReview);
-      axios.post('/reviews', completeReview).then(exitNewReview);
-    }
+  const handleSubmit = (event) => {
+    // event.preventDefault();
+    // if (hasNoErrors()) {
+    //   const completeReview = {
+    //     // eslint-disable-next-line camelcase
+    //     product_id,
+    //     rating,
+    //     summary,
+    //     body,
+    //     recommend,
+    //     name,
+    //     email,
+    //     photos,
+    //     characteristics,
+    //   };
+    //   axios.post('/reviews', completeReview).then(exitNewReview);
+    // }
+    const completeReview = {
+      // eslint-disable-next-line camelcase
+      product_id,
+      rating,
+      summary,
+      body,
+      recommend,
+      name,
+      email,
+      photos,
+      characteristics,
+    };
+    // axios.post('/reviews', completeReview).then(exitNewReview);
   };
 
   const addImgBtn = photos.length < 5 ? (
@@ -243,7 +255,7 @@ const NewReview = ({
       <form>
         <div className="review-section">
           Overall rating (mandatory)
-          <div className="select-star-rating">
+          <div className="select-star-rating" required>
             {_.map(stars, (star, num) => (
               <button key={num} type="button" className="star-btn fa fa-star star" ref={star} onClick={() => { rate(parseInt(num, 10) + 1); }} />
             ))}
@@ -301,7 +313,7 @@ const NewReview = ({
         <div className="review-section">
           Review body (mandatory)
           <div className="text-input">
-            <textarea value={body} onChange={handleBody} minLength="50" maxLength="1000" placeholder="Why did you like the product or not?" rows="10" cols="60" />
+            <textarea value={body} onChange={handleBody} minLength="50" maxLength="1000" placeholder="Why did you like the product or not?" rows="10" cols="60" required />
           </div>
           {remainingChars}
           <div className="error" ref={emptyBody}>
@@ -338,7 +350,7 @@ const NewReview = ({
         <div className="review-section">
           What is your name (mandatory)
           <div className="text-input">
-            <input type="text" value={name} onChange={handleNameChange} maxLength="60" placeholder="Example: jackson11!" size="60" />
+            <input type="text" value={name} onChange={handleNameChange} maxLength="60" placeholder="Example: jackson11!" size="60" required />
           </div>
           <small className="privacy-warning">For privacy reasons, do not use your full name or email address</small>
           <div className="error" ref={emptyName}>
@@ -349,7 +361,7 @@ const NewReview = ({
         <div className="review-section">
           Your email (mandatory)
           <div className="text-input">
-            <input type="text" value={email} onChange={handleEmailChange} maxLength="60" placeholder="Example: jackson11@email.com" size="60" />
+            <input type="email" value={email} onChange={handleEmailChange} maxLength="60" placeholder="Example: jackson11@email.com" size="60" required />
           </div>
           <div className="error" ref={emptyEmail}>
             <small>This field is required</small>
@@ -358,7 +370,7 @@ const NewReview = ({
             <small>Invalid email</small>
           </div>
         </div>
-        <button className="submit-button submit-review" type="button" onClick={handleSubmit}>Submit</button>
+        <button className="submit-button submit-review" type="submit" onClick={handleSubmit}>Submit</button>
       </form>
     </div>
   );

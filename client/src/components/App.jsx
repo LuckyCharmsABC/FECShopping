@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import _ from 'underscore';
 import Product from './po_components/Product.jsx';
 import Related from './ri_components/RelatedItemsAndOutfits.jsx';
 import Reviews from './rr_components/Reviews.jsx';
