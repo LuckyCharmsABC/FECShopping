@@ -7,13 +7,61 @@
  - Navigate to `localhost:3000` in your browser
 
 ## Product Overview
- - Created by Boyi Qu
+
+- Created by Boyi Qu
+
+This section includes an image gallery that displays pictures of the current item; a product information section that displays current item’s basic information and a section where users can select different styles, sizes and quantities to add the selected items to shopping bag.
+
+### Image Gallery
+
+This section displays pictures of the current product. It can be displayed in default or expanded view.
+
+**Default view:** Consists of a high resolution main image and a list of thumbnail images on the left
+
+- Each style has its own image Gallery. Select a desired style and the image gallery will update.
+- Users can navigate among images using the following methods:
+    - Click on the left and right arrows located on the left and right sides of the main image
+    - Click on a thumbnail image in the list to navigate to the corresponding main image
+    - To make hidden thumbnails visible
+        - Click on the up and down arrows located on the top and bottom of the thumbnail list
+        - Or place the pointer on the list and scroll up and down
+- Clicking on the main image (mouse shows magnifying glass plus sign) will open expanded view of the image gallery
+
+**Expanded View:** Consists of the main image and navigation dot buttons on the bottom
+
+- Users can navigate among images using the following methods:
+    - Click on the left and right arrows
+    - Click on a navigation dot button to navigate to the corresponding main image
+- Clicking on the main image (mouse shows plus sign) will zoom the main image by 2.5 times at the clicked location, moving the mouse around after clicking will allow the image to following mouse movement
+- Clicking the zoomed-in main image (mouse shows minus sign) will bring image back to normal scale
+- Close the expanded view by clicking on the cross on the top right.
+
+### Product Information
+
+This section displays basic information of the current product
+
+- If the product has any reviews or ratings, average rating and total number of reviews will be displayed at the top.
+- Clicking on Read all xx reviews will bring the page to Ratings and Reviews section
+- Different styles of the same product may have different prices. Select a desired style to see the most accurate price
+- If a style is on sale, the sale price is displayed in red and original price is displayed in black, struck through.
+- Product slogan, description and features are displayed below the image gallery, above the related items.
+
+### Style selector and Add to Cart
+
+This section includes a list of all available styles’ thumbnail images, a dropdown list for selecting sizes, a dropdown list for selecting quantities and a “ADD TO BAG” button.
+
+- Select a style by clicking on the style’s thumbnail image; the selected style name will be displayed above the thumbnail images
+- Each style may have different available sizes and quantities. If a size is not displayed in the dropdown list, then it’s not available.
+- If the size dropdown list displays “OUT OF STOCK”, none of the sizes are available
+- To add items to cart, users must select a size. When a size is selected, the default quantity is set to 1.
+- Users can change the quantity as needed, but only up to 15 or current available stock number
+- Once the desired style, size and quantity are selected, clicking on “ADD TO BAG” will add the items to cart.
 
 ## Related Items and Outfit Items
  - Created by Connor Fung
  - There are two main features in Related Items: Related Items and Outfit Items
 
- ## Related Items
+ ### Related Items
  - This section displays a carousel of items that are related to the Product currently being viewed in the 'Product Overview'.
  - The user can scroll the carousel either by using a scroll wheel on a mouse or trackpad, or by clicking on the arrow buttons on the left and right side of the carousel.
  - The user can click on any of the cards in the carousel to look at make that card the currently viewed product.
@@ -26,7 +74,7 @@
  - Clicking on the star button in the top right of item card will bring up a comparison modal which shows the combined characteristics of each of the related item and the item currently being viewed in the Product Overview.
  - If the current item has no related items, nothing is rendered in this component.
 
- ## Outfit Items
+ ### Outfit Items
  - This section also displays a carousel of items, however the items in this list are decided by the user of the website.
  - Just like the Related Item carousel, the user can scroll the carousel either by using a scroll wheel on a mouse or trackpad, or by clicking on the arrow buttons on the left and right side of the carousel.
  - This Outfit List is persistent per user, so each users list will be different and all will be persistent for that specific user.
