@@ -83,7 +83,7 @@ This section includes a list of all available styles’ thumbnail images, a drop
    - Rather than displaying a comparison, the Action Button in the top right of the card removes that card from the user's Outfit List.
 
 ## Ratings and Reviews
- - Created by Avarice Boonzaayer
+ - Created by Sam Boonzaayer
  - Three main features: Overall Ratings, Review List, and New Review
 
 ### Overall Ratings
