@@ -2,6 +2,7 @@
  - This project is meant to simulate an online retailing site (dubbed 'Lucky and Charm'), and is split into three sections: Product Overview, Related Items, and Ratings and Reviews
 
 ## Setup
+ - In the main directory, create a config.js file following the example_config.js format. Use a valid Github token. 
  - Run `npm install` or `npm i`
  - Run `npm run server-dev` and `npm run client-dev` in two separate terminals
  - Navigate to `localhost:3000` in your browser
