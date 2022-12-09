@@ -11,6 +11,9 @@
 - Created by Boyi Qu
 
 This section includes an image gallery that displays pictures of the current item; a product information section that displays current item’s basic information and a section where users can select different styles, sizes and quantities to add the selected items to shopping bag.
+<p align="center">
+ <img src="https://media.giphy.com/media/yfdgAZ4CvEAK1R9j4p/giphy.gif" alt="home-filter" height="300px"/>
+</p>
 
 ### Image Gallery
 
@@ -60,6 +63,9 @@ This section includes a list of all available styles’ thumbnail images, a drop
 ## Related Items and Outfit Items
  - Created by Connor Fung
  - There are two main features in Related Items: Related Items and Outfit Items
+<p align="center">
+ <img src="https://media.giphy.com/media/KsO70Szj7UhVHWDCXE/giphy.gif" alt="home-filter" height="300px"/>
+</p>
 
  ### Related Items
  - This section displays a carousel of items that are related to the Product currently being viewed in the 'Product Overview'.
@@ -85,6 +91,9 @@ This section includes a list of all available styles’ thumbnail images, a drop
 ## Ratings and Reviews
  - Created by Sam Boonzaayer
  - Three main features: Overall Ratings, Review List, and New Review
+<p align="center">
+ <img src="https://media.giphy.com/media/JqX6HHzzkG1jLQjwTk/giphy.gif" alt="home-filter" height="300px"/>
+</p>
 
 ### Overall Ratings
  - This section displays how the product was rated overall. It includes the average star rating from 1 - 5, as well as a visual representation of stars.
@@ -100,6 +109,9 @@ This section includes a list of all available styles’ thumbnail images, a drop
  - Clicking the "Add Review" button will open up a form to create a new review.
 
 ### New Review
+<p align="center">
+ <img src="https://media.giphy.com/media/pEIhSSwk5kkRImED1O/giphy.gif" alt="home-filter" height="300px"/>
+</p>
  - The form to create a new review will prompt the user to fill in:
    - A star rating (1 - 5) (Mandatory)
    - Whether they recommend the product (Mandatory)
